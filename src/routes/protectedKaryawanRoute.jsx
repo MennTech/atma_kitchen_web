@@ -1,14 +1,14 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { isLoggedIn } from "../utils/isLoggedIn";
+import { isLoggedIn } from "../utils/userCheck";
 // eslint-disable-next-line react/prop-types
 const ProtectedKaryawanRoutes = ({ children }) => {
     const navigate = useNavigate();
     const [token, setToken] = useState("");
     useEffect(() => {
-        if(!isLoggedIn()){
+        if (!isLoggedIn()) {
             navigate("/karyawan/login");
-        }else{
+        } else {
             setToken(sessionStorage.getItem("token"));
         }
     }, [navigate]);

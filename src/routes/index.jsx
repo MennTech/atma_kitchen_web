@@ -57,6 +57,10 @@ const router = createBrowserRouter([
                 {/* customerLayout */}
             </ProtectedRoutes>,
         children: [
+            {
+                path: '/customer/profile',
+                element: <div>Customer Profile</div>
+            },
         ]
     },
     // protected route for karyawan
