@@ -11,7 +11,7 @@ let routes = [
 
 const CustomerLayout = () => {
     return (
-        <div>
+        <div>   
             <TopNavbar routes={routes} />
             <Outlet />
             <Footer />

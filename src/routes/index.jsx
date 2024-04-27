@@ -4,6 +4,7 @@ import PublicRoute from './publicRoute';
 import HomeLayout from '../layouts/homeLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
+import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -43,8 +44,8 @@ const router = createBrowserRouter([
         path: '/karyawan',
         children: [
             {
-                path: 'karyawan/login',
-                element: <div>Karyawan Login</div>
+                path: '/karyawan/login',
+                element: <LoginKaryawanPage />
             },
         ]
     },
