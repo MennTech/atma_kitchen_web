@@ -1,13 +1,13 @@
+
 import { Outlet,useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
 import TopNavbar from "../components/TopNavbar";
 import Footer from "../components/Footer";
-import { isLoggedIn } from "../utils/isLoggedIn";
+import { isLoggedIn } from "../utils/userCheck";
 
-let routes = [];
-// check if user is logged in or not
-if (!isLoggedIn()) {
-    // if user is not logged in, show login and register routes
-    routes = [
+const HomeLayout = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [routes, setRoutes] = useState([
         {
             name: "Login",
             path: "/login"
@@ -16,17 +16,34 @@ if (!isLoggedIn()) {
             name: "Register",
             path: "/register"
         }
-    ]
-} else {
-    // if user is logged in, show profile route
-    routes = [
-        {
-            name: "Profile",
-            path: "/profile"
-        }
-    ]
-}
+    ]);
 
+    // check if user is logged in
+    useEffect(() => {
+        setLoggedIn(isLoggedIn());
+    }, []);
+
+    useEffect(() => {
+        if (loggedIn) {
+            setRoutes([
+                {
+                    name: "Profile",
+                    path: "/profile"
+                }
+            ]);
+        } else {
+            setRoutes([
+                {
+                    name: "Login",
+                    path: "/login"
+                },
+                {
+                    name: "Register",
+                    path: "/register"
+                }
+            ])
+        }
+    }, [loggedIn]);
 const HomeLayout = () => {
     const navigate = useNavigate();
     return (
