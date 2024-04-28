@@ -1,19 +1,22 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { isLoggedIn, userTypes } from "../utils/userCheck";
+import { useMemoizationUserCheck } from "../utils/memoizationUserCheck";
 
 // eslint-disable-next-line react/prop-types
 const ProtectedCustomerRoutes = ({ children }) => {
     const navigate = useNavigate();
     const [token, setToken] = useState("");
+
+    const { memoizationIsLoggedIn, memoizationUserType } = useMemoizationUserCheck();
+
     useEffect(() => {
-        if (!isLoggedIn() || userTypes() !== "customer") {
+        if (!memoizationIsLoggedIn || memoizationUserType !== "customer") {
             navigate("/");
         } else {
             setToken(sessionStorage.getItem("token"));
         }
-    }, [navigate]);
-    return token && (
+    }, [memoizationIsLoggedIn, memoizationUserType, navigate]);
+    return memoizationIsLoggedIn && token && memoizationUserType === "customer" && (
         children ? children : <Outlet />
     )
 };

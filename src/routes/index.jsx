@@ -1,7 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ProtectedRoutes from './protectedCustomerRoutes';
+import ProtectedCustomerRoutes from './protectedCustomerRoutes';
+import ProtectedKaryawanRoutes from './protectedKaryawanRoute';
+import RoleBasedRoute from './roleBasedRoutes';
 import PublicRoute from './publicRoute';
 import HomeLayout from '../layouts/homeLayout';
+import KaryawanLayout from '../layouts/karyawanLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
@@ -53,9 +56,9 @@ const router = createBrowserRouter([
     {
         path: '/customer',
         element:
-            <ProtectedRoutes>
+            <ProtectedCustomerRoutes>
                 {/* customerLayout */}
-            </ProtectedRoutes>,
+            </ProtectedCustomerRoutes>,
         children: [
             {
                 path: '/customer/profile',
@@ -67,20 +70,51 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element:
-            <ProtectedRoutes>
-                {/* karyawanLayout */}
-            </ProtectedRoutes>,
+            <ProtectedKaryawanRoutes>
+                <KaryawanLayout />
+            </ProtectedKaryawanRoutes>,
         children: [
             {
-                path: '/dashboard/home',
+                path: '/dashboard',
                 element: <div>Dashboard Home</div>
             },
             {
                 path: '/dashboard/profile',
                 element: <div>Dashboard Profile</div>
             },
+            {
+                path: '/dashboard/produk',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <div>Dashboard Produk</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/hampers',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <div>Dashboard Hampers</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pembelian-bahan-baku',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <div>Dashboard Pembelian Bahan Baku</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Manager Operasional"}>
+                        <div>Dashboard Laporan</div>
+                    </RoleBasedRoute>
+                )
+            }
         ]
-
     }
 ]);
 

@@ -46,8 +46,10 @@ const HomeLayout = () => {
 
     return (
         <div className="flex flex-col h-screen">
-            <TopNavbar routes={routes} />
-            <Outlet />
+            <div className="flex-1">
+                <TopNavbar routes={routes} />
+                <Outlet />
+            </div>
             <Footer />
         </div>
     )

@@ -3,17 +3,23 @@ import { getCurrentUser } from "../api/userApi";
 export const checkRoleKaryawan = async () => {
     try{
         const response = await getCurrentUser();
-        if(response === null){
+        if(response.status !== 200){
             return null;
         }
 
-        if(response.role === null){
+        if(response.status === 200 && response.role === null){
             return null;
         }
 
-        if(response.role === "Admin"){
+        if(sessionStorage.getItem("token") || sessionStorage.getItem("karaywan") === null){
+            return null;
+        }
+
+        const role = sessionStorage.getItem("karaywan").role.jabatan;
+
+        if(role === "Admin"){
             return "Admin";
-        }else if(response.role === "Manager Operasional"){
+        }else if(role === "Manager Operasional"){
             return "Manager Operasional";
         }else{
             return "Owner";

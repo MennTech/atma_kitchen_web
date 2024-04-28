@@ -1,18 +1,24 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { isLoggedIn } from "../utils/userCheck";
+import { useMemoizationUserCheck } from "../utils/memoizationUserCheck";
+
 // eslint-disable-next-line react/prop-types
 const ProtectedKaryawanRoutes = ({ children }) => {
     const navigate = useNavigate();
     const [token, setToken] = useState("");
+
+    const { memoizationIsLoggedIn, memoizationUserType } = useMemoizationUserCheck();
+
     useEffect(() => {
-        if (!isLoggedIn()) {
+        if (!memoizationIsLoggedIn) {
             navigate("/karyawan/login");
+        }else if(memoizationUserType !== "karyawan"){
+            navigate("/");
         } else {
             setToken(sessionStorage.getItem("token"));
         }
-    }, [navigate]);
-    return token && (
+    }, [memoizationIsLoggedIn, memoizationUserType, navigate]);
+    return memoizationIsLoggedIn && token && memoizationUserType && (
         children ? children : <Outlet />
     )
 };
