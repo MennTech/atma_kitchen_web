@@ -23,4 +23,19 @@ const Logout = async () => {
     }
 }
 
-export { Login, Logout };
+const Register = async (data) => {
+    try {
+        const response = await useAxios.post("/register", data);
+        return response.data;
+    } catch (error) {
+        if (error.response) {
+            const { data } = error.response;
+            if (data.message && data.message.email_customer) {
+                throw new Error(data.message.email_customer[0]);
+            }
+            return data;
+        }
+    }
+}
+
+export { Login, Logout, Register };

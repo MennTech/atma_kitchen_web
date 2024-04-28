@@ -15,7 +15,7 @@ const LoginCustomerPage = () => {
                         <LoginCustomerForm />
                         <div>
                             <label className="label">
-                                <span className="label-text-alt">Belum punya akun? <a href="#" className="link link-hover">Daftar</a></span>
+                                <span className="label-text-alt">Belum punya akun? <a onClick={() => navigate('/register')} className="link link-hover">Daftar</a></span>
                             </label>
                             <label className="label">
                                 <a onClick={() => navigate('/karyawan/login')} className="label-text-alt link link-hover">Login Sebagai Karyawan</a>
