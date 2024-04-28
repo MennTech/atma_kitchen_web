@@ -5,6 +5,8 @@ import HomeLayout from '../layouts/homeLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
+import BahanBakuPage from '../pages/admin/bahanBaku';
+
 
 const router = createBrowserRouter([
     // wildcard route
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
             },
         ]
 
+    },
+    {
+        path: '/bahan',
+        element: <BahanBakuPage />
     }
 ]);
 
