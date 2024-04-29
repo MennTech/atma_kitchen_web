@@ -1,5 +1,4 @@
-
-import { Outlet,useNavigate} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import TopNavbar from "../components/TopNavbar";
 import Footer from "../components/Footer";
@@ -44,8 +43,7 @@ const HomeLayout = () => {
             ])
         }
     }, [loggedIn]);
-const HomeLayout = () => {
-    const navigate = useNavigate();
+
     return (
         <div className="flex flex-col h-screen">
             <div className="flex-1">
