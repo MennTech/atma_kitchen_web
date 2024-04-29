@@ -24,6 +24,10 @@ const KaryawanLayout = () => {
                 {
                     name: "Pembelian Bahan Baku",
                     path: "/dashboard/pembelian-bahan-baku"
+                },
+                {
+                    name: "Resep",
+                    path: "/dashboard/resep"
                 }
             ])
         }else if (role === "Manager Operasional"){
