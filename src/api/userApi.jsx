@@ -1,16 +1,16 @@
 import useAxios from ".";
 
-const getCurrentUser = () => {
+const getCurrentUser = async () => {
     try{
-        const response = useAxios.get("/user", null, {
+        const response = await useAxios.get("/user", {
             headers: {
-                "Content-Type": "application/json",
+                Accept: "application/json",
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
         });
-        return response.data;
+        return response;
     }catch(error){
-        return error.response.data;
+        return error;
     }
 }
 

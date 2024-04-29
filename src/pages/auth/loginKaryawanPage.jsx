@@ -8,7 +8,7 @@ const LoginKaryawanPage = () => {
             <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-white-100">
                 <div className="card-body">
                     <div>
-                        <div className="flex justify-center mb-2">
+                        <div className="flex justify-center mb-5">
                             <h1 className="text-2xl font-bold">Atma Kitchen</h1>
                         </div>
                         <LoginKaryawanForm />
