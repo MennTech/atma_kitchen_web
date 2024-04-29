@@ -9,7 +9,7 @@ import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBaku';
-
+import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/register',
-                element: <div>Register</div>
+                element: <RegisterCustomerPage />
             },
         ]
     },
