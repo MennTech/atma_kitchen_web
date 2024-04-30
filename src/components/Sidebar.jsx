@@ -25,9 +25,7 @@ const Sidebar = ({ routes }) => {
     return (
         <section className="w-64 h-screen">
             <ul className="menu p-4 w-64 min-h-full bg-white text-base-content">
-                <div className="flex justify-center">
-                    <a onClick={() => navigate("/dashboard")} className="text-2xl font-bold cursor-pointer">Atma Kitchen</a>
-                </div>
+                    <a onClick={() => navigate("/dashboard")} className="text-center text-2xl font-bold cursor-pointer">Atma Kitchen</a>
                 <div className="divider"></div>
                 <div className="flex-1 overflow-y-auto max-h-[calc(100vh-200px)] no-scrollbar">
                     <div className="space-y-2">

@@ -5,17 +5,13 @@ const LoginKaryawanPage = () => {
     const navigate = useNavigate();
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-white-100">
+            <div className="card shrink-0 w-full max-w-md shadow-2xl bg-white-100">
                 <div className="card-body">
-                    <div>
-                        <div className="flex justify-center mb-5">
-                            <h1 className="text-2xl font-bold">Atma Kitchen</h1>
-                        </div>
-                        <LoginKaryawanForm />
-                        <label className="label flex justify-center">
-                            <a onClick={() => navigate('/')} className="text-sm label-text-alt link-hover">Kembali ke Beranda</a>
-                        </label>
+                    <div className="flex flex-col items-center">
+                        <a onClick={() => navigate('/')} className="text-center text-3xl font-bold cursor-pointer">Atma Kitchen</a>
+                        <p className="">Login Karyawan Atma Kitchen</p>
                     </div>
+                    <LoginKaryawanForm />
                 </div>
             </div>
         </div>

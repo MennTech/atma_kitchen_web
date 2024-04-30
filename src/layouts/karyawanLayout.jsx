@@ -21,13 +21,13 @@ const KaryawanLayout = () => {
                     name: "Hampers",
                     path: "/dashboard/hampers"
                 },
+            ])
+        }else if (role === "Manager Operational"){
+            setRoutes([
                 {
                     name: "Pembelian Bahan Baku",
                     path: "/dashboard/pembelian-bahan-baku"
                 }
-            ])
-        }else if (role === "Manager Operasional"){
-            setRoutes([
                 /*
                  isi routes untuk Manager Operasional
                 */

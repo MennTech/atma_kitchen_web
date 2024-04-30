@@ -7,11 +7,17 @@ const LoginCustomerPage = () => {
         <div className="hero min-h-screen bg-white-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <a onClick={() => navigate('/')} className="text-5xl font-bold cursor-pointer">Atma Kitchen</a>
+                    <p className="italic">
+                        Surga Kelezatan, Harmoni Rasa yang Memanjakan Jiwa.
+                        Di sini, kami mengolah setiap produk dengan penuh cinta, menciptakan sajian yang memanjakan lidah sekaligus menghanyutkan perasaan Anda.
+                    </p>
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-white-100">
+                <div className="card shrink-0 w-full max-w-md shadow-2xl bg-white-100">
                     <div className="card-body">
+                        <div className="flex justify-center mb-5">
+                            <h4 className="text-center text-xl font-semibold">Login ke Atma Kitchen</h4>
+                        </div>
                         <LoginCustomerForm />
                         <div>
                             <label className="label">
