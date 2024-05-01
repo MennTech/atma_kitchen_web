@@ -13,6 +13,9 @@ import ProdukPage from '../pages/admin/produkPage';
 import HampersPage from '../pages/admin/hampersPage';
 import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBakuPage';
 import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
+import ResepPage from "../pages/admin/resep/resepPage";
+import AddResepPage from "../pages/admin/resep/addResepPage";
+import EditResepPage from "../pages/admin/resep/editResepPage";
 
 const router = createBrowserRouter([
     // wildcard route
@@ -110,6 +113,30 @@ const router = createBrowserRouter([
                         <PembelianBahanBakuPage />
                     </RoleBasedRoute>
                 )
+            },
+            {
+              path: "/dashboard/resep",
+              element: (
+                <RoleBasedRoute allowedRoles={["Admin"]}>
+                  <ResepPage />
+                </RoleBasedRoute>
+              ),
+            },
+            {
+              path: "/dashboard/tambah-resep",
+              element: (
+                <RoleBasedRoute allowedRoles={["Admin"]}>
+                  <AddResepPage />
+                </RoleBasedRoute>
+              ),
+            },
+            {
+              path: "/dashboard/edit-resep/:id",
+              element: (
+                <RoleBasedRoute allowedRoles={["Admin"]}>
+                  <EditResepPage />
+                </RoleBasedRoute>
+              ),
             },
             {
                 path: '/dashboard/laporan',

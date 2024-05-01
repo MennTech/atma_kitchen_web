@@ -26,6 +26,14 @@ const KaryawanLayout = () => {
                     name: "Hampers",
                     path: "/dashboard/hampers"
                 },
+                {
+                    name: "Pembelian Bahan Baku",
+                    path: "/dashboard/pembelian-bahan-baku"
+                },
+                {
+                    name: "Resep",
+                    path: "/dashboard/resep"
+                }
             ])
         }else if (role === "Manager Operational"){
             setRoutes([
