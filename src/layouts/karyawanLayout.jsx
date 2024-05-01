@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
+import { Toaster } from 'sonner';
 
 const KaryawanLayout = () => {
     const [role, setRole] = useState("");
@@ -46,6 +47,7 @@ const KaryawanLayout = () => {
     }, [role])
     return (
         <div className="flex flex-row h-screen">
+            <Toaster richColors position="top-center"/>
             <Sidebar routes={routes} />
             <Outlet />
         </div>
