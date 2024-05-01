@@ -8,7 +8,7 @@ import KaryawanLayout from '../layouts/karyawanLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
-import BahanBakuPage from '../pages/admin/bahanBaku';
+import BahanBakuPage from '../pages/admin/bahanBakuPage';
 import ProdukPage from '../pages/admin/produkPage';
 import HampersPage from '../pages/admin/hampersPage';
 import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBakuPage';
