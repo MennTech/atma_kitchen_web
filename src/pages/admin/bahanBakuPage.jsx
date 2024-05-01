@@ -3,6 +3,7 @@ import { GetAllBahanBaku } from "../../api/BahanBaku";
 import DataTable from "react-data-table-component";
 import CreateModal from "../../components/modals/ModalsCreateBahanBaku"
 import DeleteModal from "../../components/modals/ModalsDelete"
+import EditModal from "../../components/modals/ModalsUpdate"
 
 
 const BahanBakuPage = () => {
@@ -25,25 +26,23 @@ const BahanBakuPage = () => {
   }, []);
   const columns = [
     {
-      name: 'Nama',
+      name: <span className="font-bold text-base">Nama</span>,
       selector: row => row.nama_bahan_baku,
       sortable: true,
     },
     {
-      name: 'Stok',
+      name: <span className="font-bold text-base">Stok</span>,
       cell: row => `${row.stok}  ${row.satuan}`,
     },
     {
       name: '',
       cell: row => (
         <div className="flex gap-2 justify-end items-end">
-          <button className="btn btn-sm btn-outline bg-[#d08854] text-white" onClick={()=>handleShowUpdate(
-            row
-          )}>Edit</button>
+          <EditModal onClose={fetchData} value={row}/>
           <DeleteModal onClose={fetchData} value={row}/>
         </div>
       ),
-      right: true,
+      right: "true",
     },
     
   ];
@@ -61,14 +60,6 @@ const BahanBakuPage = () => {
     });
     setSearch(result);
   }
-  const [showModal, setShowModal] = useState(false);
-  const handleShow = () => setShowModal(true);
-  const handleShowUpdate = (data) =>{
-    setData(data);
-    setShowModal(true);
-  }
-  const [data, setData] = useState({});
-  const handleOnClose = () => setShowModal(false);
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
       <div className="flex items-center">
@@ -82,10 +73,10 @@ const BahanBakuPage = () => {
         <div className="card-body h-full p-4">
           <div className='flex justify-between'>
             <div className="flex items-center">
-              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch} />
+              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch}/>
             </div>
             <div className="space-x-1">
-              <button className='btn btn-outline bg-[#d08854] text-white' onClick={handleShow}>Tambah Bahan Baku</button>
+              <CreateModal onClose={fetchData}/>
             </div>
           </div>
           <div className="divider m-1"></div>
@@ -109,8 +100,6 @@ const BahanBakuPage = () => {
           </div>
         </div>
       </div>
-      <CreateModal visible={showModal} onClose={() => { fetchData(); handleOnClose(); }} value={data}/>
-      
     </div>
     
   );
