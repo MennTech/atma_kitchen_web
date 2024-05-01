@@ -118,12 +118,16 @@ const router = createBrowserRouter([
                         <div>Dashboard Laporan</div>
                     </RoleBasedRoute>
                 )
+            },
+            {
+                path: '/dashboard/bahan',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Admin"}>
+                        <BahanBakuPage />
+                    </RoleBasedRoute>
+                )
             }
         ]
-    },
-    {
-        path: '/bahan',
-        element: <BahanBakuPage />
     }
 ]);
 

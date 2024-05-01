@@ -25,8 +25,8 @@ const KaryawanLayout = () => {
         }else if (role === "Manager Operational"){
             setRoutes([
                 {
-                    name: "Pembelian Bahan Baku",
-                    path: "/dashboard/pembelian-bahan-baku"
+                    name: "Bahan Baku",
+                    path: "/dashboard/bahan"
                 }
                 /*
                  isi routes untuk Manager Operasional
