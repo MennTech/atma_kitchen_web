@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
+import { Toaster } from 'sonner';
 
 const KaryawanLayout = () => {
     const [role, setRole] = useState("");
@@ -25,6 +26,14 @@ const KaryawanLayout = () => {
                     name: "Hampers",
                     path: "/dashboard/hampers"
                 },
+                {
+                    name: "Pembelian Bahan Baku",
+                    path: "/dashboard/pembelian-bahan-baku"
+                },
+                {
+                    name: "Resep",
+                    path: "/dashboard/resep"
+                }
             ])
         }else if (role === "Manager Operational"){
             setRoutes([
@@ -46,6 +55,7 @@ const KaryawanLayout = () => {
     }, [role])
     return (
         <div className="flex flex-row h-screen">
+            <Toaster richColors position="top-center"/>
             <Sidebar routes={routes} />
             <Outlet />
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { GetAllBahanBaku } from "../../api/BahanBaku";
 import DataTable from "react-data-table-component";
 import CreateModal from "../../components/modals/ModalsCreateBahanBaku"
+import DeleteModal from "../../components/modals/ModalsDelete"
 
 
 const BahanBakuPage = () => {
@@ -31,6 +32,19 @@ const BahanBakuPage = () => {
       name: 'Stok',
       cell: row => `${row.stok}  ${row.satuan}`,
     },
+    {
+      name: '',
+      cell: row => (
+        <div className="flex gap-2 justify-end items-end">
+          <button className="btn btn-sm btn-outline bg-[#d08854] text-white" onClick={()=>handleShowUpdate(
+            row
+          )}>Edit</button>
+          <DeleteModal onClose={fetchData} value={row}/>
+        </div>
+      ),
+      right: true,
+    },
+    
   ];
   const paginationOptions = {
     rowsPerPageText: 'Baris per halaman',
@@ -48,6 +62,11 @@ const BahanBakuPage = () => {
   }
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
+  const handleShowUpdate = (data) =>{
+    setData(data);
+    setShowModal(true);
+  }
+  const [data, setData] = useState({});
   const handleOnClose = () => setShowModal(false);
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
@@ -89,8 +108,10 @@ const BahanBakuPage = () => {
           </div>
         </div>
       </div>
-      <CreateModal visible={showModal} onClose={handleOnClose} />
+      <CreateModal visible={showModal} onClose={() => { fetchData(); handleOnClose(); }} value={data}/>
+      
     </div>
+    
   );
 };
 export default BahanBakuPage;

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { LogoutKaryawan } from "../api/authKaryawanApi";
+import { LogoutKaryawan, ChangePassword } from "../api/authKaryawanApi";
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ routes }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [karyawan, setKaryawan] = useState({});
+    const [newPassword, setNewPassword] = useState("");
 
     useEffect(() => {
         const karyawanData = JSON.parse(sessionStorage.getItem("karyawan"));
@@ -22,6 +23,26 @@ const Sidebar = ({ routes }) => {
             console.log(error);
         }
     }
+
+    const handleChange = (event) => {
+        setNewPassword(event.target.value);
+    }
+
+    const handleCloseModal = () => {
+        document.getElementById('modalChangePass').close();
+    }
+
+    const changePassword = (event) => {
+        event.preventDefault();
+        ChangePassword({ new_password: newPassword }).then((response) => {
+            if(response.message === 'Password berhasil diubah'){
+                handleCloseModal();
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
     return (
         <section className="w-64 h-screen">
             <ul className="menu p-4 w-64 min-h-full bg-white text-base-content">
@@ -59,7 +80,7 @@ const Sidebar = ({ routes }) => {
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
                                     <li>
-                                        <a>Ganti Password</a>
+                                        <a onClick={()=>document.getElementById('modalChangePass').showModal()}>Ganti Password</a>
                                     </li>
                                     <li>
                                         <a onClick={logoutKaryawan}>Logout</a>
@@ -70,6 +91,23 @@ const Sidebar = ({ routes }) => {
                     </div>
                 </div>
             </ul>
+            <dialog id="modalChangePass" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box bg-white">
+                    <h3 className="font-bold text-lg">Change Password</h3>
+                    <div className="modal-action flex justify-center">
+                        <form method="dialog" onSubmit={changePassword} className="w-full">
+                            <div className="form-control">
+                                <label htmlFor="newPassword">New Password</label>
+                                <input type="password" onChange={handleChange} className="input grow bg-slate-200" id="newPassword"/>
+                            </div>
+                            <div className="mt-3 space-x-3">
+                                <button className="btn btn-primary" type="submit">Save</button>
+                                <button className="btn btn-warning" onClick={handleCloseModal}>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </section>
     )
 }

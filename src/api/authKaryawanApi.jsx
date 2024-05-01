@@ -24,4 +24,18 @@ const LogoutKaryawan = async () => {
     }
 }
 
-export { LoginKaryawan, LogoutKaryawan }
+const ChangePassword = async (data) => {
+    try {
+        const response = await useAxios.post("/karyawan/change-password", data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+}
+
+export { LoginKaryawan, LogoutKaryawan, ChangePassword }
