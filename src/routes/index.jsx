@@ -9,6 +9,9 @@ import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBaku';
+import ProdukPage from '../pages/admin/produkPage';
+import HampersPage from '../pages/admin/hampersPage';
+import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBakuPage';
 import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 
 const router = createBrowserRouter([
@@ -88,7 +91,7 @@ const router = createBrowserRouter([
                 path: '/dashboard/produk',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
-                        <div>Dashboard Produk</div>
+                        <ProdukPage />
                     </RoleBasedRoute>
                 )
             },
@@ -96,22 +99,22 @@ const router = createBrowserRouter([
                 path: '/dashboard/hampers',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
-                        <div>Dashboard Hampers</div>
+                        <HampersPage />
                     </RoleBasedRoute>
                 )
             },
             {
                 path: '/dashboard/pembelian-bahan-baku',
                 element: (
-                    <RoleBasedRoute allowedRoles={["Manager Operasional"]}>
-                        <div>Dashboard Pembelian Bahan Baku</div>
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <PembelianBahanBakuPage />
                     </RoleBasedRoute>
                 )
             },
             {
                 path: '/dashboard/laporan',
                 element: (
-                    <RoleBasedRoute allowedRoles={"Manager Operasional"}>
+                    <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <div>Dashboard Laporan</div>
                     </RoleBasedRoute>
                 )

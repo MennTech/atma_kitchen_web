@@ -5,7 +5,7 @@ const TopNavbar = ({ routes }) => {
     const navigate = useNavigate();
     const location = useLocation();
     return (
-        <div className="navbar bg-white">
+        <div className="navbar fixed bg-white">
             <div className="flex-1">
                 <a onClick={() => navigate('/')} className="text-xl cursor-pointer px-1 mx-1">Atma Kitchen</a>
             </div>
