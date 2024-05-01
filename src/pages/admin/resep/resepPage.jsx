@@ -6,13 +6,14 @@ const ResepPage = () => {
   const [resep, setResep] = useState([]);
   const [records, setRecords] = useState([]);
   const navigate = useNavigate();
-  
+  const [isLoading, setIslLoading] = useState(false);
   const fetchResep = () => {
+    setIslLoading(true);
     GetAllResep()
       .then((response) => {
         setResep(response.data.data);
         setRecords(response.data.data);
-        console.log(response.data.data);
+        setIslLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -20,6 +21,7 @@ const ResepPage = () => {
   };
 
   useEffect(() => {
+    setIslLoading(true);
     fetchResep();
   }, []);
 
@@ -49,6 +51,13 @@ const ResepPage = () => {
       ),
     },
   ];
+  
+  const paginationOptions = {
+    rowsPerPageText: 'Baris per halaman',
+    rangeSeparatorText: 'dari',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'Semua'
+  };
 
   function handleSearch(event) {
     const newData = resep.filter((row) => {
@@ -60,48 +69,50 @@ const ResepPage = () => {
   }
 
   return (
-    <div className="w-screen overflow-hidden">
-      <div className="flex justify-between mt-5 ms-3 me-3">
-        <h1 className="text-3xl text-[#d08854] font-semibold">Data Resep</h1>
-        <button
-          className="btn btn-outline bg-[#d08854] text-white"
-          onClick={() => navigate("/dashboard/tambah-resep")}
-        >
-          Tambah Resep
-        </button>
-      </div>
-      <div className="mt-2 mx-5">
-        <div className="text-start">
-          <label className="input input-bordered flex items-center gap-2 bg-white">
-            <input
-              type="text"
-              className="grow"
-              onChange={handleSearch}
-              placeholder="Search"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="w-4 h-4 opacity-70"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </label>
+    <div className="w-screen p-4 min-h-screen overflow-y-auto">
+      <div className="flex items-center">
+        <h1 className="text-4xl text-[#d08854] font-semibold">Data Resep</h1>
+        <div className="divider divider-horizontal m-1"></div>
+        <p className="text-slate-400">
+          Manajemen Resep Atma Kitchen
+        </p>
         </div>
-        <DataTable
-          columns={columns}
-          data={records}
-          fixedHeader
-          pagination
-          className="mt-2"
-          fixedHeaderScrollHeight="530px"
-        ></DataTable>
-      </div>
+        <div className="card w-full h-fit bg-white mt-4">
+          <div className="card-body h-full p-4">
+            <div className='flex justify-between'>
+              <div className="flex items-center">
+              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch} />
+              </div>
+              <div className="space-x-1">
+                <button
+                  className="btn btn-outline bg-[#d08854] text-white"
+                  onClick={() => navigate("/dashboard/tambah-resep")}
+                >
+                  Tambah Resep
+                </button>
+              </div>
+            </div>
+            <div className="divider m-1"></div>
+            <div className='mt-2'>
+              {isLoading &&
+                <div className="flex flex-col items-center">
+                  <span className="loading loading-spinner loading-lg"></span>
+                  <span className="mt-2">Memuat Data...</span>
+                </div>
+              }
+              {!isLoading &&
+                <DataTable
+                  columns={columns}
+                  data={records}
+                  pagination
+                  highlightOnHover
+                  paginationComponentOptions={paginationOptions}
+                  responsive
+                />
+              }
+            </div>
+          </div>
+        </div>
     </div>
   );
 };
