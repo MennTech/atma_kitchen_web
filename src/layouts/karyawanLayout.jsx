@@ -14,6 +14,10 @@ const KaryawanLayout = () => {
         if (role === "Admin"){
             setRoutes([
                 {
+                    name: "Bahan Baku",
+                    path: "/dashboard/bahan"
+                },
+                {
                     name: "Produk",
                     path: "/dashboard/produk"
                 },
@@ -24,13 +28,13 @@ const KaryawanLayout = () => {
             ])
         }else if (role === "Manager Operational"){
             setRoutes([
-                {
-                    name: "Bahan Baku",
-                    path: "/dashboard/bahan"
-                }
                 /*
                  isi routes untuk Manager Operasional
                 */
+               {
+                name: "Pembelian Bahan Baku",
+                path: "/dashboard/pembelian-bahan-baku"
+               }
             ])
         }else if (role === "Owner"){
                 /*
