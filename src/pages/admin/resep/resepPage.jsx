@@ -81,7 +81,7 @@ const ResepPage = () => {
           <div className="card-body h-full p-4">
             <div className='flex justify-between'>
               <div className="flex items-center">
-              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch} />
+              <input type="text" placeholder="Cari Resep" className='input bg-slate-100 px-4' onChange={handleSearch} />
               </div>
               <div className="space-x-1">
                 <button
