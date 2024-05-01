@@ -3,7 +3,7 @@ import useAxios from "."
 export const GetAllProduk = async () => {
     try{
         const response = await useAxios.get("/produk");
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -12,7 +12,7 @@ export const GetAllProduk = async () => {
 export const GetAtmaKitchenProduk = async () => {
     try{
         const response = await useAxios.get("/produk/atma_kitchen");
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -21,7 +21,25 @@ export const GetAtmaKitchenProduk = async () => {
 export const GetPenitipProduk = async () => {
     try{
         const response = await useAxios.get("/produk/penitip");
-        return response;
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}
+
+export const GetAtmaKitchenProdukAdmin = async () => {
+    try{
+        const response = await useAxios.get("/produk/admin/atma_kitchen");
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}
+
+export const GetPenitipProdukAdmin = async () => {
+    try{
+        const response = await useAxios.get("/produk/admin/penitip");
+        return response.data;
     }catch(error){
         return error;
     }
@@ -30,7 +48,7 @@ export const GetPenitipProduk = async () => {
 export const ShowProduk = async (id) => {
     try{
         const response = await useAxios.get(`/produk/${id}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -39,7 +57,7 @@ export const ShowProduk = async (id) => {
 export const SearchProduk = async (keyword) => {
     try{
         const response = await useAxios.get(`/produk/cari?keyword=${keyword}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -48,7 +66,7 @@ export const SearchProduk = async (keyword) => {
 export const SearchProdukAdmin = async (keyword) => {
     try{
         const response = await useAxios.get(`/produk/admin/cari?keyword=${keyword}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -57,7 +75,7 @@ export const SearchProdukAdmin = async (keyword) => {
 export const CreateProduk = async (data) => {
     try{
         const response = await useAxios.post("/produk", data);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -70,7 +88,7 @@ export const UpdateProduk = async (id, data) => {
                 "Access-Control-Request-Methods": "PUT",
             },
         });
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -79,7 +97,7 @@ export const UpdateProduk = async (id, data) => {
 export const DeleteProduk = async (id) => {
     try{
         const response = await useAxios.patch(`/produk/${id}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }

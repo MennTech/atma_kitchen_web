@@ -3,7 +3,7 @@ import useAxios from ".";
 export const GetAllPembelianBahanBaku = async () => {
     try {
         const response = await useAxios.get("/pembelian-bahan-baku");
-        return response;
+        return response.data.data;
     } catch (error) {
         return error;
     }
@@ -12,7 +12,7 @@ export const GetAllPembelianBahanBaku = async () => {
 export const SearchPembelianBahanBaku = async (keyword) => {
     try {
         const response = await useAxios.get(`/pembelian-bahan-baku/cari?key=${keyword}`);
-        return response;
+        return response.data.data;
     } catch (error) {
         return error;
     }
@@ -21,7 +21,7 @@ export const SearchPembelianBahanBaku = async (keyword) => {
 export const ShowPembelianBahanBaku = async (id) => {
     try {
         const response = await useAxios.get(`/pembelian-bahan-baku/${id}`);
-        return response;
+        return response.data.data;
     } catch (error) {
         return error;
     }
@@ -30,7 +30,7 @@ export const ShowPembelianBahanBaku = async (id) => {
 export const CreatePembelianBahanBaku = async (data) => {
     try {
         const response = await useAxios.post("/pembelian-bahan-baku", data);
-        return response;
+        return response.data.data;
     } catch (error) {
         return error;
     }
@@ -39,7 +39,7 @@ export const CreatePembelianBahanBaku = async (data) => {
 export const UpdatePembelianBahanBaku = async (id, data) => {
     try {
         const response = await useAxios.put(`/pembelian-bahan-baku/${id}`, data);
-        return response;
+        return response.data.data;
     } catch (error) {
         return error;
     }
@@ -48,7 +48,7 @@ export const UpdatePembelianBahanBaku = async (id, data) => {
 export const DeletePembelianBahanBaku = async (id) => {
     try {
         const response = await useAxios.delete(`/pembelian-bahan-baku/${id}`);
-        return response;
+        return response.data.data;
     } catch (error) {
         return error;
     }

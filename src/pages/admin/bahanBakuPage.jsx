@@ -19,7 +19,6 @@ const BahanBakuPage = () => {
       });
   };
   useEffect(() => {
-    setIslLoading(true);
     fetchData();
   }, []);
   const columns = [
