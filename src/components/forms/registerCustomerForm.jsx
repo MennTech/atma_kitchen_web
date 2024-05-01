@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import { Register } from '../../api/authCustomerApi';
 
 const RegisterForm = () => {
-    const ref = useRef();
     const navigate = useNavigate();
     const [data, setData] = useState({
         nama_customer: "", 
