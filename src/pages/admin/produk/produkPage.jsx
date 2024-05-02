@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import { GetAtmaKitchenProdukAdmin, GetPenitipProdukAdmin } from "../../api/produkApi";
-import { getProdukPhoto } from "../../api";
-import { EditButton, DeleteButton } from "../../components/buttons/buttons.jsx";
+import { GetAtmaKitchenProdukAdmin, GetPenitipProdukAdmin } from "../../../api/produkApi.jsx";
+import { getProdukPhoto } from "../../../api/index.jsx";
+import { EditButton, DeleteButton } from "../../../components/buttons/buttons.jsx";
 
 const ProdukPage = () => {
     const [produks, setProduks] = useState([]);
@@ -10,6 +11,7 @@ const ProdukPage = () => {
     const [search, setSearch] = useState([]);
     const [columns, setColumns] = useState([]);
     const [isAtmaProduk, setIsAtmaProduk] = useState(true);
+    const navigate = useNavigate();
 
     const getAtmaProduks = async () => {
         setIsLoading(true);
@@ -96,7 +98,7 @@ const ProdukPage = () => {
                     sortable: true,
                 },
                 {
-                    cell: row => actionButton(),
+                    cell: row => actionButton(row.id_produk),
                 }
             ]);
         } else {
@@ -192,7 +194,7 @@ const ProdukPage = () => {
                         </div>
                         <div className="space-x-1">
                             <button className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Penitip</button>
-                            <button className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Atma Kitchen</button>
+                            <button onClick={()=> navigate('/dashboard/produk/create-atma-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Atma Kitchen</button>
                         </div>
                     </div>
                     <div className="divider m-1"></div>

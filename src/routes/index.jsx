@@ -9,7 +9,8 @@ import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBakuPage';
-import ProdukPage from '../pages/admin/produkPage';
+import ProdukPage from '../pages/admin/produk/produkPage';
+import CreateAtmaProdukPage from '../pages/admin/produk/createAtmaProdukPage';
 import HampersPage from '../pages/admin/hampersPage';
 import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/pembelianBahanBakuPage';
 import CreatePembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/createPembelianBahanBakuPage';
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <ProdukPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/produk/create-atma-produk',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <CreateAtmaProdukPage />
                     </RoleBasedRoute>
                 )
             },
