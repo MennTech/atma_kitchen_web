@@ -12,12 +12,16 @@ const HampersPage = () => {
         setIsLoading(true);
         try {
             const response = await GetAllHampers();
-            console.log(response);
-            setHampers(response);
-            setSearch(response);
-            setIsLoading(false);
+            if(response.status === "OK"){
+                setHampers(response.data);
+                setSearch(response.data);
+            }else{
+                console.log(response);
+            }
         } catch (error) {
             console.log(error);
+        }finally{
+            setIsLoading(false);
         }
     }
 

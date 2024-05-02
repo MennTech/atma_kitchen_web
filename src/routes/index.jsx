@@ -11,7 +11,9 @@ import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBakuPage';
 import ProdukPage from '../pages/admin/produkPage';
 import HampersPage from '../pages/admin/hampersPage';
-import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBakuPage';
+import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/pembelianBahanBakuPage';
+import CreatePembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/createPembelianBahanBakuPage';
+import EditPembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/editPembelianBahanBakuPage';
 import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 import ResepPage from "../pages/admin/resep/resepPage";
 import AddResepPage from "../pages/admin/resep/addResepPage";
@@ -111,6 +113,22 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={["Manager Operational"]}>
                         <PembelianBahanBakuPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pembelian-bahan-baku/tambah',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <CreatePembelianBahanBakuPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pembelian-bahan-baku/edit/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <EditPembelianBahanBakuPage />
                     </RoleBasedRoute>
                 )
             },

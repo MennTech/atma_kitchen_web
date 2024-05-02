@@ -56,7 +56,6 @@ const DeleteBahan = ({value,onClose}) => {
           </form>
         </div>
       </dialog>
-
     </>
   );
 };

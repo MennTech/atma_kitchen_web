@@ -15,11 +15,16 @@ const ProdukPage = () => {
         setIsLoading(true);
         try {
             const response = await GetAtmaKitchenProdukAdmin();
-            setProduks(response.produks);
-            setSearch(response.produks);
-            setIsLoading(false);
+            if(response.success){
+                setProduks(response.produks);
+                setSearch(response.produks);
+            }else{
+                console.log(response);
+            }
         } catch (error) {
             console.log(error);
+        }finally{
+            setIsLoading(false);
         }
     }
 

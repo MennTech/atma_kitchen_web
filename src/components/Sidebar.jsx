@@ -14,9 +14,9 @@ const Sidebar = ({ routes }) => {
         setKaryawan(karyawanData);
     }, [])
 
-    const logoutKaryawan = () => {
+    const logoutKaryawan = async () => {
         try{
-            LogoutKaryawan();
+            await LogoutKaryawan();
             sessionStorage.clear();
             navigate("/");
         }catch(error){
