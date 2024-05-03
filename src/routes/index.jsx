@@ -8,7 +8,7 @@ import KaryawanLayout from '../layouts/karyawanLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
-import BahanBakuPage from '../pages/admin/bahanBakuPage';
+import BahanBakuPage from '../pages/admin/bahanBaku/bahanBakuPage';
 import ProdukPage from '../pages/admin/produk/produkPage';
 import CreateAtmaProdukPage from '../pages/admin/produk/createAtmaProdukPage';
 import HampersPage from '../pages/admin/hampersPage';
@@ -19,6 +19,9 @@ import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 import ResepPage from "../pages/admin/resep/resepPage";
 import AddResepPage from "../pages/admin/resep/addResepPage";
 import EditResepPage from "../pages/admin/resep/editResepPage";
+import PenitipPage from "../pages/MO/Penitip/penitipPage"
+import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain"
+import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain"
 
 const router = createBrowserRouter([
     // wildcard route
@@ -170,6 +173,30 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <div>Dashboard Laporan</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/penitip',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <PenitipPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pengeluaranLain',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <PengeluaranLainPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/addPengeluaranLain',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <AddPengeluaranLain />
                     </RoleBasedRoute>
                 )
             },
