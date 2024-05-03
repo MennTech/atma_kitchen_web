@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { GetAllBahanBaku } from "../../api/BahanBaku";
+import { GetAllBahanBaku } from "../../../api/BahanBaku";
 import DataTable from "react-data-table-component";
-import CreateModal from "../../components/modals/ModalsCreateBahanBaku"
-import DeleteModal from "../../components/modals/ModalsDelete"
-import EditModal from "../../components/modals/ModalsUpdate"
+import CreateModal from "../../../components/Modals/ModalsBahanBaku/ModalsCreateBahanBaku"
+import DeleteModal from "../../../components/Modals/ModalsBahanBaku/ModalsDelete"
+import EditModal from "../../../components/Modals/ModalsBahanBaku/ModalsUpdate"
 
 
 const BahanBakuPage = () => {
   const [bahanBaku, setBahanBaku] = useState([]);
   const [isLoading, setIslLoading] = useState(false);
+  const [search, setSearch] = useState([]);
   const fetchData = async () => {
     setIslLoading(true);
     GetAllBahanBaku()
@@ -20,10 +21,6 @@ const BahanBakuPage = () => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    setIslLoading(true);
-    fetchData();
-  }, []);
   const columns = [
     {
       name: <span className="font-bold text-base">Nama</span>,
@@ -44,7 +41,6 @@ const BahanBakuPage = () => {
       ),
       right: "true",
     },
-    
   ];
   const paginationOptions = {
     rowsPerPageText: 'Baris per halaman',
@@ -52,7 +48,6 @@ const BahanBakuPage = () => {
     selectAllRowsItem: true,
     selectAllRowsItemText: 'Semua'
   };
-  const [search, setSearch] = useState([]);
   function handleSearch(event) {
     let value = event.target.value;
     let result = bahanBaku.filter((data) => {
@@ -60,6 +55,10 @@ const BahanBakuPage = () => {
     });
     setSearch(result);
   }
+  useEffect(() => {
+    setIslLoading(true);
+    fetchData();
+  }, []);
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
       <div className="flex items-center">
@@ -101,7 +100,6 @@ const BahanBakuPage = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 export default BahanBakuPage;

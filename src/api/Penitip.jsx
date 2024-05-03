@@ -1,7 +1,7 @@
 import useAxios from ".";
-export const GetAllBahanBaku = async () => {
+export const GetAllPenitip = async () => {
   try {
-    const response = await useAxios.get("/bahan_baku", {
+    const response = await useAxios.get("/penitip", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -12,9 +12,9 @@ export const GetAllBahanBaku = async () => {
     throw error.response.data;
   }
 };
-export const EditBahanBaku = async (data) => {
+export const EditPenitip = async (data) => {
   try {
-    const response = await useAxios.put(`/bahan_baku_update/${data.id_bahan_baku}`, data, {
+    const response = await useAxios.put(`/penitip_update/${data.id_penitip}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -25,9 +25,9 @@ export const EditBahanBaku = async (data) => {
     throw error.response.data;
   }
 }
-export const CreateBahanBaku = async (data) => {
+export const CreatePenitip = async (data) => {
   try {
-    const response = await useAxios.post("/input_bahan_baku", data, {
+    const response = await useAxios.post("/input_penitip", data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -38,9 +38,9 @@ export const CreateBahanBaku = async (data) => {
     throw error.response.data;
   }
 };
-export const DeleteBahanBaku = async (id) => {
+export const DeletePenitip = async (id) => {
   try {
-    const response = await useAxios.delete(`/bahan_baku_deleted/${id}`, {
+    const response = await useAxios.delete(`/penitip_deleted/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
