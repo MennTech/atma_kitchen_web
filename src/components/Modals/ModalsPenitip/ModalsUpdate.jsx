@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EditBahanBaku } from "../../api/BahanBaku";
+import { EditPenitip } from "../../../api/Penitip";
 import { toast } from 'sonner';
 
 const ModalEdit = ({ onClose,value}) => {
@@ -14,21 +14,19 @@ const ModalEdit = ({ onClose,value}) => {
   }
   const handleOnClose = () => {
     setShowModal(false);
-    onClose();
+    setData({nama_penitip:"",
+    no_telp: ""});
   }
   const submitData = (event) => {
       event.preventDefault();
-      EditBahanBaku(data)
+      EditPenitip(data)
       .then((response) => {
-        console.log(response.data);
         toast.success('Success', {
           className: 'my-classname',
           description: response.message,
           duration: 5000,
         });
-        setData({nama_bahan_baku: "",
-        stok: "",
-        satuan: ""});
+        handleOnClose();
         onClose();
       })
       .catch((err) => {
@@ -47,56 +45,37 @@ const ModalEdit = ({ onClose,value}) => {
             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
         </svg>
     </button>
-      <dialog className="modal  bg-black bg-opacity-30 backdrop-blur-sm" open={showModal}>
+      <dialog className="modal  bg-black bg-opacity-30" open={showModal}>
         <div className="bg-white w-1/3 p-5 rounded-lg">
           <h1 className="text-2xl font-semibold text-center">
-            Edit Bahan Baku
+            Edit Penitip
           </h1>
           <form onSubmit={submitData}>
             <div className="mb-4">
-              <label htmlFor="nama_bahan_baku" className="block text-sm font-medium text-gray-700">
-                Nama Bahan Baku
+              <label htmlFor="nama_penitip" className="block text-sm font-medium text-gray-700">
+                Nama Penitip
               </label>
               <input
                 type="text"
-                name="nama_bahan_baku"
-                id="nama_bahan_baku"
-                value={data?.nama_bahan_baku}
+                name="nama_penitip"
+                id="nama_penitip"
+                value={data?.nama_penitip}
                 onChange={handleChange}
                 className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white"
               />
             </div>
             <div className="mb-4 ">
-              <label htmlFor="stok" className="block text-sm font-medium text-gray-700 ">
-                Stok
+              <label htmlFor="no_telp" className="block text-sm font-medium text-gray-700 ">
+                Nomor Telepon
               </label>
               <input
                 type="number"
-                name="stok"
-                id="stok"
-                value={data?.stok}
+                name="no_telp"
+                id="no_telp"
+                value={data?.no_telp}
                 onChange={handleChange}
                 className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white"
               />
-            </div>
-            <div className="mb-4 ">
-              <label htmlFor="satuan" className="block text-sm font-medium text-gray-700 ">
-                Satuan
-              </label>
-              <select
-                type="text"
-                name="satuan"
-                id="satuan"
-                value={data?.satuan}
-                onChange={handleChange}
-                className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white"
-              >
-                <option value="" disabled>Pilih Satuan</option>
-                <option value="gr">gram</option>
-                <option value="buah">buah</option>
-                <option value="ml">ml</option>
-                <option value="butir">butir</option>
-              </select>
             </div>
             <div className="text-right">
               <button

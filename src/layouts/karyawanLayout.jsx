@@ -43,6 +43,14 @@ const KaryawanLayout = () => {
                {
                 name: "Pembelian Bahan Baku",
                 path: "/dashboard/pembelian-bahan-baku"
+               },
+               {
+                name: "Penitip",
+                path: "/dashboard/penitip"
+               },
+               {
+                name: "Pengeluaran Lain",
+                path: "/dashboard/pengeluaranLain"
                }
             ])
         }else if (role === "Owner"){
