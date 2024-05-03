@@ -16,6 +16,9 @@ import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 import ResepPage from "../pages/admin/resep/resepPage";
 import AddResepPage from "../pages/admin/resep/addResepPage";
 import EditResepPage from "../pages/admin/resep/editResepPage";
+import KaryawanPage from '../pages/MO/karyawanPage';
+import AddKaryawanPage from '../pages/MO/addKaryawanPage';
+import EditKaryawanPage from '../pages/MO/editKaryawanPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -153,7 +156,31 @@ const router = createBrowserRouter([
                         <BahanBakuPage />
                     </RoleBasedRoute>
                 )
-            }
+            },
+            {
+                path: '/dashboard/karyawan',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Manager Operational"}>
+                        <KaryawanPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/tambah-karyawan',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Manager Operational"}>
+                        <AddKaryawanPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/edit-karyawan/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Manager Operational"}>
+                        <EditKaryawanPage />
+                    </RoleBasedRoute>
+                )
+            },
         ]
     }
 ]);

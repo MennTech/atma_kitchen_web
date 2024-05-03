@@ -44,4 +44,4 @@ const HapusResep = async (id) =>{
         return error;
     }
 }
-export  {GetAllResep, ShowResep, TambahResep, EditResep, HapusResep};
+export {GetAllResep, ShowResep, TambahResep, EditResep, HapusResep};

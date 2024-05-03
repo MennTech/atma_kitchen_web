@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LogoutKaryawan, ChangePassword } from "../api/authKaryawanApi";
-
+import { toast } from "sonner";
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ routes }) => {
     const navigate = useNavigate();
@@ -37,6 +37,7 @@ const Sidebar = ({ routes }) => {
         ChangePassword({ new_password: newPassword }).then((response) => {
             if(response.message === 'Password berhasil diubah'){
                 handleCloseModal();
+                toast.success(response.message);
             }
         }).catch((error) => {
             console.log(error);
