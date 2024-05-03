@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import { GetAtmaKitchenProdukAdmin, GetPenitipProdukAdmin } from "../../../api/produkApi.jsx";
+import { GetAtmaKitchenProdukAdmin, GetPenitipProdukAdmin, DeleteProduk } from "../../../api/produkApi.jsx";
 import { getProdukPhoto } from "../../../api/index.jsx";
 import { EditButton, DeleteButton } from "../../../components/buttons/buttons.jsx";
+import ConfirmDeleteModal from "../../../components/Modals/confirmDeleteModal.jsx";
+import { toast } from "sonner";
 
 const ProdukPage = () => {
     const [produks, setProduks] = useState([]);
@@ -11,6 +13,8 @@ const ProdukPage = () => {
     const [search, setSearch] = useState([]);
     const [columns, setColumns] = useState([]);
     const [isAtmaProduk, setIsAtmaProduk] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [idProduk, setIdProduk] = useState(null);
     const navigate = useNavigate();
 
     const getAtmaProduks = async () => {
@@ -45,8 +49,8 @@ const ProdukPage = () => {
     const actionButton = (id_produk) => {
         return (
             <div className="flex space-x-1">
-                <EditButton />
-                <DeleteButton />
+                <EditButton onClick={() => navigate(`/dashboard/produk/edit/${id_produk}`)}/>
+                <DeleteButton onClick={() => handleShowModal(id_produk)}/>
             </div>
         )
     }
@@ -151,6 +155,7 @@ const ProdukPage = () => {
                 }
             ]);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAtmaProduk]);
 
     const handleProdukOwnerChange = (e) => {
@@ -168,6 +173,32 @@ const ProdukPage = () => {
                 data.status.toLowerCase().includes(value);
         });
         setSearch(result);
+    }
+
+    const handleShowModal = (id_produk) => {
+        setShowModal(true);
+        setIdProduk(id_produk);
+    }
+
+    const handeCloseModal = () => setShowModal(false);
+    const deleteProduk = async (id_produk) => {
+        try {
+            const response = await DeleteProduk(id_produk);
+            if(response.success){
+                isAtmaProduk ? getAtmaProduks() : getPenitipProduks();
+                toast.success("Produk berhasil dihapus");
+            }else{
+                toast.error("Gagal menghapus produk", {
+                    description: response.message
+                });
+            }
+
+        } catch (error) {
+            console.log(error);
+            toast.error("Gagal menghapus produk");
+        } finally {
+            setShowModal(false);
+        }
     }
 
     const paginationOptions = {
@@ -193,7 +224,7 @@ const ProdukPage = () => {
                             <input type="text" placeholder="Cari Produk" className='input bg-slate-100' onChange={handleSearch} />
                         </div>
                         <div className="space-x-1">
-                            <button className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Penitip</button>
+                            <button onClick={()=> navigate('/dashboard/produk/create-penitip-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Penitip</button>
                             <button onClick={()=> navigate('/dashboard/produk/create-atma-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Atma Kitchen</button>
                         </div>
                     </div>
@@ -225,6 +256,13 @@ const ProdukPage = () => {
                     }
                 </div>
             </div>
+            <ConfirmDeleteModal
+                entity={"Produk"}
+                message={"Yakin ingin menghapus data produk ini?"}
+                onYes={() => deleteProduk(idProduk)}
+                onClose={handeCloseModal}
+                showModal={showModal}
+            />
         </div>
     )
 }

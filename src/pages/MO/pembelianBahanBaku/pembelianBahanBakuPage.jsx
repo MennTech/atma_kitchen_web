@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { GetAllPembelianBahanBaku, DeletePembelianBahanBaku } from "../../../api/pembelianBahanBakuApi";
 import { EditButton, DeleteButton } from "../../../components/buttons/buttons";
-import ConfirmDeleteModal from "../../../components/modals/confirmDeleteModal";
+import ConfirmDeleteModal from "../../../components/Modals/confirmDeleteModal";
 import { toast } from "sonner";
 
 const PembelianBahanBakuPage = () => {

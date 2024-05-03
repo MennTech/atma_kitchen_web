@@ -82,7 +82,6 @@ const CreateAtmaProdukPage = () => {
 
         try{
             const response = await CreateProduk(formData);
-            console.log(response);
             if(response.success){
                 toast.success("Produk berhasil ditambahkan");
                 navigate('/dashboard/produk');

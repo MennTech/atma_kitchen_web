@@ -6,7 +6,7 @@ const ConfirmDeleteModal = ({ entity, message, onYes, onClose, showModal}) => {
     }
     return (
         <>
-            <dialog className="modal bg-black bg-opacity-30 backdrop-blur-sm w-screen" open={showModal}>
+            <dialog className="modal bg-black bg-opacity-30 w-screen" open={showModal}>
                 <div className="bg-white p-5 rounded-lg">
                     <h1 className="text-2xl font-semibold text-center">Delete {entity}</h1>
                     <form onSubmit={handleSubmit}>
