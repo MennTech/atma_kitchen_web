@@ -49,6 +49,14 @@ const KaryawanLayout = () => {
                 path: "/dashboard/karyawan"
                },
                {
+                name: "Penitip",
+                path: "/dashboard/penitip"
+               },
+               {
+                name: "Pengeluaran Lain",
+                path: "/dashboard/pengeluaranLain"
+               },
+               {
                 name: "Jabatan",
                 path: "/dashboard/jabatan"
                }
