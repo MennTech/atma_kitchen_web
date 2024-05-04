@@ -1,18 +1,17 @@
-import { GetAllKaryawan, DeleteKaryawan } from "../../api/karyawanApi";
+import { GetAllKaryawan, UpdateBonus } from "../../api/karyawanApi";
 import { GetAllRole } from "../../api/roleApi";
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-const KaryawanPage = () => {
+const OwnerKaryawanPage = () => {
   const [karyawan, setKaryawan] = useState([]);
   const [role, setRole] = useState([]);
   const [records, setRecords] = useState([]);
-  const navigate = useNavigate();
   const [isLoading, setIslLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [idKaryawan, setIdKaryawan] = useState(null);
+  const [bonus, setBonus] = useState(0);
 
   const fetchKaryawan = () => {
     setIslLoading(true);
@@ -43,19 +42,6 @@ const KaryawanPage = () => {
     const foundRole = role.find((r) => r.id_role === id_role);
     return foundRole ? foundRole.jabatan : "-";
   };
-  
-  const deleteKaryawan = (event) => {
-    event.preventDefault();
-    DeleteKaryawan(idKaryawan)
-      .then(() => {
-        setShowModal(false);
-        fetchKaryawan();
-        toast.success("Data Karyawan Berhasil Dihapus");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const columns = [
     {
@@ -79,18 +65,18 @@ const KaryawanPage = () => {
       selector: (row) => row.no_telp,
     },
     {
+      name: "Bonus",
+      selector: (row) => row.bonus,
+    },
+    {
       name: "Aksi",
       cell: (row) => (
-        <div className="space-x-2">
+        <div className="flex space-x-1">
           <button
-            className="btn btn-sm btn-outline bg-[#e6a525] text-white"
-            onClick={() => navigate(`/dashboard/edit-karyawan/${row.id_karyawan}`)}
+            className="btn btn-sm btn-warning text-white"
+            onClick={() => handleShowModal(row.id_karyawan)}
           >
             Edit
-          </button>
-          <button className="btn btn-sm btn-outline bg-[#e74d42] text-white"
-          onClick={()=>handleShowModal(row.id_karyawan)}>
-            Hapus
           </button>
         </div>
       ),
@@ -116,11 +102,30 @@ const KaryawanPage = () => {
   const handleShowModal = (id) => {
     setShowModal(true);
     setIdKaryawan(id);
+    karyawan.forEach((value) => {
+      value.id_karyawan == id ? setBonus(value.bonus) : null;
+    });
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-  }
+  };
+
+  const handleUpdateBonus = () => {
+    UpdateBonus(idKaryawan, bonus)
+      .then((response) => {
+        toast.success("Berhasil mengupdate bonus karyawan");
+        fetchKaryawan();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Gagal mengupdate bonus karyawan");
+      });
+  };
+
+  const handleChange = (event) => {
+    setBonus(event.target.value);
+  };
 
   return (
     <div className="w-screen min-h-screen p-4 overflow-y-auto">
@@ -139,11 +144,6 @@ const KaryawanPage = () => {
                 className="input bg-slate-100"
                 onChange={handleSearch}
               />
-            </div>
-            <div className="space-x-1">
-              <button className="btn btn-outline bg-[#d08854] text-white" onClick={() => navigate('/dashboard/tambah-karyawan')}>
-                Tambah Karyawan
-              </button>
             </div>
           </div>
           <div className="divider m-1"></div>
@@ -169,21 +169,39 @@ const KaryawanPage = () => {
       </div>
       <dialog className="modal" open={showModal}>
         <div className="modal-box bg-white">
-          <h3 className="font-bold text-lg">Delete Karyawan</h3>
-          <p className="py-4">Yakin Ingin Menghapus Karyawan</p>
+          <h3 className="font-bold text-lg">Edit Bonus Karyawan</h3>
           <div className="modal-action">
-            <form onSubmit={deleteKaryawan}>
-              <div className="space-x-1">
-                <button className="btn btn-error text-white" onClick={handleCloseModal}>Cancel</button>
+            <div className="w-full grid grid-rows-2 gap-1">
+              <div className="form-control">
+                <label htmlFor="bonus">Bonus Karyawan</label>
+                <input
+                  type="number"
+                  className="input input-bordered bg-white"
+                  placeholder="Bonus Karyawan"
+                  id="bonus"
+                  name="bonus"
+                  value={bonus}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-x-1 mt-3">
                 <button
-                  className="btn btn-primary text-white"
-                  type="submit"
+                  className="btn btn-error text-white"
                   onClick={handleCloseModal}
                 >
-                  Delete
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-primary text-white"
+                  onClick={() => {
+                    handleUpdateBonus();
+                    handleCloseModal();
+                  }}
+                >
+                  Save
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </dialog>
@@ -191,4 +209,4 @@ const KaryawanPage = () => {
   );
 };
 
-export default KaryawanPage;
+export default OwnerKaryawanPage;

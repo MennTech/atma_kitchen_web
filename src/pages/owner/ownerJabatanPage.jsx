@@ -1,33 +1,23 @@
-import { GetAllKaryawan, DeleteKaryawan } from "../../api/karyawanApi";
-import { GetAllRole } from "../../api/roleApi";
 import { useState, useEffect } from "react";
-import DataTable from "react-data-table-component";
-import { useNavigate } from "react-router-dom";
+import { GetAllRole, EditGajiRole} from "../../api/roleApi";
 import { toast } from "sonner";
+import DataTable from "react-data-table-component";
 
-const KaryawanPage = () => {
-  const [karyawan, setKaryawan] = useState([]);
+const OwnerJabatanPage = () => {
   const [role, setRole] = useState([]);
   const [records, setRecords] = useState([]);
-  const navigate = useNavigate();
   const [isLoading, setIslLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [idKaryawan, setIdKaryawan] = useState(null);
+  const [idRole, setIdRole] = useState(null);
+  const [gaji, setGaji] = useState(0);
 
-  const fetchKaryawan = () => {
+  const fetchRole = () => {
     setIslLoading(true);
-    GetAllKaryawan()
-      .then((response) => {
-        setKaryawan(response.data.data);
-        setRecords(response.data.data);
-        setIslLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     GetAllRole()
       .then((response) => {
         setRole(response.data.data);
+        setRecords(response.data.data);
+        setIslLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -36,26 +26,9 @@ const KaryawanPage = () => {
 
   useEffect(() => {
     setIslLoading(true);
-    fetchKaryawan();
+    fetchRole();
   }, []);
 
-  const getRole = (id_role) => {
-    const foundRole = role.find((r) => r.id_role === id_role);
-    return foundRole ? foundRole.jabatan : "-";
-  };
-  
-  const deleteKaryawan = (event) => {
-    event.preventDefault();
-    DeleteKaryawan(idKaryawan)
-      .then(() => {
-        setShowModal(false);
-        fetchKaryawan();
-        toast.success("Data Karyawan Berhasil Dihapus");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const columns = [
     {
@@ -63,34 +36,22 @@ const KaryawanPage = () => {
       selector: (row, rowIndex) => rowIndex + 1,
     },
     {
-      name: "Nama Karyawan",
-      selector: (row) => row.nama_karyawan,
+      name: "Nama Jabatan",
+      selector: (row) => row.jabatan,
     },
     {
-      name: "Email Karyawan",
-      selector: (row) => row.email_karyawan,
-    },
-    {
-      name: "Jabatan Karyawan",
-      selector: (row) => getRole(row.id_role),
-    },
-    {
-      name: "No Telpon ",
-      selector: (row) => row.no_telp,
+      name: "Gaji",
+      selector: (row) => row.gaji,
     },
     {
       name: "Aksi",
       cell: (row) => (
-        <div className="space-x-2">
+        <div className="flex space-x-1">
           <button
-            className="btn btn-sm btn-outline bg-[#e6a525] text-white"
-            onClick={() => navigate(`/dashboard/edit-karyawan/${row.id_karyawan}`)}
+            className="btn btn-sm btn-warning text-white"
+            onClick={() => handleShowModal(row.id_role)}
           >
             Edit
-          </button>
-          <button className="btn btn-sm btn-outline bg-[#e74d42] text-white"
-          onClick={()=>handleShowModal(row.id_karyawan)}>
-            Hapus
           </button>
         </div>
       ),
@@ -105,8 +66,8 @@ const KaryawanPage = () => {
   };
 
   function handleSearch(event) {
-    const newData = karyawan.filter((row) => {
-      return row.nama_karyawan
+    const newData = role.filter((row) => {
+      return row.jabatan
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
     });
@@ -115,19 +76,38 @@ const KaryawanPage = () => {
 
   const handleShowModal = (id) => {
     setShowModal(true);
-    setIdKaryawan(id);
+    setIdRole(id);
+    role.forEach((value) => {
+      value.id_role == id ? setGaji(value.gaji) : null;
+    });
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-  }
+  };
+
+  const handleUpdateGaji = () => {
+    EditGajiRole(idRole, gaji)
+      .then((response) => {
+        toast.success("Berhasil mengupdate gaji jabatan");
+        fetchRole();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setGaji(event.target.value);
+  };
 
   return (
     <div className="w-screen min-h-screen p-4 overflow-y-auto">
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Data Karyawan</h1>
+        <h1 className="text-4xl text-[#d08854] font-semibold">Data Jabatan</h1>
         <div className="divider divider-horizontal m-1"></div>
-        <p className="text-slate-400">Manajemen Karyawan Atma Kitchen</p>
+        <p className="text-slate-400">Manajemen Jabatan Atma Kitchen</p>
       </div>
       <div className="card w-full h-fit bg-white mt-2">
         <div className="card-body h-full p-4">
@@ -135,15 +115,10 @@ const KaryawanPage = () => {
             <div className="flex items-center">
               <input
                 type="text"
-                placeholder="Cari Karyawan"
+                placeholder="Cari Jabatan"
                 className="input bg-slate-100"
                 onChange={handleSearch}
               />
-            </div>
-            <div className="space-x-1">
-              <button className="btn btn-outline bg-[#d08854] text-white" onClick={() => navigate('/dashboard/tambah-karyawan')}>
-                Tambah Karyawan
-              </button>
             </div>
           </div>
           <div className="divider m-1"></div>
@@ -169,21 +144,39 @@ const KaryawanPage = () => {
       </div>
       <dialog className="modal" open={showModal}>
         <div className="modal-box bg-white">
-          <h3 className="font-bold text-lg">Delete Karyawan</h3>
-          <p className="py-4">Yakin Ingin Menghapus Karyawan</p>
+          <h3 className="font-bold text-lg">Edit Gaji Karyawan</h3>
           <div className="modal-action">
-            <form onSubmit={deleteKaryawan}>
-              <div className="space-x-1">
-                <button className="btn btn-error text-white" onClick={handleCloseModal}>Cancel</button>
+            <div className="w-full grid grid-rows-2 gap-1">
+              <div className="form-control">
+                <label htmlFor="gaji">Gaji Jabatan</label>
+                <input
+                  type="number"
+                  className="input input-bordered bg-white"
+                  placeholder="Gaji Jabatan"
+                  id="gaji"
+                  name="bonus"
+                  value={gaji}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-x-1 mt-3">
                 <button
-                  className="btn btn-primary text-white"
-                  type="submit"
+                  className="btn btn-error text-white"
                   onClick={handleCloseModal}
                 >
-                  Delete
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-primary text-white"
+                  onClick={() => {
+                    handleUpdateGaji();
+                    handleCloseModal();
+                  }}
+                >
+                  Save
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </dialog>
@@ -191,4 +184,4 @@ const KaryawanPage = () => {
   );
 };
 
-export default KaryawanPage;
+export default OwnerJabatanPage;

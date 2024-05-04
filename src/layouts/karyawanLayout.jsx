@@ -47,12 +47,23 @@ const KaryawanLayout = () => {
                {
                 name: "Karyawan",
                 path: "/dashboard/karyawan"
+               },
+               {
+                name: "Jabatan",
+                path: "/dashboard/jabatan"
                }
             ])
         }else if (role === "Owner"){
-                /*
-                 isi routes untuk Owner
-                */
+                setRoutes([
+                    {
+                        name: "Jabatan",
+                        path: "/dashboard/owner/jabatan"
+                    },
+                    {
+                        name: "Karyawan",
+                        path: "/dashboard/owner/karyawan"
+                    },
+                ])
         }else{
             setRoutes([]);
         }

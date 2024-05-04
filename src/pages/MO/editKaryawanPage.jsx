@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { ShowKaryawan, EditKaryawan, GetRole } from "../../api/karyawanApi";
+import { ShowKaryawan, EditKaryawan} from "../../api/karyawanApi";
+import { GetAllRole } from "../../api/roleApi";
 
 const EditKaraywanPage = () => {
   const params = useParams();
@@ -19,7 +20,7 @@ const EditKaraywanPage = () => {
   const [show, setShow] = useState(false);
 
   const fetchRole = () => {
-    GetRole()
+    GetAllRole()
       .then((response) => {
         setRole(response.data.data);
       })

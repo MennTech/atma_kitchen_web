@@ -45,12 +45,16 @@ const DeleteKaryawan = async (id) => {
     }
 }
 
-const GetRole = async () => {
+const UpdateBonus = async (id, data) => {
     try {
-        const response = await useAxios.get("/role");
+        const response = await useAxios.put(`/karyawan/${id}/bonus`, {
+            bonus: data
+        });
         return response;
     } catch (error) {
-        return error;        
+        return error;
     }
+
 }
-export { GetAllKaryawan, ShowKaryawan ,TambahKaryawan, EditKaryawan , DeleteKaryawan, GetRole};
+
+export { GetAllKaryawan, ShowKaryawan ,TambahKaryawan, EditKaryawan, DeleteKaryawan, UpdateBonus};
