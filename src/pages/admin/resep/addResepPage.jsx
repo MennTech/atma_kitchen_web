@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { GetAllBahanBaku } from "../../../api/BahanBaku";
 import { TambahResep } from "../../../api/resepApi";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 const AddResepPage = () => {
   const navigate = useNavigate();
   const [dataBahanBaku, setDataBahanBaku] = useState([]);
   const [namaResep, setNamaResep] = useState("");
-  const [detailResep, setDetailResep] = useState([]);
+  const [detailResep, setDetailResep] = useState([
+    { id_bahan_baku: "", jumlah_bahan: 0 },
+  ]);
   const [errors, setErrors] = useState({});
 
   const fecthDataBahanBaku = () => {
@@ -22,7 +24,6 @@ const AddResepPage = () => {
 
   useEffect(() => {
     fecthDataBahanBaku();
-    setDetailResep([{ id_bahan_baku: "", jumlah_bahan: 0 }]);
   }, []);
 
   const handleNamaResep = (event) => {
@@ -32,10 +33,34 @@ const AddResepPage = () => {
   const addResep = (event) => {
     event.preventDefault();
     const validationErrors = {};
+
     if (!namaResep.trim()) {
       validationErrors.nama_resep = "Nama Resep harus diisi";
       toast.error("Nama Resep harus diisi");
     }
+
+    // Set untuk menyimpan id_bahan_baku unik
+    const idBahanBakuSet = new Set();
+
+    detailResep.forEach((item, index) => {
+      if (!item.id_bahan_baku) {
+        validationErrors[`detail_resep[${index}].id_bahan_baku`] =
+          "Bahan Baku harus dipilih";
+        toast.error(`Bahan Baku pada baris ${index + 1} harus dipilih`);
+      } else if (idBahanBakuSet.has(item.id_bahan_baku)) {
+        validationErrors[`detail_resep[${index}].id_bahan_baku`] =
+          "Bahan Baku tidak boleh sama";
+        toast.error(`Bahan Baku pada baris ${index + 1} tidak boleh sama`);
+      } else {
+        idBahanBakuSet.add(item.id_bahan_baku);
+      }
+      if (item.jumlah_bahan <= 0) {
+        validationErrors[`detail_resep[${index}].jumlah_bahan`] =
+          "Jumlah Bahan harus lebih dari 0";
+        toast.error(`Jumlah Bahan pada baris ${index + 1} harus lebih dari 0`);
+      }
+    });
+
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
       const data = {
@@ -64,8 +89,9 @@ const AddResepPage = () => {
     setDetailResep(values);
   };
 
-  const handleDelete = (i, event) => {
+  const handleDelete = (i, id, event) => {
     event.preventDefault();
+    // const values = detailResep.filter((item, index) => index !== i || item.id_bahan_baku !== id);
     const values = [...detailResep];
     values.splice(i, 1);
     setDetailResep(values);
@@ -101,71 +127,77 @@ const AddResepPage = () => {
               </div>
             </div>
             <div className="divider m-1"></div>
-              <div className="mt-2">
-                <div className="form-control">
-                  <label htmlFor="namaResep">Nama Resep</label>
-                  <div className="grid grid-cols-2">
-                    <div>
-                      <input
-                        type="text"
-                        id="namaResep"
-                        name="nama_resep"
-                        className="input input-bordered bg-white"
-                        onChange={handleNamaResep}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-5 gap-4">
+            <div className="mt-2">
+              <div className="form-control">
+                <label htmlFor="namaResep">Nama Resep</label>
+                <div className="grid grid-cols-2">
                   <div>
-                    <label htmlFor="namaBahan">Bahan Baku</label>
+                    <input
+                      type="text"
+                      id="namaResep"
+                      name="nama_resep"
+                      className="input input-bordered bg-white"
+                      onChange={handleNamaResep}
+                    />
                   </div>
-                  <div>
-                    <label htmlFor="jumlah">Jumlah</label>
-                  </div>
-                </div>
-                <div>
-                  {detailResep.map((val, i) => (
-                    <div key={i} className="grid grid-cols-5 gap-4 mt-3">
-                      <div className="form-control">
-                        <select
-                          name="id_bahan_baku"
-                          id="namaBahan"
-                          className="select select-bordered bg-white"
-                          defaultValue="Pilih Bahan Baku"
-                          onChange={(event) => handleChange(i, event)}
-                        >
-                          <option disabled>
-                            Pilih Bahan Baku
-                          </option>
-                          {dataBahanBaku.map((bahan) => (
-                            <option key={bahan.id_bahan_baku} value={bahan.id_bahan_baku}>
-                              {bahan.nama_bahan_baku}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="form-control">
-                        <input
-                          type="number"
-                          name="jumlah_bahan"
-                          id="jumlah"
-                          className="input input-bordered bg-white"
-                          onChange={(event) => handleChange(i, event)}
-                        />
-                      </div>
-                      <div>
-                        <button disabled={detailResep.length === 1}
-                          className="btn btn-error text-white"
-                          onClick={(event) => handleDelete(i, event)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
+              <div className="grid grid-cols-5 gap-4">
+                <div>
+                  <label htmlFor="namaBahan">Bahan Baku</label>
+                </div>
+                <div>
+                  <label htmlFor="jumlah">Jumlah</label>
+                </div>
+              </div>
+              <div>
+                {detailResep.map((val, i) => (
+                  <div key={i} className="grid grid-cols-5 gap-4 mt-3">
+                    <div className="form-control">
+                      <select
+                        name="id_bahan_baku"
+                        id="namaBahan"
+                        className="select select-bordered bg-white"
+                        defaultValue="Pilih Bahan Baku"
+                        onChange={(event) => handleChange(i, event)
+                        }
+                      >
+                        <option disabled>Pilih Bahan Baku</option>
+                        {dataBahanBaku.map((bahan) => (
+                          <option
+                            key={bahan.id_bahan_baku}
+                            value={bahan.id_bahan_baku}
+                          >
+                            {bahan.nama_bahan_baku}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="form-control">
+                      <input
+                        type="number"
+                        name="jumlah_bahan"
+                        id="jumlah"
+                        className="input input-bordered bg-white"
+                        onChange={(event) => handleChange(i, event)}
+                      />
+                    </div>
+                    <div>
+                      <button
+                        disabled={detailResep.length === 1}
+                        className="btn btn-error text-white"
+                        onClick={(event) => {handleDelete(i, val.id_bahan_baku ,event)
+                          console.log(val.id_bahan_baku)
+                          console.log(i)
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="mt-3">
               <button className="btn btn-success text-white" type="submit">
                 Submit
