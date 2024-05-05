@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { GetAllPengeluaranLain } from "../../../api/PengeluaranLain";
 import DataTable from "react-data-table-component";
 import { useNavigate } from "react-router-dom";
-import CreateModal from "../../../components/Modals/ModalsPengeluaranLain/ModalsCreate";
 import DeleteModal from "../../../components/Modals/ModalsPengeluaranLain/ModalsDelete";
 import EditModal from "../../../components/Modals/ModalsPengeluaranLain/ModalsUpdate";
 
@@ -32,10 +31,12 @@ const PengeluaranLainPage = () => {
     {
       name: <span className="font-bold text-base">Tanggal</span>,
       selector: (row) => row.tanggal,
+      sortable: true,
     },
     {
       name: <span className="font-bold text-base">Harga</span>,
       selector: (row) => row.harga,
+      sortable: true,
     },
     {
       name: "",
@@ -80,13 +81,13 @@ const PengeluaranLainPage = () => {
             <div className="flex items-center">
               <input
                 type="text"
-                placeholder="Cari Pengeluaran"
+                placeholder="exp:listrik"
                 className="input bg-slate-100 px-4"
                 onChange={handleSearch}
               />
             </div>
             <div className="space-x-1">
-              {/* <button
+              <button
                 className="btn btn-outline bg-[#d08854] text-white"
                 onClick={() => navigate("/dashboard/addPengeluaranLain")}
               >
@@ -105,8 +106,7 @@ const PengeluaranLainPage = () => {
                   />
                 </svg>
                 Tambah Pengeluaran lain
-              </button> */}
-              <CreateModal onClose={fetchData}/>
+              </button>
             </div>
           </div>
           <div className="divider m-1"></div>
