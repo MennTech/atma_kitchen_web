@@ -3,7 +3,7 @@ import useAxios from ".";
 export const GetAllHampers = async () => {
     try{
         const response = await useAxios.get("/hampers");
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -12,7 +12,7 @@ export const GetAllHampers = async () => {
 export const SearchHampers = async (keyword) => {
     try{
         const response = await useAxios.get(`/hampers/cari?key=${keyword}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -21,7 +21,7 @@ export const SearchHampers = async (keyword) => {
 export const ShowHampers = async (id) => {
     try{
         const response = await useAxios.get(`/hampers/${id}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -30,7 +30,7 @@ export const ShowHampers = async (id) => {
 export const CreateHampers = async (data) => {
     try{
         const response = await useAxios.post("/hampers", data);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -38,8 +38,12 @@ export const CreateHampers = async (data) => {
 
 export const UpdateHampers = async (id, data) => {
     try{
-        const response = await useAxios.put(`/hampers/${id}`, data);
-        return response;
+        const response = await useAxios.post(`/hampers/${id}`, data,{
+            headers: {
+                "Access-Control-Request-Methods": "PUT"
+            }
+        });
+        return response.data;
     }catch(error){
         return error;
     }
@@ -48,7 +52,7 @@ export const UpdateHampers = async (id, data) => {
 export const DeleteHampers = async (id) => {
     try{
         const response = await useAxios.delete(`/hampers/${id}`);
-        return response;
+        return response.data;
     }catch(error){
         return error;
     }

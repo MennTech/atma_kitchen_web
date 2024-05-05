@@ -9,9 +9,16 @@ import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
 import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBaku/bahanBakuPage';
-import ProdukPage from '../pages/admin/produkPage';
-import HampersPage from '../pages/admin/hampersPage';
-import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBakuPage';
+import ProdukPage from '../pages/admin/produk/produkPage';
+import CreateAtmaProdukPage from '../pages/admin/produk/createAtmaProdukPage';
+import CreatePenitipProdukPage from '../pages/admin/produk/createPenitipProdukPage';
+import EditProdukPage from '../pages/admin/produk/editProdukPage';
+import HampersPage from '../pages/admin/hampers/hampersPage';
+import CreateHampersPage from '../pages/admin/hampers/createHampersPage';
+import EditHampersPage from '../pages/admin/hampers/editHampersPage';
+import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/pembelianBahanBakuPage';
+import CreatePembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/createPembelianBahanBakuPage';
+import EditPembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/editPembelianBahanBakuPage';
 import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 import ResepPage from "../pages/admin/resep/resepPage";
 import AddResepPage from "../pages/admin/resep/addResepPage";
@@ -105,6 +112,30 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/produk/create/atma-produk',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <CreateAtmaProdukPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/produk/create/penitip-produk',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <CreatePenitipProdukPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/produk/edit/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <EditProdukPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/hampers',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
@@ -113,10 +144,42 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/hampers/create',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <CreateHampersPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/hampers/edit/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <EditHampersPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/pembelian-bahan-baku',
                 element: (
                     <RoleBasedRoute allowedRoles={["Manager Operational"]}>
                         <PembelianBahanBakuPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pembelian-bahan-baku/tambah',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <CreatePembelianBahanBakuPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pembelian-bahan-baku/edit/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <EditPembelianBahanBakuPage />
                     </RoleBasedRoute>
                 )
             },

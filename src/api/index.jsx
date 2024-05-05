@@ -6,6 +6,10 @@ export const getProdukPhoto = (photo) => {
     return `${BASE_URL}/storage/produk/${photo}`
 }
 
+export const getHampersPhoto = (photo) => {
+    return `${BASE_URL}/storage/hampers/${photo}`
+}
+
 const useAxios = axios.create({
     baseURL: `${BASE_URL}/api/`
 })
