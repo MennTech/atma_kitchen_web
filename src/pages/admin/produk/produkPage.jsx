@@ -224,8 +224,8 @@ const ProdukPage = () => {
                             <input type="text" placeholder="Cari Produk" className='input bg-slate-100' onChange={handleSearch} />
                         </div>
                         <div className="space-x-1">
-                            <button onClick={()=> navigate('/dashboard/produk/create-penitip-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Penitip</button>
-                            <button onClick={()=> navigate('/dashboard/produk/create-atma-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Atma Kitchen</button>
+                            <button onClick={()=> navigate('/dashboard/produk/create/penitip-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Penitip</button>
+                            <button onClick={()=> navigate('/dashboard/produk/create/atma-produk')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Produk Atma Kitchen</button>
                         </div>
                     </div>
                     <div className="divider m-1"></div>

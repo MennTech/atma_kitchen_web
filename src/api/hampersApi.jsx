@@ -30,7 +30,7 @@ export const ShowHampers = async (id) => {
 export const CreateHampers = async (data) => {
     try{
         const response = await useAxios.post("/hampers", data);
-        return response.data,data;
+        return response.data;
     }catch(error){
         return error;
     }
@@ -38,7 +38,11 @@ export const CreateHampers = async (data) => {
 
 export const UpdateHampers = async (id, data) => {
     try{
-        const response = await useAxios.put(`/hampers/${id}`, data);
+        const response = await useAxios.post(`/hampers/${id}`, data,{
+            headers: {
+                "Access-Control-Request-Methods": "PUT"
+            }
+        });
         return response.data;
     }catch(error){
         return error;

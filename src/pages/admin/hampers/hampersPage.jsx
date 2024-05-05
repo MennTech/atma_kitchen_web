@@ -1,26 +1,33 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import { GetAllHampers } from "../../api/hampersApi";
-import { EditButton, DeleteButton } from "../../components/buttons/buttons";
+import { GetAllHampers, DeleteHampers } from "../../../api/hampersApi";
+import { getHampersPhoto } from "../../../api";
+import { EditButton, DeleteButton } from "../../../components/buttons/buttons";
+import ConfirmDeleteModal from "../../../components/Modals/confirmDeleteModal";
+import { toast } from "sonner";
 
 const HampersPage = () => {
     const [hampers, setHampers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [idHampers, setIdHampers] = useState(null);
+    const navigate = useNavigate();
 
     const getAllHampers = async () => {
         setIsLoading(true);
         try {
             const response = await GetAllHampers();
-            if(response.status === "OK"){
+            if (response.status === "OK") {
                 setHampers(response.data);
                 setSearch(response.data);
-            }else{
+            } else {
                 console.log(response);
             }
         } catch (error) {
             console.log(error);
-        }finally{
+        } finally {
             setIsLoading(false);
         }
     }
@@ -32,8 +39,8 @@ const HampersPage = () => {
     const actionButton = (id_hampers) => {
         return (
             <div className="flex space-x-1">
-                <EditButton />
-                <DeleteButton />
+                <EditButton onClick={() => navigate(`/dashboard/hampers/edit/${id_hampers}`)}/>
+                <DeleteButton onClick={() => handleShowModal(id_hampers)}/>
             </div>
         )
     }
@@ -45,9 +52,18 @@ const HampersPage = () => {
             sortable: true,
         },
         {
+            name: 'Gambar Hampers',
+            cell: row => <img src={getHampersPhoto(row.gambar_hampers)} alt={row.nama_hampers} className='h-20 object-cover rounded-md' />
+        },
+        {
             name: 'Nama Hampers',
             selector: row => row.nama_hampers,
             sortable: true,
+        },
+        {
+            name: 'Deskripsi Hampers',
+            selector: row => row.deskripsi_hampers,
+            wrap: true,
         },
         {
             name: 'Produk Hampers',
@@ -56,6 +72,7 @@ const HampersPage = () => {
                     return produk.nama_produk;
                 }).join(', '),
             ],
+            wrap: true,
         },
         {
             name: 'Harga Hampers (Rp)',
@@ -86,6 +103,29 @@ const HampersPage = () => {
         selectAllRowsItemText: 'Semua'
     };
 
+    const handleShowModal = (id) => {
+        setShowModal(true);
+        setIdHampers(id);
+    }
+
+    const handeCloseModal = () => setShowModal(false);
+    const deleteHampers = async (id) => {
+        try{
+            const response = await DeleteHampers(id);
+            if(response.success){
+                getAllHampers();
+                toast.success('Hampers berhasil dihapus');
+            }else{
+                toast.error('Hampers gagal dihapus');
+            }
+        }catch(error){
+            console.log(error);
+            toast.error('Hampers gagal dihapus');
+        }finally{
+            setShowModal(false);
+        }
+    }
+
     return (
         <div className='w-screen min-h-screen p-4 overflow-y-auto'>
             <div className="flex items-center">
@@ -102,7 +142,7 @@ const HampersPage = () => {
                             <input type="text" placeholder="Cari Hampers" className='input bg-slate-100' onChange={handleSearch} />
                         </div>
                         <div className="space-x-1">
-                            <button className='btn btn-outline bg-[#d08854] text-white'>Tambah Hampers</button>
+                            <button onClick={() => navigate('/dashboard/hampers/create')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Hampers</button>
                         </div>
                     </div>
                     <div className="divider m-1"></div>
@@ -128,6 +168,13 @@ const HampersPage = () => {
                     </div>
                 </div>
             </div>
+            <ConfirmDeleteModal
+                entity={"Produk"}
+                message={"Yakin ingin menghapus data produk ini?"}
+                onYes={() => deleteHampers(idHampers)}
+                onClose={handeCloseModal}
+                showModal={showModal}
+            />
         </div>
     )
 }

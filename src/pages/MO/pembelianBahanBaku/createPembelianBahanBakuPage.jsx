@@ -127,6 +127,7 @@ const CreatePembelianBahanBakuPage = () => {
                                     <div className="grid grid-cols-2 gap-2">
                                         <div className="w-full">
                                             <input
+                                                placeholder="Isi Jumlah Pembelian"
                                                 type="number"
                                                 id="jumlah"
                                                 name="jumlah"
@@ -136,6 +137,7 @@ const CreatePembelianBahanBakuPage = () => {
                                         </div>
                                         <div>
                                             <input
+                                                placeholder="Isi Total Harga Pembelian"
                                                 type="number"
                                                 id="harga"
                                                 name="harga"

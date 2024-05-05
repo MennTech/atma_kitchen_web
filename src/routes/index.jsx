@@ -13,7 +13,9 @@ import ProdukPage from '../pages/admin/produk/produkPage';
 import CreateAtmaProdukPage from '../pages/admin/produk/createAtmaProdukPage';
 import CreatePenitipProdukPage from '../pages/admin/produk/createPenitipProdukPage';
 import EditProdukPage from '../pages/admin/produk/editProdukPage';
-import HampersPage from '../pages/admin/hampersPage';
+import HampersPage from '../pages/admin/hampers/hampersPage';
+import CreateHampersPage from '../pages/admin/hampers/createHampersPage';
+import EditHampersPage from '../pages/admin/hampers/editHampersPage';
 import PembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/pembelianBahanBakuPage';
 import CreatePembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/createPembelianBahanBakuPage';
 import EditPembelianBahanBakuPage from '../pages/MO/pembelianBahanBaku/editPembelianBahanBakuPage';
@@ -107,7 +109,7 @@ const router = createBrowserRouter([
                 )
             },
             {
-                path: '/dashboard/produk/create-atma-produk',
+                path: '/dashboard/produk/create/atma-produk',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <CreateAtmaProdukPage />
@@ -115,7 +117,7 @@ const router = createBrowserRouter([
                 )
             },
             {
-                path: '/dashboard/produk/create-penitip-produk',
+                path: '/dashboard/produk/create/penitip-produk',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <CreatePenitipProdukPage />
@@ -135,6 +137,22 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <HampersPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/hampers/create',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <CreateHampersPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/hampers/edit/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <EditHampersPage />
                     </RoleBasedRoute>
                 )
             },
