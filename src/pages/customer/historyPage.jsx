@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { GetHistory } from "../../api/userApi";
-import lapis from "../../assets/lapis_surabaya.jpeg";
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
