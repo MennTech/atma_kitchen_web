@@ -1,11 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
-
+import DropDownProfile from "./Dropdown/DropDownProfile";
 // eslint-disable-next-line react/prop-types
 const TopNavbar = ({ routes }) => {
     const navigate = useNavigate();
     const location = useLocation();
     return (
-        <div className="navbar fixed bg-white">
+        <div className="navbar sticky bg-white">
             <div className="flex-1">
                 <a onClick={() => navigate('/')} className="text-xl cursor-pointer px-1 mx-1">Atma Kitchen</a>
             </div>

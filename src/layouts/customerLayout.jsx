@@ -5,15 +5,17 @@ import Footer from "../components/Footer";
 let routes = [
     {
         name: "Profile",
-        path: "/profile"
-    }
+        path: "/customer/profile"
+    },
 ];
 
 const CustomerLayout = () => {
     return (
-        <div>   
-            <TopNavbar routes={routes} />
-            <Outlet />
+        <div className="flex flex-col h-screen">
+            <div className="flex-1">
+                <TopNavbar routes={routes} />
+                <Outlet />
+            </div>   
             <Footer />
         </div>
     )
