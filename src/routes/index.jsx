@@ -16,15 +16,18 @@ import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 import ResepPage from "../pages/admin/resep/resepPage";
 import AddResepPage from "../pages/admin/resep/addResepPage";
 import EditResepPage from "../pages/admin/resep/editResepPage";
-import KaryawanPage from '../pages/MO/karyawanPage';
-import AddKaryawanPage from '../pages/MO/addKaryawanPage';
-import EditKaryawanPage from '../pages/MO/editKaryawanPage';
-import PenitipPage from "../pages/MO/Penitip/penitipPage"
-import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain"
-import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain"
-import RolePage from '../pages/MO/rolePage';
+import KaryawanPage from '../pages/MO/Karyawan/karyawanPage';
+import AddKaryawanPage from '../pages/MO/Karyawan/addKaryawanPage';
+import EditKaryawanPage from '../pages/MO/Karyawan/editKaryawanPage';
+import PenitipPage from "../pages/MO/Penitip/penitipPage";
+import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain";
+import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain";
+import RolePage from '../pages/MO/Role/rolePage';
 import OwnerKaryawanPage from '../pages/owner/ownerKaryawanPage';
 import OwnerJabatanPage from '../pages/owner/ownerJabatanPage';
+import ProfilePage from '../pages/customer/profilePage';
+import CustomerLayout from '../layouts/customerLayout';
+import HistoryPage from '../pages/customer/historyPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -74,12 +77,16 @@ const router = createBrowserRouter([
         path: '/customer',
         element:
             <ProtectedCustomerRoutes>
-                {/* customerLayout */}
+                <CustomerLayout/>
             </ProtectedCustomerRoutes>,
         children: [
             {
                 path: '/customer/profile',
-                element: <div>Customer Profile</div>
+                element: <ProfilePage/>
+            },
+            {
+                path: '/customer/history',
+                element: <HistoryPage/>
             },
         ]
     },

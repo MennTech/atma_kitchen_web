@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { ShowKaryawan, EditKaryawan} from "../../api/karyawanApi";
-import { GetAllRole } from "../../api/roleApi";
+import { ShowKaryawan, EditKaryawan } from "../../../api/karyawanApi";
+import { GetAllRole } from "../../../api/roleApi";
 
 const EditKaraywanPage = () => {
   const params = useParams();

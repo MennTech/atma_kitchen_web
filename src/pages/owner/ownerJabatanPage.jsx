@@ -32,19 +32,19 @@ const OwnerJabatanPage = () => {
 
   const columns = [
     {
-      name: "No",
+      name: <span className="font-bold text-base">No</span>,
       selector: (row, rowIndex) => rowIndex + 1,
     },
     {
-      name: "Nama Jabatan",
+      name: <span className="font-bold text-base">Jabatan</span>,
       selector: (row) => row.jabatan,
     },
     {
-      name: "Gaji",
+      name: <span className="font-bold text-base">Gaji</span>,
       selector: (row) => row.gaji,
     },
     {
-      name: "Aksi",
+      name: <span className="font-bold text-base">Aksi</span>,
       cell: (row) => (
         <div className="flex space-x-1">
           <button
@@ -98,7 +98,6 @@ const OwnerJabatanPage = () => {
   };
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setGaji(event.target.value);
   };
 

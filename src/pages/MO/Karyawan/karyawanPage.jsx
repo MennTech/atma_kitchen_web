@@ -1,5 +1,5 @@
-import { GetAllKaryawan, DeleteKaryawan } from "../../api/karyawanApi";
-import { GetAllRole } from "../../api/roleApi";
+import { GetAllKaryawan, DeleteKaryawan } from "../../../api/karyawanApi";
+import { GetAllRole } from "../../../api/roleApi";
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const KaryawanPage = () => {
     const foundRole = role.find((r) => r.id_role === id_role);
     return foundRole ? foundRole.jabatan : "-";
   };
-  
+
   const deleteKaryawan = (event) => {
     event.preventDefault();
     DeleteKaryawan(idKaryawan)
@@ -59,37 +59,41 @@ const KaryawanPage = () => {
 
   const columns = [
     {
-      name: "No",
+      name: <span className="font-bold text-base"> No</span>,
       selector: (row, rowIndex) => rowIndex + 1,
     },
     {
-      name: "Nama Karyawan",
+      name: <span className="font-bold text-base">Nama Karyawan</span>,
       selector: (row) => row.nama_karyawan,
     },
     {
-      name: "Email Karyawan",
+      name: <span className="font-bold text-base">Email</span>,
       selector: (row) => row.email_karyawan,
     },
     {
-      name: "Jabatan Karyawan",
+      name: <span className="font-bold text-base">Jabatan</span>,
       selector: (row) => getRole(row.id_role),
     },
     {
-      name: "No Telpon ",
+      name: <span className="font-bold text-base">No Telp</span>,
       selector: (row) => row.no_telp,
     },
     {
-      name: "Aksi",
+      name: <span className="font-bold text-base">Aksi</span>,
       cell: (row) => (
         <div className="space-x-2">
           <button
             className="btn btn-sm btn-outline bg-[#e6a525] text-white"
-            onClick={() => navigate(`/dashboard/edit-karyawan/${row.id_karyawan}`)}
+            onClick={() =>
+              navigate(`/dashboard/edit-karyawan/${row.id_karyawan}`)
+            }
           >
             Edit
           </button>
-          <button className="btn btn-sm btn-outline bg-[#e74d42] text-white"
-          onClick={()=>handleShowModal(row.id_karyawan)}>
+          <button
+            className="btn btn-sm btn-outline bg-[#e74d42] text-white"
+            onClick={() => handleShowModal(row.id_karyawan)}
+          >
             Hapus
           </button>
         </div>
@@ -120,7 +124,7 @@ const KaryawanPage = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-  }
+  };
 
   return (
     <div className="w-screen min-h-screen p-4 overflow-y-auto">
@@ -141,7 +145,10 @@ const KaryawanPage = () => {
               />
             </div>
             <div className="space-x-1">
-              <button className="btn btn-outline bg-[#d08854] text-white" onClick={() => navigate('/dashboard/tambah-karyawan')}>
+              <button
+                className="btn btn-outline bg-[#d08854] text-white"
+                onClick={() => navigate("/dashboard/tambah-karyawan")}
+              >
                 Tambah Karyawan
               </button>
             </div>
@@ -174,7 +181,12 @@ const KaryawanPage = () => {
           <div className="modal-action">
             <form onSubmit={deleteKaryawan}>
               <div className="space-x-1">
-                <button className="btn btn-error text-white" onClick={handleCloseModal}>Cancel</button>
+                <button
+                  className="btn btn-error text-white"
+                  onClick={handleCloseModal}
+                >
+                  Cancel
+                </button>
                 <button
                   className="btn btn-primary text-white"
                   type="submit"

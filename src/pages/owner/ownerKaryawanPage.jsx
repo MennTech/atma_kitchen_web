@@ -45,31 +45,31 @@ const OwnerKaryawanPage = () => {
 
   const columns = [
     {
-      name: "No",
+      name: <span className="font-bold text-base"> No</span>,
       selector: (row, rowIndex) => rowIndex + 1,
     },
     {
-      name: "Nama Karyawan",
+      name: <span className="font-bold text-base">Nama Karyawan</span>,
       selector: (row) => row.nama_karyawan,
     },
     {
-      name: "Email Karyawan",
+      name: <span className="font-bold text-base">Email</span>,
       selector: (row) => row.email_karyawan,
     },
     {
-      name: "Jabatan Karyawan",
+      name: <span className="font-bold text-base">Jabatan</span>,
       selector: (row) => getRole(row.id_role),
     },
     {
-      name: "No Telpon ",
+      name: <span className="font-bold text-base">No Telp</span>,
       selector: (row) => row.no_telp,
     },
     {
-      name: "Bonus",
+      name: <span className="font-bold text-base">Bonus</span>,
       selector: (row) => row.bonus,
     },
     {
-      name: "Aksi",
+      name: <span className="font-bold text-base">Aksi</span>,
       cell: (row) => (
         <div className="flex space-x-1">
           <button

@@ -27,7 +27,7 @@ const HomeLayout = () => {
             setRoutes([
                 {
                     name: "Profile",
-                    path: "/profile"
+                    path: "/customer/profile"
                 }
             ]);
         } else {

@@ -93,6 +93,8 @@ const AddResepPage = () => {
     event.preventDefault();
     // const values = detailResep.filter((item, index) => index !== i || item.id_bahan_baku !== id);
     const values = [...detailResep];
+    console.log(values)
+    console.log(i)
     values.splice(i, 1);
     setDetailResep(values);
   };
