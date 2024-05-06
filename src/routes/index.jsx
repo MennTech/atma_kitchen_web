@@ -29,6 +29,9 @@ import EditKaryawanPage from '../pages/MO/editKaryawanPage';
 import PenitipPage from "../pages/MO/Penitip/penitipPage"
 import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain"
 import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain"
+import Customer from "../pages/admin/customer/customerPage"
+import DetailPesanan from "../pages/admin/customer/detailPesanan"
+import Pesanan from "../pages/admin/customer/pesanan"
 
 const router = createBrowserRouter([
     // wildcard route
@@ -248,6 +251,14 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/customer',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Admin"}>
+                        <Customer />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/karyawan',
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
@@ -268,6 +279,22 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <EditKaryawanPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <Pesanan />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/detail_pesanan/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <DetailPesanan />
                     </RoleBasedRoute>
                 )
             },
