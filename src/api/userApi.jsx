@@ -43,4 +43,17 @@ const UpdateProfile = async (data) => {
     }
 }
 
-export { getCurrentUser, GetProfile, UpdateProfile };
+const GetHistory = async () => {
+    try{
+        const response = await useAxios.get("/customer/history", {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        return response;
+    }catch(error){
+        return error;
+    }
+}
+
+export { getCurrentUser, GetProfile, UpdateProfile, GetHistory };
