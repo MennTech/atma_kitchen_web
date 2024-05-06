@@ -22,32 +22,42 @@ const HomeLayout = () => {
         setLoggedIn(isLoggedIn());
     }, []);
 
-    useEffect(() => {
-        if (loggedIn) {
-            setRoutes([
-                {
-                    name: "Profile",
-                    path: "/customer/profile"
-                }
-            ]);
-        } else {
-            setRoutes([
-                {
-                    name: "Login",
-                    path: "/login"
-                },
-                {
-                    name: "Register",
-                    path: "/register"
-                }
-            ])
+    // useEffect(() => {
+    //     if (loggedIn) {
+    //         setRoutes([
+    //             {
+    //                 name: "Profile",
+    //                 path: "/customer/profile"
+    //             }
+    //         ]);
+    //     } else {
+    //         setRoutes([
+    //             {
+    //                 name: "Login",
+    //                 path: "/login"
+    //             },
+    //             {
+    //                 name: "Register",
+    //                 path: "/register"
+    //             }
+    //         ])
+    //     }
+    // }, [loggedIn]);
+    setRoutes([
+        {
+            name: "Login",
+            path: "/login"
+        },
+        {
+            name: "Register",
+            path: "/register"
         }
-    }, [loggedIn]);
+    ]);
 
     return (
         <div className="flex flex-col">
             <div className="flex-1">
-                <TopNavbar routes={routes} />
+                <TopNavbar routes={routes} isLoggedIn={loggedIn} />
                 <Outlet />
             </div>
             <Footer />
