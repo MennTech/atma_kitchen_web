@@ -22,37 +22,38 @@ const HomeLayout = () => {
         setLoggedIn(isLoggedIn());
     }, []);
 
-    // useEffect(() => {
-    //     if (loggedIn) {
-    //         setRoutes([
-    //             {
-    //                 name: "Profile",
-    //                 path: "/customer/profile"
-    //             }
-    //         ]);
-    //     } else {
-    //         setRoutes([
-    //             {
-    //                 name: "Login",
-    //                 path: "/login"
-    //             },
-    //             {
-    //                 name: "Register",
-    //                 path: "/register"
-    //             }
-    //         ])
-    //     }
-    // }, [loggedIn]);
-    setRoutes([
-        {
-            name: "Login",
-            path: "/login"
-        },
-        {
-            name: "Register",
-            path: "/register"
+    useEffect(() => {
+        if (loggedIn) {
+            // setRoutes([
+            //     {
+            //         name: "Profile",
+            //         path: "/customer/profile"
+            //     }
+            // ]);
+            setRoutes([]);
+        } else {
+            setRoutes([
+                {
+                    name: "Login",
+                    path: "/login"
+                },
+                {
+                    name: "Register",
+                    path: "/register"
+                }
+            ])
         }
-    ]);
+    }, [loggedIn]);
+    // setRoutes([
+    //     {
+    //         name: "Login",
+    //         path: "/login"
+    //     },
+    //     {
+    //         name: "Register",
+    //         path: "/register"
+    //     }
+    // ]);
 
     return (
         <div className="flex flex-col">

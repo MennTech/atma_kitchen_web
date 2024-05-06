@@ -16,7 +16,7 @@ const CustomerLayout = () => {
 
     useEffect(() => {
         setLoggedIn(isLoggedIn());
-    })
+    }, []);
 
     return (
         <div className="flex flex-col">

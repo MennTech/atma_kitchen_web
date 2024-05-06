@@ -18,8 +18,8 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal space-x-2">
-          {/* eslint-disable-next-line react/prop-types */}
           {!isLoggedIn &&
+            // eslint-disable-next-line react/prop-types
             routes?.map((route, index) => {
               return (
                 <li key={index} onClick={() => navigate(route.path)}>

@@ -14,7 +14,7 @@ const Logout = async () => {
         const response = await useAxios.post("/customer/logout", null, {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
         });
         return response.data;
