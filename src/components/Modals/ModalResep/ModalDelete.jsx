@@ -5,18 +5,12 @@ import { toast } from 'sonner';
 const ModalDelete = ({value,onClose}) => {
 
   const submitData = (event) => {
+    console.log(value.id_resep);
       event.preventDefault();
       HapusResep(value.id_resep)
       .then((response) => { 
-        console.log(response.response.status);
-        if(response.response.status === 500){
-            toast.error('Failed', {
-                className: 'my-classname',
-                description: "Resep Ini masih digunakan oleh produk!",
-                duration: 5000,
-              });
-              handleOnClose();
-        } else {
+        console.log(response.status);
+        if(response.status){
             toast.success('Success', {
               className: 'my-classname',
               description: response.message,
@@ -24,6 +18,13 @@ const ModalDelete = ({value,onClose}) => {
             });
             handleOnClose();
             onClose();
+        } else {
+          toast.error('Failed', {
+            className: 'my-classname',
+            description: "Resep Ini masih digunakan oleh produk!",
+            duration: 5000,
+          });
+          handleOnClose();
         }
       })
       .catch((err) => {
