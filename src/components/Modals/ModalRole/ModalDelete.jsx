@@ -8,22 +8,21 @@ const ModalDelete = ({value,onClose}) => {
       event.preventDefault();
       DeleteRole(value.id_role)
       .then((response) => { 
-        console.log(response.response.status);
-        if(response.response.status === 500){
-            toast.error('Failed', {
+        if(response.status){
+              toast.success('Success', {
                 className: 'my-classname',
-                description: "Jabatan ini masih digunakan oleh karyawan!",
+                description: response.message,
                 duration: 5000,
               });
               handleOnClose();
+              onClose();
         } else {
-            toast.success('Success', {
-              className: 'my-classname',
-              description: response.message,
-              duration: 5000,
-            });
-            handleOnClose();
-            onClose();
+          toast.error('Failed', {
+            className: 'my-classname',
+            description: "Jabatan ini masih digunakan oleh karyawan!",
+            duration: 5000,
+          });
+          handleOnClose();
         }
       })
       .catch((err) => {

@@ -103,7 +103,7 @@ const HistoryPage = () => {
                                 </div>
                               </div>
                             ) : (
-                              <div>
+                              <div className="flex space-x-2">
                                 <img
                                   src={item.hampers.gambar_hampers}
                                   alt={item.hampers.nama_hampers}
