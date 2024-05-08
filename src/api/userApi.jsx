@@ -14,4 +14,46 @@ const getCurrentUser = async () => {
     }
 }
 
-export { getCurrentUser };
+const GetProfile = async () => {
+    try{
+        const response = await useAxios.get("/customer/profile", {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        return response;
+    }catch(error){
+        return error;
+    }
+};
+
+const UpdateProfile = async (data) => {
+    try{
+        const response = await useAxios.put("/customer/profile", {
+            nama_customer: data.nama_customer,
+            no_telp: data.no_telp
+        }, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        return response;
+    }catch(error){
+        return error;
+    }
+}
+
+const GetHistory = async () => {
+    try{
+        const response = await useAxios.get("/customer/history", {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        return response;
+    }catch(error){
+        return error;
+    }
+}
+
+export { getCurrentUser, GetProfile, UpdateProfile, GetHistory };

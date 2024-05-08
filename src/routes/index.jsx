@@ -32,6 +32,12 @@ import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain"
 import Customer from "../pages/admin/customer/customerPage"
 import DetailPesanan from "../pages/admin/customer/detailPesanan"
 import Pesanan from "../pages/admin/customer/pesanan"
+import RolePage from '../pages/MO/Role/rolePage';
+import OwnerKaryawanPage from '../pages/owner/ownerKaryawanPage';
+import OwnerJabatanPage from '../pages/owner/ownerJabatanPage';
+import ProfilePage from '../pages/customer/profilePage';
+import CustomerLayout from '../layouts/customerLayout';
+import HistoryPage from '../pages/customer/historyPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -81,12 +87,16 @@ const router = createBrowserRouter([
         path: '/customer',
         element:
             <ProtectedCustomerRoutes>
-                {/* customerLayout */}
+                <CustomerLayout/>
             </ProtectedCustomerRoutes>,
         children: [
             {
                 path: '/customer/profile',
-                element: <div>Customer Profile</div>
+                element: <ProfilePage/>
+            },
+            {
+                path: '/customer/history',
+                element: <HistoryPage/>
             },
         ]
     },
@@ -291,10 +301,34 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/jabatan/',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Manager Operational"}>
+                        <RolePage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/detail_pesanan/:id',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <DetailPesanan />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/owner/jabatan',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Owner"}>
+                        <OwnerJabatanPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/owner/karyawan',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Owner"}>
+                        <OwnerKaryawanPage />
                     </RoleBasedRoute>
                 )
             },

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { TambahKaryawan } from "../../../api/karyawanApi";
+import { GetAllRole } from "../../../api/roleApi";
 import { toast } from "sonner";
-import { ShowKaryawan, EditKaryawan, GetRole } from "../../api/karyawanApi";
 
-const EditKaraywanPage = () => {
-  const params = useParams();
-  const id_karyawan = params.id;
+const AddKaryawanPage = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState([]);
   const [karyawan, setKaryawan] = useState({
@@ -13,13 +12,13 @@ const EditKaraywanPage = () => {
     no_telp: "",
     id_role: "",
     email_karyawan: "",
-    password: "",
+    password: null,
   });
   const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
 
   const fetchRole = () => {
-    GetRole()
+    GetAllRole()
       .then((response) => {
         setRole(response.data.data);
       })
@@ -28,19 +27,8 @@ const EditKaraywanPage = () => {
       });
   };
 
-  const fecthKaryawan = () => {
-    ShowKaryawan(id_karyawan)
-      .then((response) => {
-        setKaryawan(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
     fetchRole();
-    fecthKaryawan();
   }, []);
 
   const handleChange = (event) => {
@@ -51,7 +39,7 @@ const EditKaraywanPage = () => {
       : setShow(false);
   };
 
-  const editKaryawan = (event) => {
+  const addKaryawan = (event) => {
     event.preventDefault();
     const validationErrors = {};
 
@@ -64,6 +52,9 @@ const EditKaraywanPage = () => {
     } else if (karyawan.no_telp.length < 11 || karyawan.no_telp.length > 13) {
       validationErrors.no_telp = "No Telepon harus 11 - 13 digit";
       toast.error("No Telepon harus 11 - 13 digit");
+    } else if (!karyawan.id_role) {
+      validationErrors.id_role = "Jabatan harus dipilih";
+      toast.error("Jabatan harus dipilih");
     } else if (show && !karyawan.email_karyawan.trim()) {
       validationErrors.email_karyawan = "Email harus diisi";
       toast.error("Email harus diisi");
@@ -75,28 +66,32 @@ const EditKaraywanPage = () => {
       toast.error("Password harus diisi");
     }
     setErrors(validationErrors);
-
-    EditKaryawan(id_karyawan, karyawan)
-      .then(() => {
-        toast.success("Karyawan berhasil diubah");
-        navigate("/dashboard/karyawan");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (Object.keys(validationErrors).length === 0) {
+      TambahKaryawan(karyawan)
+        .then((response) => {
+          toast.success("Karyawan berhasil ditambahkan");
+          navigate("/dashboard/karyawan");
+        })
+        .catch((error) => {
+          toast.error("Gagal menambahkan karyawan");
+          console.log(error);
+        });
+    }
   };
 
   return (
     <div className="w-screen p-4 min-h-screen overflow-y-auto">
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Edit Karyawan</h1>
+        <h1 className="text-4xl text-[#d08854] font-semibold">
+          Tambah Karyawan
+        </h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">Manajemen Karyawan Atma Kitchen</p>
       </div>
 
       <div className="card w-full h-fit bg-white mt-4">
         <div className="card-body h-full p-4">
-          <form onSubmit={editKaryawan}>
+          <form onSubmit={addKaryawan}>
             <div className="flex justify-between">
               <div className="flex items-center">
                 <button
@@ -126,7 +121,6 @@ const EditKaraywanPage = () => {
                         id="nama"
                         name="nama_karyawan"
                         className="input input-bordered bg-white"
-                        value={karyawan.nama_karyawan}
                         onChange={handleChange}
                       />
                     </div>
@@ -139,7 +133,6 @@ const EditKaraywanPage = () => {
                         id="noTelp"
                         name="no_telp"
                         className="input input-bordered bg-white"
-                        value={karyawan.no_telp}
                         onChange={handleChange}
                       />
                     </div>
@@ -152,7 +145,7 @@ const EditKaraywanPage = () => {
                         id="id_role"
                         className="select select-bordered bg-white"
                         onChange={handleChange}
-                        value={karyawan.id_role}
+                        defaultValue=""
                       >
                         <option value="" disabled>
                           Pilih Jabatan
@@ -181,7 +174,6 @@ const EditKaraywanPage = () => {
                         id="email"
                         name="email_karyawan"
                         className="input input-bordered bg-white"
-                        value={karyawan.email_karyawan}
                         onChange={handleChange}
                       />
                     </div>
@@ -210,4 +202,4 @@ const EditKaraywanPage = () => {
   );
 };
 
-export default EditKaraywanPage;
+export default AddKaryawanPage;
