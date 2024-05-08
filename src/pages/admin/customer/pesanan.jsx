@@ -54,8 +54,8 @@ const DetailPesananPage = () => {
         sortable: true,
     },
     {
-        name: <span className="font-bold text-base">Tip</span>,
-        selector: row => row.tip,
+      name: <span className="font-bold text-base">Tip</span>,
+      selector: row => row.tip !== null ? row.tip : "0",
     },
     {
         name: <span className="font-bold text-base">Status</span>,

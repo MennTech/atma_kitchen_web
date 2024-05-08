@@ -25,12 +25,12 @@ const DetailPesananPage = () => {
   const columns = [
     {
       name: <span className="font-bold text-base">Produk</span>,
-      selector: row => row.id_produk,
+      selector: row => row.produk.nama_produk,
       sortable: true,
     },
     {
       name: <span className="font-bold text-base">Hampers</span>,
-      selector: row => row.id_hampers,
+      selector: row => row.hampers ? row.hampers.nama_hampers : "-",
     },
     {
       name: <span className="font-bold text-base">Jumlah</span>,

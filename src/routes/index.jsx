@@ -23,9 +23,9 @@ import RegisterCustomerPage from '../pages/auth/registerCustomerPage';
 import ResepPage from "../pages/admin/resep/resepPage";
 import AddResepPage from "../pages/admin/resep/addResepPage";
 import EditResepPage from "../pages/admin/resep/editResepPage";
-import KaryawanPage from '../pages/MO/karyawanPage';
-import AddKaryawanPage from '../pages/MO/addKaryawanPage';
-import EditKaryawanPage from '../pages/MO/editKaryawanPage';
+import KaryawanPage from '../pages/MO/Karyawan/karyawanPage';
+import AddKaryawanPage from '../pages/MO/Karyawan/addKaryawanPage';
+import EditKaryawanPage from '../pages/MO/Karyawan/editKaryawanPage';
 import PenitipPage from "../pages/MO/Penitip/penitipPage"
 import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain"
 import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain"
@@ -38,6 +38,8 @@ import OwnerJabatanPage from '../pages/owner/ownerJabatanPage';
 import ProfilePage from '../pages/customer/profilePage';
 import CustomerLayout from '../layouts/customerLayout';
 import HistoryPage from '../pages/customer/historyPage';
+import ForgotPassword from '../pages/customer/forgotPassword';
+import ResetPassword  from '../pages/customer/resetPassword';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <RegisterCustomerPage />
             },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassword />
+            },
+            {
+                path: '/reset-password',
+                element: <ResetPassword />
+            }
         ]
     },
     // public auth route for karyawan

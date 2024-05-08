@@ -17,6 +17,14 @@ const ModalEdit = ({ onClose,value}) => {
   }
   const submitData = (event) => {
       event.preventDefault();
+      if (data.nama_bahan_baku === "" || data.stok === 0 || data.stok === "" || data.satuan === "") {
+        toast.error("Semua data harus diisi");
+        return;
+      }
+      if (data.stok <= 0) {
+        toast.error("Stok tidak boleh kurang dari sama dengan 0");
+        return;
+      }
       EditBahanBaku(data)
       .then((response) => {
         console.log(response.data);

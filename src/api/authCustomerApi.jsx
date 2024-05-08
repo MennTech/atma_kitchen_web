@@ -38,4 +38,34 @@ const Register = async (data) => {
     }
 }
 
-export { Login, Logout, Register };
+const ForgotPassword = async (data) => {
+    try {
+        const response = await useAxios.post("forgot-password", data);
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+}
+const fetchVerificationStatus = async () => {
+    try {
+        const response = await useAxios.get("/tampilan",{
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        console.log(response);
+        return response.data.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const ResetPassword = async (data) => {
+    try {
+        const response = await useAxios.post("/reset-password", data);
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+}
+export { Login, Logout, Register, ForgotPassword,ResetPassword, fetchVerificationStatus};

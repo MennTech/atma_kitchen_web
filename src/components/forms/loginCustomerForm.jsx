@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { Login } from "../../api/authCustomerApi";
 import ErrorToast from "../alerts/errorAlert";
 
@@ -71,7 +71,7 @@ const LoginCustomerForm = () => {
                             <input onChange={handleChange} type="password" name="password" className="grow input-primary" placeholder="Password" required />
                         </label>
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover hover:link-hover">Lupa Password?</a>
+                            <Link to="/forgot-password" className="label-text-alt link link-hover hover:link-hover">Lupa Password?</Link>
                         </label>
                     </div>
                 </div>

@@ -19,6 +19,15 @@ const ModalEdit = ({ onClose,value}) => {
   }
   const submitData = (event) => {
       event.preventDefault();
+      if (data.nama_penitip === "" || data.no_telp === "") {
+        toast.error("Semua data harus diisi");
+        return;
+      }
+
+      if (data.no_telp.length < 10 || data.no_telp.length > 13) {
+          toast.error("nomor telepon haru berjumlah 10-13 digit");
+          return;
+      }
       EditPenitip(data)
       .then((response) => {
         toast.success('Success', {
