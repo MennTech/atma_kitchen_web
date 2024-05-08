@@ -157,15 +157,17 @@ const AddResepPage = () => {
                         name="id_bahan_baku"
                         id="namaBahan"
                         className="select select-bordered bg-white"
-                        defaultValue="Pilih Bahan Baku"
+                        value={detailResep[i].id_bahan_baku?detailResep[i].id_bahan_baku:"Pilih Bahan Baku"}
                         onChange={(event) => handleChange(i, event)
                         }
-                      >
-                        <option disabled>Pilih Bahan Baku</option>
+                        >
+                        
+                        <option disabled value="Pilih Bahan Baku">Pilih Bahan Baku</option>
                         {dataBahanBaku.map((bahan) => (
                           <option
                             key={bahan.id_bahan_baku}
                             value={bahan.id_bahan_baku}
+                            // selected={val.id_bahan_baku == bahan.id_bahan_baku}
                           >
                             {bahan.nama_bahan_baku}
                           </option>
@@ -179,6 +181,7 @@ const AddResepPage = () => {
                         id="jumlah"
                         className="input input-bordered bg-white"
                         onChange={(event) => handleChange(i, event)}
+                        value={val.jumlah_bahan}
                       />
                     </div>
                     <div>
