@@ -6,7 +6,7 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({
         nama_customer: "", 
-        email_customer: "", 
+        email: "", 
         password: "",
         tanggal_lahir: "",
         no_telp: "",
@@ -26,10 +26,10 @@ const RegisterForm = () => {
         if(!data.nama_customer.trim()){
             validationErrors.nama_customer = "Nama Lengkap harus diisi";
         }
-        if(!data.email_customer.trim()){
+        if(!data.email.trim()){
             validationErrors.email_customer = "Email harus diisi";
-        } else if(!/\S+@\S+\.\S+/.test(data.email_customer)){
-            validationErrors.email_customer = "Email tidak valid";
+        } else if(!/\S+@\S+\.\S+/.test(data.email)){
+            validationErrors.email = "Email tidak valid";
         }
         if(!data.password.trim()){
             validationErrors.password = "Password harus diisi";
@@ -68,8 +68,8 @@ const RegisterForm = () => {
                 </div>    
                 <div className='form-control'>
                     <label htmlFor="email">Email</label>
-                    <input type="text" onChange={handleChange} className='input bg-gray-200' id='email' name='email_customer' />
-                    {errors.email_customer && <p className='text-red-500'>{errors.email_customer}</p>}
+                    <input type="text" onChange={handleChange} className='input bg-gray-200' id='email' name='email' />
+                    {errors.email && <p className='text-red-500'>{errors.email}</p>}
                     {emailError && <p className='text-red-500'>{emailError}</p>}
                 </div>    
                 <div className='form-control'>

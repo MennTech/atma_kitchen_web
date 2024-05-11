@@ -13,7 +13,7 @@ function resetPassword() {
     setEmail(searchParams.get("email"));
     setkode(searchParams.get("token"));
     setData({
-      email_customer: email,
+      email: email,
       token: kode,
       password: "",
       confirm_password: "",
@@ -22,7 +22,7 @@ function resetPassword() {
   console.log(email);
   console.log(kode);
   const [data, setData] = useState({
-    email_customer: "email",
+    email: "email",
     token: "kode",
     password: "",
     confirm_password: "",

@@ -57,8 +57,8 @@ const PengeluaranLainPage = () => {
   };
   function handleSearch(event) {
     let value = event.target.value;
-    let result = penitip.filter((data) => {
-      return data.nama_penitip.toLowerCase().includes(value.toLowerCase());
+    let result = pengeluaran.filter((data) => {
+      return data.nama_pengeluaran.toLowerCase().includes(value.toLowerCase());
     });
     setSearch(result);
   }

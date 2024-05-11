@@ -2,12 +2,9 @@ import React, { useState,useEffect } from "react";
 import { ForgotPassword, fetchVerificationStatus } from "../../api/authCustomerApi";
 import { toast } from 'sonner';
 import { Toaster } from 'sonner';
-import { useNavigate } from "react-router-dom";
 
-function forgotPassword() {
-  const navigate = useNavigate();
-  const [email_customer, setEmail] = useState("");
-  const [kode, setkode] = useState("");
+function forgotPassword() {;
+  const [email, setEmail] = useState("");
   const verif = async () => {
     fetchVerificationStatus()
     .then((response) => {
@@ -19,7 +16,7 @@ function forgotPassword() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    ForgotPassword({ email_customer })
+    ForgotPassword({ email })
     .then((response) => {
       console.log(response.data);
         if (response && response.message === 'Reset password link sent on your email id.') {
@@ -59,7 +56,7 @@ function forgotPassword() {
                   <input
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    name="email_customer"
+                    name="email"
                     className="grow bg-white"
                     placeholder="Email"
                     required

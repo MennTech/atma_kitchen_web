@@ -30,7 +30,7 @@ const CustomerPage = () => {
     },
     {
       name: <span className="font-bold text-base">Email</span>,
-      selector: row => row.email_customer,
+      selector: row => row.email,
     },
     {
       name: <span className="font-bold text-base">Tanggal Lahir</span>,
