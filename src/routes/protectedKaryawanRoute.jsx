@@ -11,7 +11,7 @@ const ProtectedKaryawanRoutes = ({ children }) => {
 
     useEffect(() => {
         if (!memoizationIsLoggedIn) {
-            navigate("/karyawan/login");
+            navigate("/login");
         }else if(memoizationUserType !== "karyawan"){
             navigate("/");
         } else {
