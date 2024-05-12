@@ -34,6 +34,14 @@ const AddPengeluaranLain = () => {
           tanggal: item.tanggal,
           harga: item.harga
         };
+        if (data.nama_pengeluaran === "" || data.tanggal === "" || data.harga === "" || data.harga === 0) {
+          toast.error("Semua data harus diisi");
+          return;
+        }
+        if (data.harga < 0) {
+            toast.error("harga tidak boleh kurang dari 0");
+            return;
+        }
         await CreatePengeluaranLain(data);
       }));
       toast.success('Success', {

@@ -13,6 +13,15 @@ const ModalCreate = ({onClose}) => {
   };
   const submitData = (event) => {
       event.preventDefault();
+      if (data.nama_penitip === "" || data.no_telp === "") {
+        toast.error("Semua data harus diisi");
+        return;
+      }
+
+      if (data.no_telp.length < 10 || data.no_telp.length > 13) {
+          toast.error("nomor telepon haru berjumlah 10-13 digit");
+          return;
+      }
       const formData = new FormData();
       formData.append("nama_penitip", data.nama_penitip);
       formData.append("no_telp", data.no_telp);

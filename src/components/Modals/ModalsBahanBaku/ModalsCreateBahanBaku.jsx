@@ -14,6 +14,15 @@ const ModalCreateBahanBaku = ({ onClose}) => {
   };
   const submitData = (event) => {
       event.preventDefault();
+      if (data.nama_bahan_baku === "" || data.stok === "" || data.satuan === "") {
+        toast.error("Semua data harus diisi");
+        return;
+      }
+
+      if (data.stok <= 0) {
+          toast.error("Stok tidak boleh kurang dari sama dengan 0");
+          return;
+      }
       const formData = new FormData();
       formData.append("nama_bahan_baku", data.nama_bahan_baku);
       formData.append("stok", data.stok);
@@ -32,7 +41,7 @@ const ModalCreateBahanBaku = ({ onClose}) => {
       .catch((err) => {
         toast.error('Failed', {
           className: 'my-classname',
-          description: 'Semua Field Harus Diisi',
+          description: 'Gagal menambahkan data bahan baku',
           duration: 5000,
         });
       });

@@ -47,7 +47,7 @@ const ProfilePage = () => {
                         <label htmlFor="Email" style={{ color:"#555555"}}>Email</label>
                       </div>
                       <div>
-                        <p id="Email">{profile.email_customer}</p>
+                        <p id="Email">{profile.email}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-5 gap-5">

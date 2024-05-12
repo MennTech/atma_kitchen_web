@@ -26,15 +26,20 @@ import EditResepPage from "../pages/admin/resep/editResepPage";
 import KaryawanPage from '../pages/MO/Karyawan/karyawanPage';
 import AddKaryawanPage from '../pages/MO/Karyawan/addKaryawanPage';
 import EditKaryawanPage from '../pages/MO/Karyawan/editKaryawanPage';
-import PenitipPage from "../pages/MO/Penitip/penitipPage";
-import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain";
-import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain";
+import PenitipPage from "../pages/MO/Penitip/penitipPage"
+import PengeluaranLainPage from "../pages/MO/PengeluaranLain/PengeluaranLain"
+import AddPengeluaranLain from "../pages/MO/PengeluaranLain/AddPengeluaranLain"
+import Customer from "../pages/admin/customer/customerPage"
+import DetailPesanan from "../pages/admin/customer/detailPesanan"
+import Pesanan from "../pages/admin/customer/pesanan"
 import RolePage from '../pages/MO/Role/rolePage';
 import OwnerKaryawanPage from '../pages/owner/ownerKaryawanPage';
 import OwnerJabatanPage from '../pages/owner/ownerJabatanPage';
 import ProfilePage from '../pages/customer/profilePage';
 import CustomerLayout from '../layouts/customerLayout';
 import HistoryPage from '../pages/customer/historyPage';
+import ForgotPassword from '../pages/customer/forgotPassword';
+import ResetPassword  from '../pages/customer/resetPassword';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -67,6 +72,14 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <RegisterCustomerPage />
             },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassword />
+            },
+            {
+                path: '/reset-password',
+                element: <ResetPassword />
+            }
         ]
     },
     // public auth route for karyawan
@@ -258,6 +271,14 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/customer',
+                element: (
+                    <RoleBasedRoute allowedRoles={"Admin"}>
+                        <Customer />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/karyawan',
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
@@ -282,10 +303,26 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/pesanan/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <Pesanan />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/jabatan/',
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <RolePage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/detail_pesanan/:id',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <DetailPesanan />
                     </RoleBasedRoute>
                 )
             },

@@ -20,6 +20,15 @@ const ModalEdit = ({ onClose,value}) => {
   }
   const submitData = (event) => {
       event.preventDefault();
+      if (data.nama_pengeluaran === "" || data.tanggal === "" || data.harga === "" || data.harga === 0) {
+        toast.error("Semua data harus diisi");
+        return;
+      }
+
+      if (data.harga <= 0) {
+          toast.error("harga tidak boleh kurang dari sama dengan 0");
+          return;
+      }
       EditPengeluaranLain(data)
       .then((response) => {
         toast.success('Success', {
