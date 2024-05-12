@@ -11,10 +11,6 @@ const HomeLayout = () => {
             name: "Login",
             path: "/login"
         },
-        {
-            name: "Register",
-            path: "/register"
-        }
     ]);
 
     // check if user is logged in
@@ -24,12 +20,6 @@ const HomeLayout = () => {
 
     useEffect(() => {
         if (loggedIn) {
-            // setRoutes([
-            //     {
-            //         name: "Profile",
-            //         path: "/customer/profile"
-            //     }
-            // ]);
             setRoutes([]);
         } else {
             setRoutes([
@@ -37,23 +27,9 @@ const HomeLayout = () => {
                     name: "Login",
                     path: "/login"
                 },
-                {
-                    name: "Register",
-                    path: "/register"
-                }
             ])
         }
     }, [loggedIn]);
-    // setRoutes([
-    //     {
-    //         name: "Login",
-    //         path: "/login"
-    //     },
-    //     {
-    //         name: "Register",
-    //         path: "/register"
-    //     }
-    // ]);
 
     return (
         <div className="flex flex-col">
