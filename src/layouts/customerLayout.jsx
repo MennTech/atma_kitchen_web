@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
-import TopNavbar from "../components/TopNavbar";
+import TopNavbarLogin from "../components/TopNavbarLogin";
 import Footer from "../components/Footer";
 import { isLoggedIn } from "../utils/userCheck";
 
@@ -19,9 +19,9 @@ const CustomerLayout = () => {
     }, []);
 
     return (
-        <div className="flex flex-col">
-            <div className="flex-1">
-                <TopNavbar routes={routes} isLoggedIn={loggedIn} />
+        <div className="w-screen">
+            <div className="w-full">
+                <TopNavbarLogin routes={routes} isLoggedIn={loggedIn} />
                 <Outlet />
             </div>   
             <Footer />

@@ -57,6 +57,7 @@ const Sidebar = ({ routes }) => {
                                 return (
                                     <li key={index} onClick={() => navigate(route.path)}>
                                         <a className={`hover:bg-[#8F5C54] hover:text-white ${location.pathname === route.path ? 'bg-[#8F5C54] text-white' : 'text-[#253331]'}  rounded-full`}>
+                                            {route.icon}
                                             {route.name}
                                         </a>
                                     </li>
@@ -82,10 +83,10 @@ const Sidebar = ({ routes }) => {
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-[#DCD8D0] rounded-box w-52">
                                         <li>
-                                            <a onClick={()=>document.getElementById('modalChangePass').showModal()} className="text-[#253331]">Ganti Password</a>
+                                            <a onClick={()=>document.getElementById('modalChangePass').showModal()} className="text-[#253331] hover:bg-[#8F5C54] hover:text-white">Ganti Password</a>
                                         </li>
                                         <li>
-                                            <a onClick={logoutKaryawan} className="text-[#253331]">Logout</a>
+                                            <a onClick={logoutKaryawan} className="text-[#253331] hover:bg-[#8F5C54] hover:text-white">Logout</a>
                                         </li>
                                     </ul>
                                 </div>

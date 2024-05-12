@@ -45,7 +45,7 @@ const LoginCustomerForm = () => {
                 sessionStorage.setItem("token", responseCustomer.token);
                 sessionStorage.setItem("customer", JSON.stringify(responseCustomer.customer));
                 setLoading(false);
-                navigate("/");
+                navigate("/customer");
             } else {
                 const dataKaryawan = {
                     email_karyawan: data.email,

@@ -11,6 +11,22 @@ const HomeLayout = () => {
             name: "Login",
             path: "/login"
         },
+        {
+            name: "Register",
+            path: "/register"
+        },
+        {
+            name: "About",
+            path: "/about"
+        },
+        {
+            name: "Contact",
+            path: "/contact"
+        },
+        {
+            name: "Home",
+            path: "/"
+        }
     ]);
 
     // check if user is logged in
@@ -24,16 +40,32 @@ const HomeLayout = () => {
         } else {
             setRoutes([
                 {
+                    name: "Home",
+                    path: "/"
+                },
+                {
+                    name: "About",
+                    path: "/about"
+                },
+                {
+                    name: "Contact",
+                    path: "/contact"
+                },
+                {
                     name: "Login",
                     path: "/login"
+                },
+                {
+                    name: "Register",
+                    path: "/register"
                 },
             ])
         }
     }, [loggedIn]);
 
     return (
-        <div className="flex flex-col">
-            <div className="flex-1">
+        <div className="w-screen">
+            <div className="w-full">
                 <TopNavbar routes={routes} isLoggedIn={loggedIn} />
                 <Outlet />
             </div>
