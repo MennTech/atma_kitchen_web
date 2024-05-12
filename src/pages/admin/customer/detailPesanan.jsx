@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GetDetailPesanan } from "../../../api/detailPesanan"
 import DataTable from "react-data-table-component";
-
+import { useParams } from "react-router-dom";
 
 const DetailPesananPage = () => {
   const {id} = useParams();

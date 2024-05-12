@@ -19,7 +19,7 @@ const DeleteBahan = ({value,onClose}) => {
       .catch((err) => {
         toast.error('Failed', {
           className: 'my-classname',
-          description: err.message,
+          description: "Bahan Baku Ini masih digunakan oleh Resep Produk!",
           duration: 5000,
         });
         handleOnClose();

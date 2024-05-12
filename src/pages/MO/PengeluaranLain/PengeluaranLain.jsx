@@ -58,7 +58,7 @@ const PengeluaranLainPage = () => {
   function handleSearch(event) {
     let value = event.target.value;
     let result = pengeluaran.filter((data) => {
-      return data.nama_pengeluaran.toLowerCase().includes(value.toLowerCase());
+      return data.nama_pengeluaran.toLowerCase().includes(value.toLowerCase())||data.tanggal.toLowerCase().includes(value.toLowerCase())||data.harga.toString().toLowerCase().includes(value.toLowerCase());
     });
     setSearch(result);
   }
@@ -81,7 +81,7 @@ const PengeluaranLainPage = () => {
             <div className="flex items-center">
               <input
                 type="text"
-                placeholder="exp:listrik"
+                placeholder="cth:listrik"
                 className="input bg-slate-100 px-4"
                 onChange={handleSearch}
               />

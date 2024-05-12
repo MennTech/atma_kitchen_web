@@ -77,7 +77,7 @@ const KaryawanLayout = () => {
         }
     }, [role])
     return (
-        <div className="flex flex-row h-screen">
+        <div className="flex flex-row h-screen bg-[#E8EFCF]">
             <Toaster richColors position="top-center"/>
             <Sidebar routes={routes} />
             <Outlet />
