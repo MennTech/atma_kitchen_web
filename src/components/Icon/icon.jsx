@@ -83,7 +83,27 @@ const ProdukIcon = () => {
 };
 
 const BahanBakuIcon = () => {
-  <div>
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+        />
+      </svg>
+    </div>
+  );
+};
+const HamburgerMenu = () => {
+  return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -95,10 +115,35 @@ const BahanBakuIcon = () => {
       <path
         stroke-linecap="round"
         stroke-linejoin="round"
-        d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+        d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
       />
     </svg>
-  </div>;
+  );
 };
-
-export {CustomerIcon, ResepIcon, HampersIcon, ProdukIcon, BahanBakuIcon}
+const Xmark = () => {
+  return(
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18 18 6M6 6l12 12"
+      />
+    </svg>
+  );
+};
+export {
+  CustomerIcon,
+  ResepIcon,
+  HampersIcon,
+  ProdukIcon,
+  BahanBakuIcon,
+  HamburgerMenu,
+  Xmark,
+};

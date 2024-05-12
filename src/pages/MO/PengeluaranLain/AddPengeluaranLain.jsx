@@ -73,13 +73,13 @@ const AddPengeluaranLain = () => {
             <div className="mt-2">
               <div className="grid grid-cols-4 gap-2">
                 <div>
-                  <label htmlFor="namaBahan">Bahan Baku</label>
+                  <label htmlFor="nama_pengeluaran">Nama Pengeluaran</label>
                 </div>
                 <div>
-                  <label htmlFor="jumlah">Tanggal</label>
+                  <label htmlFor="tanggal">Tanggal</label>
                 </div>
                 <div>
-                  <label htmlFor="jumlah">Jumlah</label>
+                  <label htmlFor="harga">Harga</label>
                 </div>
               </div>
               <div>
@@ -134,7 +134,7 @@ const AddPengeluaranLain = () => {
               <div className="divider m-1"></div>
               <div className="flex justify-end">
                 <div className="flex items-center mr-2">
-                  <button className="btn btn-error text-white">Cancel</button>
+                  <button className="btn btn-error text-white" onClick={() => navigate("/dashboard/pengeluaranLain")}>Cancel</button>
                 </div>
                 <div className="space-x-1">
                   <button onClick={handleSubmit} className="btn btn-primary text-white">Save</button>

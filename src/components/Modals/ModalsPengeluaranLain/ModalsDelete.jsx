@@ -3,8 +3,24 @@ import { DeletePengeluaranLain } from "../../../api/PengeluaranLain";
 import { toast } from 'sonner';
 
 const ModalDelete = ({value,onClose}) => {
+  const date = new Date();
+  const dataDate = new Date(value.tanggal);
+  const currentDay = date.getDate();
+  const currentMonth = date.getMonth() + 1;
+  const currentYear = date.getFullYear();
+  const dataDay = dataDate.getDate();
+  const dataMonth = dataDate.getMonth() + 1;
+  const dataYear = dataDate.getFullYear();
   const submitData = (event) => {
       event.preventDefault();
+      if(currentDay > dataDay && currentMonth >= dataMonth && currentYear >= dataYear){
+        toast.error('Failed', {
+          className: 'my-classname',
+          description: 'Tidak bisa menghapus data yang sudah lewat',
+          duration: 5000,
+        })
+        return;
+      };
       DeletePengeluaranLain(value.id_pengeluaran_lain)
       .then((response) => { 
         toast.success('Success', {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GetDetailPesanan } from "../../../api/detailPesanan"
 import DataTable from "react-data-table-component";
-
+import { useParams } from "react-router-dom";
 
 const DetailPesananPage = () => {
   const {id} = useParams();
@@ -67,12 +67,6 @@ const DetailPesananPage = () => {
       </div>
       <div className="card w-full h-fit bg-white mt-4">
         <div className="card-body h-full p-4">
-          <div className='flex justify-between'>
-            <div className="flex items-center">
-              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch}/>
-            </div>
-          </div>
-          <div className="divider m-1"></div>
           <div className='mt-2'>
             {isLoading &&
               <div className="flex flex-col items-center">

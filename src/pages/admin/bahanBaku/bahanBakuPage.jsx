@@ -51,7 +51,7 @@ const BahanBakuPage = () => {
   function handleSearch(event) {
     let value = event.target.value;
     let result = bahanBaku.filter((data) => {
-      return data.nama_bahan_baku.toLowerCase().includes(value.toLowerCase());
+      return data.nama_bahan_baku.toLowerCase().includes(value.toLowerCase())||data.stok.toString().includes(value.toLowerCase())||data.satuan.toLowerCase().includes(value.toLowerCase());
     });
     setSearch(result);
   }
@@ -72,7 +72,7 @@ const BahanBakuPage = () => {
         <div className="card-body h-full p-4">
           <div className='flex justify-between'>
             <div className="flex items-center">
-              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch}/>
+              <input type="text" placeholder="cth:Butter" className='input bg-slate-100 px-4' onChange={handleSearch}/>
             </div>
             <div className="space-x-1">
               <CreateModal onClose={fetchData}/>

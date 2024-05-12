@@ -51,7 +51,7 @@ const CustomerPage = () => {
     {
       name: '',
       cell: row => (
-        <button className="btn btn-sm btn-outline bg-[#d08854] text-white" onClick={() => navigate(`/dashboard/pesanan/${row.id_customer}`)}>
+        <button className="btn btn-sm btn-outline hover:bg-[#DCD8D0] hover:text-[#253331] bg-[#8F5C54] text-white" onClick={() => navigate(`/dashboard/pesanan/${row.id_customer}`)}>
           Pesanan
         </button>
       ),
@@ -78,9 +78,9 @@ const CustomerPage = () => {
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Data Customer</h1>
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Customer</h1>
         <div className="divider divider-horizontal m-1"></div>
-        <p className="text-slate-400">
+        <p className="text-[#253331]">
           Manajemen Atma Kitchen
         </p>
       </div>
@@ -88,7 +88,7 @@ const CustomerPage = () => {
         <div className="card-body h-full p-4">
           <div className='flex justify-between'>
             <div className="flex items-center">
-              <input type="text" placeholder="Cari Bahan Baku" className='input bg-slate-100 px-4' onChange={handleSearch}/>
+              <input type="text" placeholder="Cth:Michele" className='input bg-[#F3EFEA] px-4' onChange={handleSearch}/>
             </div>
           </div>
           <div className="divider m-1"></div>

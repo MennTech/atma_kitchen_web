@@ -51,7 +51,7 @@ const PenitipPage = () => {
   function handleSearch(event) {
     let value = event.target.value;
     let result = penitip.filter((data) => {
-      return data.nama_penitip.toLowerCase().includes(value.toLowerCase());
+      return data.nama_penitip.toLowerCase().includes(value.toLowerCase())||data.no_telp.toLowerCase().includes(value.toLowerCase());
     });
     setSearch(result);
   }
@@ -61,18 +61,18 @@ const PenitipPage = () => {
   }, []);
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
-      <div className="flex items-center">
+      <div className="flex items-center w-4/5 mx-auto">
         <h1 className="text-4xl text-[#d08854] font-semibold">Data Penitip</h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">
-          Manajemen Penitip Atma Kitchen
+          Manajemen Data Penitip Atma Kitchen
         </p>
       </div>
-      <div className="card w-full h-fit bg-white mt-4">
+      <div className="card w-4/5 h-fit bg-white mt-8 mx-auto">
         <div className="card-body h-full p-4">
           <div className='flex justify-between'>
             <div className="flex items-center">
-              <input type="text" placeholder="Cari Penitip" className='input bg-slate-100 px-4' onChange={handleSearch}/>
+              <input type="text" placeholder="cth:Ani" className='input bg-slate-100 px-4' onChange={handleSearch}/>
             </div>
             <div className="space-x-1">
               <CreateModal onClose={fetchData}/>
