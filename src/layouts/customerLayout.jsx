@@ -23,7 +23,7 @@ const CustomerLayout = () => {
             <div className="w-full">
                 <TopNavbarLogin routes={routes} isLoggedIn={loggedIn} />
                 <Outlet />
-            </div>   
+            </div>
             <Footer />
         </div>
     )

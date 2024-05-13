@@ -3,29 +3,35 @@ import { useEffect, useState } from "react";
 import TopNavbar from "../components/TopNavbar";
 import Footer from "../components/Footer";
 import { isLoggedIn } from "../utils/userCheck";
+import { HomeIcon,ContactIcon,AboutIcon,LoginIcon,RegisterIcon } from "../components/Icon/icon";
 
 const HomeLayout = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [routes, setRoutes] = useState([
         {
             name: "Login",
-            path: "/login"
+            path: "/login",
+            icon: <LoginIcon />
         },
         {
             name: "Register",
-            path: "/register"
+            path: "/register",
+            icon: <RegisterIcon />
         },
         {
             name: "About",
-            path: "/about"
+            path: "/about",
+            icon: <AboutIcon />
         },
         {
             name: "Contact",
-            path: "/contact"
+            path: "/contact",
+            icon: <ContactIcon />
         },
         {
             name: "Home",
-            path: "/"
+            path: "/",
+            icon: <HomeIcon />,
         }
     ]);
 
@@ -41,23 +47,29 @@ const HomeLayout = () => {
             setRoutes([
                 {
                     name: "Home",
-                    path: "/"
+                    path: "/",
+                    icon: <HomeIcon />,
                 },
                 {
                     name: "About",
-                    path: "/about"
+                    path: "/about",
+                    icon: <AboutIcon />
+                    
                 },
                 {
                     name: "Contact",
-                    path: "/contact"
+                    path: "/contact",
+                    icon: <ContactIcon />
                 },
                 {
-                    name: "Login",
-                    path: "/login"
+                    name: "Sign In",
+                    path: "/login",
+                    icon: <LoginIcon />
                 },
                 {
-                    name: "Register",
-                    path: "/register"
+                    name: "Sign Up",
+                    path: "/register",
+                    icon: <RegisterIcon />
                 },
             ])
         }
