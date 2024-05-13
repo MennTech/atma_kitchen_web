@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import DropDownProfile from "./Dropdown/DropDownProfile";
 import { useState } from "react";
 import { HamburgerMenu, Xmark } from "../components/Icon/icon";
 // eslint-disable-next-line react/prop-types
@@ -37,7 +36,8 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                     } ${index === filteredRoutes.length - 1 ? "" : "mr-5"}`}
                   >
                     <h1 className="px-0 py-0 font-semibold text-base">
-                      {route.name}
+                    {location.pathname === route.path ? route.icon : null}
+                    {route.name}
                     </h1>
                   </li>
                 );
@@ -95,7 +95,10 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                       : "bg-[#DCD8D0] text-[#253331]"
                   }`}
                 >
-                  <h1 className="px-0 py-0">{route.name}</h1>
+                  <h1 className="px-0 py-0 flex items-center">
+                    <span className="mr-2">{route.icon}</span>
+                    {route.name}
+                  </h1>
                 </li>
               );
             })}
@@ -113,7 +116,10 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                       : "bg-[#DCD8D0] text-[#253331]"
                   }`}
                 >
-                  <h1 className="px-0 py-0">{route.name}</h1>
+                  <h1 className="px-0 py-0 flex items-center">
+                    <span className="mr-2">{route.icon}</span>
+                    {route.name}
+                  </h1>
                 </li>
               );
             })}
