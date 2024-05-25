@@ -1,45 +1,58 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useLocation,Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { HamburgerMenu, Xmark } from "../components/Icon/icon";
-// eslint-disable-next-line react/prop-types
 const TopNavbar = ({ routes, isLoggedIn }) => {
+  const [color, setColor] = useState(false);
+  const changeColor= () => {
+    if(window.scrollY > 10){
+      setColor(true);
+    }else{
+      setColor(false);
+    }
+  }
   const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const filteredRoutes = routes.filter(
     (route) => !["/login", "/register"].includes(route.path)
   );
+  useEffect(() => {
+    window.addEventListener('scroll', changeColor);
+  }, [])
   return (
     <div>
-      <div className="navbar sticky bg-[#DCD8D0] px-4 flex justify-between py-6 mx-auto sm:px-16 sm:py-8 lg:px-64 lg:py-4">
+      <div className={`navbar top-0 left-0 right-0 fixed px-4 flex justify-between py-6 mx-auto sm:px-16 sm:py-4 lg:px-32 lg:py-4 z-50 ${color ? "bg-[#DCD8D0]" : "bg-transparent"}`}>
         <div className="order-1 sm:order-2 lg:order-1 sm:ml-32 lg:ml-0">
           <a
             onClick={() => navigate("/")}
-            className="font-medium sm:font-semibold sm:text-lg lg:text-xl"
+            className={`font-medium sm:font-semibold sm:text-lg lg:text-xl text-xl ${color ? "text-[#8F5C54]" : "text-[#DCD8D0]"} hover:cursor-pointer`}
           >
             Atma Kitchen
           </a>
         </div>
-        <div className="hidden lg:block lg:order-2 border-2 border-[#253331] rounded-full">
+        <div className={`hidden lg:block lg:order-2 border-2 ${color ? "border-[#8F5C54]" : "border-[#DCD8D0]"} rounded-full ml-20`}>
           <ul className="menu menu-horizontal">
-            {!isLoggedIn &&
-              // eslint-disable-next-line react/prop-types
-              filteredRoutes?.map((route, index) => {
+            {filteredRoutes?.map((route, index) => {
                 return (
+                  <a href={`#${route.id}`}>
                   <li
                     key={index}
-                    onClick={() => navigate(route.path)}
-                    className={`hover:bg-[#8F5C54] hover:text-white px-4 py-[10px] rounded-full ${
-                      location.pathname === route.path
-                        ? "bg-[#8F5C54] text-white"
-                        : "bg-[#DCD8D0] text-[#253331]"
-                    } ${index === filteredRoutes.length - 1 ? "" : "mr-5"}`}
+                    className={` ${color ? "hover:bg-[#8F5C54] hover:text-[#DCD8D0]":"hover:bg-[#DCD8D0] hover:text-[#253331]"} px-4 py-[10px] rounded-full ${color ? `${
+                      window.location.toString().split('#')[1] == route.id
+                        ? "bg-[#8F5C54] text-[#DCD8D0]"
+                        : "bg-transparent text-[#8F5C54]"
+                    }`: `${
+                      location.pathname === route.id
+                        ? "bg-[#DCD8D0] text-[#253331]"
+                        : "bg-transparent text-[#DCD8D0]"
+                    }`}  ${index === filteredRoutes.length - 1 ? "" : "mr-5"}`}
                   >
                     <h1 className="px-0 py-0 font-semibold text-base">
-                    {location.pathname === route.path ? route.icon : null}
+                    {window.location.toString().split('#')[1] == route.id ? route.icon : ''}
                     {route.name}
                     </h1>
                   </li>
+                  </a>
                 );
               })}
           </ul>
@@ -47,7 +60,6 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
         <div className="hidden sm:block order-2 sm:order-3">
           <ul className="menu menu-horizontal">
             {!isLoggedIn &&
-              // eslint-disable-next-line react/prop-types
               routes
                 ?.filter(
                   (route) =>
@@ -58,11 +70,15 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                     <li
                       key={index}
                       onClick={() => navigate(route.path)}
-                      className={`hover:bg-[#8F5C54] hover:text-white px-4 py-[10px] rounded-full ${
+                      className={`${color ? `${
                         location.pathname === route.path
-                          ? "bg-[#8F5C54] text-white"
-                          : "bg-[#DCD8D0] text-[#253331]"
-                      }`}
+                        ? "bg-[#8F5C54] text-[#DCD8D0]"
+                        : "bg-transparent text-[#8F5C54]"
+                      }` : `${
+                        location.pathname === route.path
+                        ? "bg-[#DCD8D0] text-[#253331]"
+                        : "bg-transparent text-[#DCD8D0]"
+                      }`} hover:bg-[#DCD8D0] hover:text-[#253331] px-4 py-[10px] rounded-full `}
                     >
                       <h1 className="px-0 py-0 lg:text-xl sm:text-base sm:font-semibold">
                         {route.name}
@@ -79,11 +95,10 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
           {open ? <Xmark /> : <HamburgerMenu />}
         </div>
       </div>
-      <div className={`bg-[#DCD8D0] ${open ? "block" : "hidden"}`}>
-        <ul>
+      <div className={` ${open ? "block fixed top-[64px] z-20 sm:mt-6  left-0 right-0" : "hidden"}`}>
+        <ul className="bg-[#DCD8D0]">
           {!isLoggedIn &&
             window.innerWidth < 640 &&
-            // eslint-disable-next-line react/prop-types
             routes?.map((route, index) => {
               return (
                 <li
@@ -104,7 +119,6 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
             })}
           {!isLoggedIn &&
             window.innerWidth > 640 &&
-            // eslint-disable-next-line react/prop-types
             filteredRoutes?.map((route, index) => {
               return (
                 <li

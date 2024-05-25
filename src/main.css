@@ -14,15 +14,19 @@
     }
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 #root{
   font: 16px/1.5 'Helvetica Neue', sans-serif;
   min-height: 100vh;
-  min-width: 100vh;
   /* change text color to black; */
   color: #000000;
 }
 
 body{
+
   /* background-color: #b8b8b8; */
   background-color: #ffffff;
 }
@@ -37,7 +41,6 @@ body{
   background-color: white;
   border: 1px solid gray;
 }
-
 .dropDownProfile::before{
   content: '';
   position: absolute;

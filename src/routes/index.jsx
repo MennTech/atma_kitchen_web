@@ -40,12 +40,38 @@ import CustomerLayout from '../layouts/customerLayout';
 import HistoryPage from '../pages/customer/historyPage';
 import ForgotPassword from '../pages/customer/forgotPassword';
 import ResetPassword  from '../pages/customer/resetPassword';
+import HomePage from '../pages/homePage';
+import AboutUs from '../pages/aboutUs';
+import Produk from '../pages/produk';
+import HomeContent from '../layouts/homeContent';
 
 const router = createBrowserRouter([
     // wildcard route
     {
         path: '*',
         element: <NotFoundPage />
+    },
+    {
+        children:[{
+            path: '/login',
+            element: <LoginCustomerPage />,
+            id: "login"
+        },
+        {
+            path: '/register',
+            element: <RegisterCustomerPage />,
+            id: "register"
+        },
+        {
+            path: '/forgot-password',
+            element: <ForgotPassword />,
+            id: "forgot"
+        },
+        {
+            path: '/reset-password',
+            element: <ResetPassword />,
+            id: "reset"
+        }]
     },
     // home route
     {
@@ -57,31 +83,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <div>Home</div>
-            }
+                element: <HomeContent />,
+                id: "home"
+            },
+            {
+                path: '/aboutUs',
+                element:<AboutUs/>,
+                id: "about"
+            },
+            {
+                path: '/produk',
+                element:<Produk/>,
+                id: "produk"
+            },
+            
         ]
     },
-    // public auth route for customer
-    {
-        children: [
-            {
-                path: '/login',
-                element: <LoginCustomerPage />
-            },
-            {
-                path: '/register',
-                element: <RegisterCustomerPage />
-            },
-            {
-                path: '/forgot-password',
-                element: <ForgotPassword />
-            },
-            {
-                path: '/reset-password',
-                element: <ResetPassword />
-            }
-        ]
-    },
+    
     // public auth route for karyawan
     {
         path: '/karyawan',
