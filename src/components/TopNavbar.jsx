@@ -1,6 +1,8 @@
 import { useNavigate, useLocation,Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HamburgerMenu, Xmark } from "../components/Icon/icon";
+import logo from "../assets/logo.png";
+import logo1 from "../assets/logo1.jpg";
 const TopNavbar = ({ routes, isLoggedIn }) => {
   const [color, setColor] = useState(false);
   const changeColor= () => {
@@ -21,15 +23,17 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
   }, [])
   return (
     <div>
-      <div className={`navbar top-0 left-0 right-0 fixed px-4 flex justify-between py-6 mx-auto sm:px-16 sm:py-4 lg:px-32 lg:py-4 z-50 ${color ? "bg-[#DCD8D0]" : "bg-transparent"}`}>
-        <div className="order-1 sm:order-2 lg:order-1 sm:ml-32 lg:ml-0">
-          <a
-            onClick={() => navigate("/")}
-            className={`font-medium sm:font-semibold sm:text-lg lg:text-xl text-xl ${color ? "text-[#8F5C54]" : "text-[#DCD8D0]"} hover:cursor-pointer`}
-          >
-            Atma Kitchen
-          </a>
-        </div>
+      <div className={`navbar top-0 left-0 right-0 fixed px-4 flex justify-between py-1 mx-auto sm:px-16 sm:py-4 lg:px-32 lg:py-4 z-50 ${color ? "bg-[#DCD8D0]" : "bg-transparent"}`}>
+        
+          <div className="order-1 sm:order-2 lg:order-1 sm:ml-32 lg:ml-0">
+            <img src={logo} alt="Atma Kitchen Logo" className={`sm:w-20 sm:h-20 lg:w-20 lg:h-20 w-14 h-14 mr-2`} />
+            <a
+              onClick={() => navigate("/")}
+              className={`font-medium sm:font-semibold sm:text-lg lg:text-xl text-xl ${color ? "text-[#8F5C54]" : "text-[#DCD8D0]"} hover:cursor-pointer`}
+            >
+              Atma Kitchen
+            </a>
+          </div>
         <div className={`hidden lg:block lg:order-2 border-2 ${color ? "border-[#8F5C54]" : "border-[#DCD8D0]"} rounded-full ml-20`}>
           <ul className="menu menu-horizontal">
             {filteredRoutes?.map((route, index) => {
@@ -40,9 +44,9 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                     className={` ${color ? "hover:bg-[#8F5C54] hover:text-[#DCD8D0]":"hover:bg-[#DCD8D0] hover:text-[#253331]"} px-4 py-[10px] rounded-full ${color ? `${
                       window.location.toString().split('#')[1] == route.id
                         ? "bg-[#8F5C54] text-[#DCD8D0]"
-                        : "bg-transparent text-[#8F5C54]"
+                        : "bg-[#DCD8D0] text-[#8F5C54]"
                     }`: `${
-                      location.pathname === route.id
+                      window.location.toString().split('#')[1] == route.id
                         ? "bg-[#DCD8D0] text-[#253331]"
                         : "bg-transparent text-[#DCD8D0]"
                     }`}  ${index === filteredRoutes.length - 1 ? "" : "mr-5"}`}
@@ -92,20 +96,21 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
           className="cursor-pointer order-3 sm:order-1 lg:hidden"
           onClick={() => setOpen(!open)}
         >
-          {open ? <Xmark /> : <HamburgerMenu />}
+          {color ? (open ? <Xmark color="#8F5C54"/> : <HamburgerMenu color="#8F5C54"/>) : (open ? <Xmark color="#DCD8D0" /> : <HamburgerMenu color="#DCD8D0" />)}
+          
         </div>
       </div>
-      <div className={` ${open ? "block fixed top-[64px] z-20 sm:mt-6  left-0 right-0" : "hidden"}`}>
+      <div className={` ${open ? "block fixed top-[64px] z-20 left-0 right-0" : "hidden"}`}>
         <ul className="bg-[#DCD8D0]">
           {!isLoggedIn &&
             window.innerWidth < 640 &&
-            routes?.map((route, index) => {
+            filteredRoutes?.map((route, index) => {
               return (
+                <a href={`#${route.id}`}>
                 <li
                   key={index}
-                  onClick={() => navigate(route.path)}
                   className={`hover:bg-[#8F5C54] hover:text-white px-4 py-[10px] ${
-                    location.pathname === route.path
+                    window.location.toString().split('#')[1] == route.id
                       ? "bg-[#8F5C54] text-white"
                       : "bg-[#DCD8D0] text-[#253331]"
                   }`}
@@ -115,17 +120,19 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                     {route.name}
                   </h1>
                 </li>
+                </a>
               );
             })}
           {!isLoggedIn &&
             window.innerWidth > 640 &&
             filteredRoutes?.map((route, index) => {
               return (
+                <a href={`#${route.id}`}>
                 <li
                   key={index}
                   onClick={() => navigate(route.path)}
                   className={`hover:bg-[#8F5C54] hover:text-white px-4 py-[10px] ${
-                    location.pathname === route.path
+                    window.location.toString().split('#')[1] == route.id
                       ? "bg-[#8F5C54] text-white"
                       : "bg-[#DCD8D0] text-[#253331]"
                   }`}
@@ -135,6 +142,7 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                     {route.name}
                   </h1>
                 </li>
+                </a>
               );
             })}
         </ul>

@@ -102,14 +102,14 @@ const BahanBakuIcon = () => {
     </div>
   );
 };
-const HamburgerMenu = () => {
+const HamburgerMenu = ({color}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke-width="1.5"
-      stroke="#DCD8D0"
+      stroke={color}
       className="w-6 h-6"
     >
       <path
@@ -120,14 +120,14 @@ const HamburgerMenu = () => {
     </svg>
   );
 };
-const Xmark = () => {
+const Xmark = ({color}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke-width="1.5"
-      stroke="#DCD8D0"
+      stroke={color}
       className="w-6 h-6"
     >
       <path
