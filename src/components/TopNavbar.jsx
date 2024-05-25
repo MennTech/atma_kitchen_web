@@ -29,7 +29,7 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
             <img src={logo} alt="Atma Kitchen Logo" className={`sm:w-20 sm:h-20 lg:w-20 lg:h-20 w-14 h-14 mr-2`} />
             <a
               onClick={() => navigate("/")}
-              className={`font-medium sm:font-semibold sm:text-lg lg:text-xl text-xl ${color ? "text-[#8F5C54]" : "text-[#DCD8D0]"} hover:cursor-pointer`}
+              className={`poppins-bold font-medium sm:font-semibold sm:text-lg lg:text-xl text-xl ${color ? "text-[#8F5C54]" : "text-[#DCD8D0]"} hover:cursor-pointer`}
             >
               Atma Kitchen
             </a>
@@ -41,7 +41,7 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                   <a href={`#${route.id}`}>
                   <li
                     key={index}
-                    className={` ${color ? "hover:bg-[#8F5C54] hover:text-[#DCD8D0]":"hover:bg-[#DCD8D0] hover:text-[#253331]"} px-4 py-[10px] rounded-full ${color ? `${
+                    className={`  ${color ? "hover:bg-[#8F5C54] hover:text-[#DCD8D0]":"hover:bg-[#DCD8D0] hover:text-[#253331]"} px-4 py-[10px] rounded-full ${color ? `${
                       window.location.toString().split('#')[1] == route.id
                         ? "bg-[#8F5C54] text-[#DCD8D0]"
                         : "bg-[#DCD8D0] text-[#8F5C54]"
@@ -51,7 +51,7 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                         : "bg-transparent text-[#DCD8D0]"
                     }`}  ${index === filteredRoutes.length - 1 ? "" : "mr-5"}`}
                   >
-                    <h1 className="px-0 py-0 font-semibold text-base">
+                    <h1 className="poppins-bold px-0 py-0 font-semibold text-base">
                     {window.location.toString().split('#')[1] == route.id ? route.icon : ''}
                     {route.name}
                     </h1>
@@ -84,7 +84,7 @@ const TopNavbar = ({ routes, isLoggedIn }) => {
                         : "bg-transparent text-[#DCD8D0]"
                       }`} hover:bg-[#DCD8D0] hover:text-[#253331] px-4 py-[10px] rounded-full `}
                     >
-                      <h1 className="px-0 py-0 lg:text-xl sm:text-base sm:font-semibold">
+                      <h1 className="poppins-bold px-0 py-0 lg:text-xl sm:text-base sm:font-semibold">
                         {route.name}
                       </h1>
                     </li>

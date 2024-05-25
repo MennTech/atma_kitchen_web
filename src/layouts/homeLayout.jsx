@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { isLoggedIn } from "../utils/userCheck";
 import HomeContent from "./homeContent";
 import { HomeIcon,ProdukIcon,AboutIcon,LoginIcon,RegisterIcon } from "../components/Icon/icon";
+import "../../src/app.css";
 
 const HomeLayout = () => {
     const [loggedIn, setLoggedIn] = useState(false);
