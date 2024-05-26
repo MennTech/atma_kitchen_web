@@ -16,8 +16,8 @@
 
 #root{
   font: 16px/1.5 'Helvetica Neue', sans-serif;
-  min-height: 100vh;
-  min-width: 100vh;
+  /* min-height: 100vh;
+  min-width: 100vh; */
   /* change text color to black; */
   color: #000000;
 }
@@ -30,7 +30,7 @@ body{
 .dropDownProfile{
   position: absolute;
   top: 4.5rem;
-  right: 1.5rem;
+  right: -1.5rem;
   width: 100px;
   padding: 8px;
   border-radius: 10px;

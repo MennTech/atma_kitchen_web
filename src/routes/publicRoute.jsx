@@ -10,7 +10,7 @@ const PublicRoute = ({ children }) => {
         }
         if (sessionStorage.getItem("token")) {
             if (sessionStorage.getItem("customer")) {
-                navigate("/");
+                navigate("/home");
             } else if (sessionStorage.getItem("karyawan")) {
                 navigate("/dashboard");
             } else {

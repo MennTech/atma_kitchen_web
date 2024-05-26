@@ -13,7 +13,7 @@ const ProtectedKaryawanRoutes = ({ children }) => {
         if (!memoizationIsLoggedIn) {
             navigate("/login");
         }else if(memoizationUserType !== "karyawan"){
-            navigate("/");
+            navigate("/home");
         } else {
             setToken(sessionStorage.getItem("token"));
         }

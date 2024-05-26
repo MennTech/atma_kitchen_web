@@ -7,7 +7,7 @@ import HomeLayout from '../layouts/homeLayout';
 import KaryawanLayout from '../layouts/karyawanLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
-import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
+// import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBaku/bahanBakuPage';
 import ProdukPage from '../pages/admin/produk/produkPage';
 import CreateAtmaProdukPage from '../pages/admin/produk/createAtmaProdukPage';
@@ -40,6 +40,7 @@ import CustomerLayout from '../layouts/customerLayout';
 import HistoryPage from '../pages/customer/historyPage';
 import ForgotPassword from '../pages/customer/forgotPassword';
 import ResetPassword  from '../pages/customer/resetPassword';
+import HomeCustomer from '../pages/customer/homeCustomer';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -66,11 +67,17 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/login',
-                element: <LoginCustomerPage />
+                element: 
+                <PublicRoute>
+                    <LoginCustomerPage />
+                </PublicRoute>
             },
             {
                 path: '/register',
-                element: <RegisterCustomerPage />
+                element: 
+                <PublicRoute>
+                    <RegisterCustomerPage />
+                </PublicRoute>
             },
             {
                 path: '/forgot-password',
@@ -83,18 +90,31 @@ const router = createBrowserRouter([
         ]
     },
     // public auth route for karyawan
+    // {
+    //     path: '/karyawan',
+    //     children: [
+    //         {
+    //             path: '/karyawan/login',
+    //             element: <LoginKaryawanPage />
+    //         },
+    //     ]
+    // },
     {
-        path: '/karyawan',
+        // path: '/home',
+        element: 
+            <ProtectedCustomerRoutes>
+                <CustomerLayout />
+            </ProtectedCustomerRoutes>,
         children: [
             {
-                path: '/karyawan/login',
-                element: <LoginKaryawanPage />
-            },
+                path: '/home',
+                element: <HomeCustomer />
+            }
         ]
     },
     // protected route for customer
     {
-        path: '/customer',
+        // path: '/customer',
         element:
             <ProtectedCustomerRoutes>
                 <CustomerLayout/>

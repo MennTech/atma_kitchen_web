@@ -20,7 +20,7 @@ const CustomerLayout = () => {
 
     return (
         <div className="w-screen">
-            <div className="w-full">
+            <div className="w-screen">
                 <TopNavbarLogin routes={routes} isLoggedIn={loggedIn} />
                 <Outlet />
             </div>
