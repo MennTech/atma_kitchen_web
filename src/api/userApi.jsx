@@ -56,4 +56,30 @@ const GetHistory = async () => {
     }
 }
 
-export { getCurrentUser, GetProfile, UpdateProfile, GetHistory };
+const GetMustbePaid = async () => {
+    try{
+        const response = await useAxios.get("/customer/mustbepaid", {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        return response;
+    }catch(error){
+        return error;
+    }
+}
+const Pembayaran = async (data) => {
+    try{
+        const response = await useAxios.post("/customer/bukti-transfer", data, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}
+
+export { getCurrentUser, GetProfile, UpdateProfile, GetHistory, GetMustbePaid, Pembayaran};

@@ -44,6 +44,7 @@ import HomePage from '../pages/homePage';
 import AboutUs from '../pages/aboutUs';
 import Produk from '../pages/produk';
 import HomeContent from '../layouts/homeContent';
+import PesananCustomer from '../pages/customer/pesananCustomer';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
                 path: '/customer/history',
                 element: <HistoryPage/>
             },
+            {
+                path: '/customer/pesanan',
+                element: <PesananCustomer/>
+            }
         ]
     },
     // protected route for karyawan

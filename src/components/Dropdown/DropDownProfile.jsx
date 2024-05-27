@@ -33,6 +33,10 @@ const DropDownProfile = ({ setOpen }) => {
                         navigate('/customer/history')
                         setOpen(false)
                     }}>History</a></li>
+                    <li className="hover:bg-gray-100 hover:text-orange-500 text-center"><a className="cursor-pointer" onClick={() => {
+                        navigate('/customer/pesanan')
+                        setOpen(false)
+                    }}>Pesanan</a></li>
                     <li className="hover:bg-gray-100 hover:text-orange-500 text-center">
                         <a className="cursor-pointer" onClick={() => {
                             logoutCustomer();
