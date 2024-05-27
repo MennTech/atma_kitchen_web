@@ -84,7 +84,7 @@ const ResepPage = () => {
   return (
     <div className="w-screen p-4 min-h-screen overflow-y-auto">
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Data Resep</h1>
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Resep</h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">Manajemen Resep Atma Kitchen</p>
       </div>
@@ -95,7 +95,7 @@ const ResepPage = () => {
               <input
                 type="text"
                 placeholder="Cari Resep"
-                className="input bg-slate-100 px-4"
+                className="input bg-[#F3EFEA] px-4"
                 onChange={handleSearch}
               />
             </div>

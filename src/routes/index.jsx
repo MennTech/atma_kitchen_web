@@ -40,6 +40,7 @@ import CustomerLayout from '../layouts/customerLayout';
 import HistoryPage from '../pages/customer/historyPage';
 import ForgotPassword from '../pages/customer/forgotPassword';
 import ResetPassword  from '../pages/customer/resetPassword';
+import PesananPage from '../pages/admin/pesanan/pesananPage';
 import HomePage from '../pages/homePage';
 import AboutUs from '../pages/aboutUs';
 import Produk from '../pages/produk';
@@ -148,6 +149,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <div>Dashboard Profile</div>
+            },
+            {
+                path: '/dashboard/pesanan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananPage />
+                    </RoleBasedRoute>
+                )
             },
             {
                 path: '/dashboard/produk',
