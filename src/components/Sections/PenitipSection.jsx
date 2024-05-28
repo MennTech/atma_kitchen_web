@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { GetPenitipProduk } from "../../api/produkApi";
 import { getProdukPhoto } from "../../api";
 
-const PenitipSection = () => {
+const PenitipSection = ({ handleClickLangsung }) => {
     const [loading, setLoading] = useState(false);
     const [produkPenitip, setProdukPenitip] = useState([]);
 
@@ -59,7 +59,11 @@ const PenitipSection = () => {
                                                 Rp{item.harga}
                                             </p>
                                             <div className="card-actions justify-center">
-                                                <button disabled={item.stok_tersedia === 0} className="btn btn-ghost disabled:text-opacity-50">Pesan Sekarang</button>
+                                                <button
+                                                    disabled={item.stok_tersedia === 0}
+                                                    className="btn btn-ghost disabled:text-opacity-50"
+                                                    onClick={() => handleClickLangsung(item)}
+                                                >Pesan Sekarang</button>
                                             </div>
                                         </div>
                                     </div>

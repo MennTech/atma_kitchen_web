@@ -41,6 +41,8 @@ import HistoryPage from '../pages/customer/historyPage';
 import ForgotPassword from '../pages/customer/forgotPassword';
 import ResetPassword  from '../pages/customer/resetPassword';
 import HomeCustomer from '../pages/customer/homeCustomer';
+import Keranjang from '../pages/customer/keranjang';
+import Checkout from '../pages/customer/checkout';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -109,6 +111,14 @@ const router = createBrowserRouter([
             {
                 path: '/home',
                 element: <HomeCustomer />
+            },
+            {
+                path: '/keranjang',
+                element: <Keranjang />
+            },
+            {
+                path: '/keranjang/checkout',
+                element: <Checkout />
             }
         ]
     },

@@ -4,27 +4,27 @@ import { GetAllHampers } from "../../api/hampersApi";
 import { Toaster } from "sonner";
 import { GetLimitByDate } from "../../api/limitProdukApi";
 
-const HampersSection = () => {
+// eslint-disable-next-line react/prop-types
+const HampersSection = ({ date, handleClickPO, handleClickLangsung }) => {
     const [loading, setLoading] = useState(false);
     const [hampers, setHampers] = useState([]);
     const [limitProduk, setLimitProduk] = useState([]);
 
-    const nextTwoDayDate = new Date();
-    nextTwoDayDate.setDate(nextTwoDayDate.getDate() + 2);
+    // const nextTwoDayDate = new Date();
+    // nextTwoDayDate.setDate(nextTwoDayDate.getDate() + 2);
     // const humanDate = nextTwoDayDate.toLocaleDateString("id-ID", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-    const date = new Date(nextTwoDayDate.getTime() - (nextTwoDayDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+    // const date = new Date(nextTwoDayDate.getTime() - (nextTwoDayDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
 
     const fetchHampers = async () => {
         setLoading(true);
-        try{
+        try {
             const response = await GetAllHampers();
-            console.log(response);
-            if(response.status === "OK"){
+            if (response.status === "OK") {
                 setHampers(response.data);
-            }else{
+            } else {
                 Toaster.error('Terjadi Kesalahan');
             }
-        }catch(error){
+        } catch (error) {
             Toaster.error('Terjadi Kesalahan');
             console.log(error);
         }
@@ -33,14 +33,14 @@ const HampersSection = () => {
 
     const fetchLimitProduk = async () => {
         setLoading(true);
-        try{
+        try {
             const response = await GetLimitByDate(date);
-            if(response.success){
+            if (response.success) {
                 setLimitProduk(response.data);
-            }else{
+            } else {
                 Toaster.error('Terjadi Kesalahan');
             }
-        }catch(error){
+        } catch (error) {
             Toaster.error('Terjadi Kesalahan');
             console.log(error);
         }
@@ -50,13 +50,19 @@ const HampersSection = () => {
     useEffect(() => {
         fetchHampers();
         fetchLimitProduk();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        fetchLimitProduk();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [date]);
 
     const checkLimit = (id_produk) => {
         const limit = limitProduk.find(item => item.id_produk === id_produk);
-        if(limit){
+        if (limit) {
             return limit.stok;
-        }else{
+        } else {
             return 0;
         }
     }
@@ -64,9 +70,9 @@ const HampersSection = () => {
     const checkHampersProdukLimit = (id_hampers) => {
         let isLimit = false;
         const currentHampers = hampers.find(item => item.id_hampers === id_hampers);
-        if (currentHampers){
+        if (currentHampers) {
             currentHampers.produk.map(produk => {
-                if(checkLimit(produk.id_produk) === 0){
+                if (checkLimit(produk.id_produk) === 0) {
                     isLimit = true;
                 }
             })
@@ -77,9 +83,9 @@ const HampersSection = () => {
     const checkHampersProdukStok = (id_hampers) => {
         let isZero = false;
         const currentHampers = hampers.find(item => item.id_hampers === id_hampers);
-        if(currentHampers){
+        if (currentHampers) {
             currentHampers.produk.map(produk => {
-                if(produk.stok_tersedia === 0){
+                if (produk.stok_tersedia === 0) {
                     isZero = true;
                 }
             })
@@ -127,8 +133,16 @@ const HampersSection = () => {
                                                 Rp{item.harga}
                                             </p>
                                             <div className="card-actions justify-center">
-                                                <button disabled={checkHampersProdukStok(item.id_hampers)} className="btn btn-ghost disabled:text-opacity-50">Pesan Sekarang</button>
-                                                <button disabled={checkHampersProdukLimit(item.id_hampers)} className="btn btn-ghost disabled:text-opacity-50">Pre-order</button>
+                                                <button
+                                                    disabled={checkHampersProdukStok(item.id_hampers)}
+                                                    className="btn btn-ghost disabled:text-opacity-50"
+                                                    onClick={() => handleClickLangsung(item)}
+                                                >Pesan Sekarang</button>
+                                                <button
+                                                    disabled={checkHampersProdukLimit(item.id_hampers)}
+                                                    className="btn btn-ghost disabled:text-opacity-50"
+                                                    onClick={() => handleClickPO(item)}
+                                                >Pre-order</button>
                                             </div>
                                         </div>
                                     </div>

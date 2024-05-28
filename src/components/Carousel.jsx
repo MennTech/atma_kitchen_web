@@ -5,11 +5,11 @@ function HomeCaruosel({ children: slides, autoSlideInterval = 5000 }) {
     const [current, setCurrent] = useState(0);
 
     const prev = () => {
-        setCurrent(current === 0 ? slides.length - 1 : current - 1);
+        setCurrent((current) => (current === 0 ? slides.length - 1 : current - 1));
     }
 
     const next = () => {
-        setCurrent(current === slides.length - 1 ? 0 : current + 1);
+        setCurrent((current) => (current === slides.length - 1 ? 0 : current + 1));
     }
 
     useEffect(() => {
