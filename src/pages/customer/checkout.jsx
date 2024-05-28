@@ -211,8 +211,11 @@ const Checkout = () => {
             if (response.success) {
                 window.location.reload();
                 // toast.success("Pesanan berhasil dibuat");
-            } else {
-                toast.error(response.message);
+            } 
+            if(response.success === false) {
+                toast.error(response.message, {
+                    description: response.error
+                });
             }
         } catch (error) {
             toast.error(error.message);

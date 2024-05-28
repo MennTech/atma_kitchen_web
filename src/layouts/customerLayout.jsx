@@ -29,8 +29,8 @@ const CustomerLayout = () => {
         try {
             const response = await GetKeranjangPesanan();
             if (response.success) {
-                setPesananKeranjang((prev) =>({ ...prev, ...response.data }));
-                setCart((prev) => [...prev, ...response.data.produk_pesanan.map((item) => item.pivot)]);
+                setPesananKeranjang(response.data);
+                setCart(response.data.produk_pesanan.map((item) => item.pivot));
                 setCart((prev) => [...prev, ...response.data.hampers_pesanan.map((item) => item.pivot)]);
             } else {
                 await initPesanan();
