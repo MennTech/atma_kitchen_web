@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { GetHistory } from "../../api/userApi";
+import { GetHistory, GetProfile } from "../../api/userApi";
+import CetakNota from "./nota";
 
 const HistoryPage = () => {
+  const [customer, setCustomer] = useState({});
   const [history, setHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const fetchHistory = () => {
@@ -15,9 +17,22 @@ const HistoryPage = () => {
       });
   };
 
+  const getCustomer = async () => {
+    GetProfile()
+      .then((response) => {
+        setCustomer(response.data);
+        setIsLoading(false);
+      }
+      )
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     setIsLoading(true);
     fetchHistory();
+    getCustomer();
   }, []);
 
   const formatOrderNumber = (idPesanan, tanggal) => {
@@ -69,7 +84,7 @@ const HistoryPage = () => {
                 />
               </div>
               <div>
-                {history.map((item, index) => (
+                {history.filter(item => item.status !== "Keranjang").map((item, index) => (
                   <div key={index} className="card mt-2 bg-white">
                     <div className="card-body pb-0">
                       <div className="flex">
@@ -98,7 +113,7 @@ const HistoryPage = () => {
                                     {new Intl.NumberFormat("id-ID", {
                                       style: "currency",
                                       currency: "IDR",
-                                    }).format(item.produk.harga)}
+                                    }).format(item.subtotal)}
                                   </p>
                                 </div>
                               </div>
@@ -118,7 +133,7 @@ const HistoryPage = () => {
                                     {new Intl.NumberFormat("id-ID", {
                                       style: "currency",
                                       currency: "IDR",
-                                    }).format(item.hampers.harga)}
+                                    }).format(item.subtotal)}
                                   </p>
                                 </div>
                               </div>
@@ -128,14 +143,21 @@ const HistoryPage = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="flex ps-8 mb-2 space-x-2">
-                      <h1 className="text-2xl font-serif">Total Bayar: </h1>
-                      <p className="text-2xl content-center font-medium">
-                        {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
-                          currency: "IDR",
-                        }).format(item.jumlah_pembayaran)}
-                      </p>
+                    <div className="flex justify-between px-8 mb-2 space-x-2">
+                      <div className="flex gap-x-2">
+                        <h1 className="text-2xl content-center font-serif">Total Bayar: </h1>
+                        <p className="text-2xl content-center font-medium">
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                          }).format(item.jumlah_pembayaran)}
+                        </p>
+                      </div>
+                      {
+                        item.status === "Pembayaran Valid" && (
+                          <CetakNota item={item} customer={customer}/>
+                        )
+                      }
                     </div>
                   </div>
                 ))}

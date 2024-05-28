@@ -178,8 +178,10 @@ const Keranjang = () => {
         <div className="flex flex-col gap-y-8 w-screen min-h-[100vh] py-8 px-64 max-lg:px-16 max-md:px-16 max-sm:px-8 overflow-x-hidden">
             {
                 loading && (
-                    <div className="flex justify-center items-center">
-                        <p>Loading...</p>
+                    <div className="flex flex-col justify-center items-center">
+                        <span className="loading loading-lg"></span>
+                        <span className="mt-2">Memuat Data...</span>
+
                     </div>
                 )
             }
