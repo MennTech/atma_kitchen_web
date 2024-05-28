@@ -10,7 +10,7 @@ const TopNavbarLogin = ({ routes, isLoggedIn, size }) => {
   return (
     <div className="relative z-50">
       <div className="navbar sticky bg-[#DCD8D0] px-4 flex justify-between py-6 mx-auto sm:px-16 sm:py-8 lg:px-64 lg:py-4">
-        <div className="order-1">
+        <div className="order-1 cursor-pointer">
           <a onClick={() => navigate("/home")}>Atma Kitchen</a>
         </div>
         <div className="order-2 items-center">

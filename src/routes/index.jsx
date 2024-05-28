@@ -43,12 +43,46 @@ import ResetPassword  from '../pages/customer/resetPassword';
 import HomeCustomer from '../pages/customer/homeCustomer';
 import Keranjang from '../pages/customer/keranjang';
 import Checkout from '../pages/customer/checkout';
+import PesananPage from '../pages/admin/pesanan/pesananPage';
+import HomePage from '../pages/homePage';
+import AboutUs from '../pages/aboutUs';
+import Produk from '../pages/produk';
+import HomeContent from '../layouts/homeContent';
+import PesananCustomer from '../pages/customer/pesananCustomer';
 
 const router = createBrowserRouter([
     // wildcard route
     {
         path: '*',
         element: <NotFoundPage />
+    },
+    {
+        children:[{
+            path: '/login',
+            element: 
+                <PublicRoute>
+                    <LoginCustomerPage />
+                </PublicRoute>
+            id: "login"
+        },
+        {
+            path: '/register',
+            element: 
+                <PublicRoute>
+                    <RegisterCustomerPage />
+                </PublicRoute>
+            id: "register"
+        },
+        {
+            path: '/forgot-password',
+            element: <ForgotPassword />,
+            id: "forgot"
+        },
+        {
+            path: '/reset-password',
+            element: <ResetPassword />,
+            id: "reset"
+        }]
     },
     // home route
     {
@@ -60,37 +94,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <div>Home</div>
-            }
+                element: <HomeContent />,
+                id: "home"
+            },
+            {
+                path: '/aboutUs',
+                element:<AboutUs/>,
+                id: "about"
+            },
+            {
+                path: '/produk',
+                element:<Produk/>,
+                id: "produk"
+            },
+            
         ]
     },
-    // public auth route for customer
-    {
-        children: [
-            {
-                path: '/login',
-                element: 
-                <PublicRoute>
-                    <LoginCustomerPage />
-                </PublicRoute>
-            },
-            {
-                path: '/register',
-                element: 
-                <PublicRoute>
-                    <RegisterCustomerPage />
-                </PublicRoute>
-            },
-            {
-                path: '/forgot-password',
-                element: <ForgotPassword />
-            },
-            {
-                path: '/reset-password',
-                element: <ResetPassword />
-            }
-        ]
-    },
+    
     // public auth route for karyawan
     // {
     //     path: '/karyawan',
@@ -138,6 +158,10 @@ const router = createBrowserRouter([
                 path: '/customer/history',
                 element: <HistoryPage/>
             },
+            {
+                path: '/customer/pesanan',
+                element: <PesananCustomer/>
+            }
         ]
     },
     // protected route for karyawan
@@ -155,6 +179,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <div>Dashboard Profile</div>
+            },
+            {
+                path: '/dashboard/pesanan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananPage />
+                    </RoleBasedRoute>
+                )
             },
             {
                 path: '/dashboard/produk',

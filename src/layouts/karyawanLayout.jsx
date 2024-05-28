@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
 import { Toaster } from 'sonner';
-import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon} from "../components/Icon/icon"
+import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
 
 const KaryawanLayout = () => {
     const [role, setRole] = useState("");
@@ -15,6 +15,11 @@ const KaryawanLayout = () => {
     useEffect(() => {
         if (role === "Admin"){
             setRoutes([
+                {
+                    name:"Pesanan Masuk",
+                    path:"/dashboard/pesanan",
+                    icon: <PesananIcon/>
+                },
                 {
                     name: "Bahan Baku",
                     path: "/dashboard/bahan",
