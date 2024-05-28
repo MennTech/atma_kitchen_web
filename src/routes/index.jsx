@@ -62,7 +62,7 @@ const router = createBrowserRouter([
             element: 
                 <PublicRoute>
                     <LoginCustomerPage />
-                </PublicRoute>
+                </PublicRoute>,
             id: "login"
         },
         {
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             element: 
                 <PublicRoute>
                     <RegisterCustomerPage />
-                </PublicRoute>
+                </PublicRoute>,
             id: "register"
         },
         {
