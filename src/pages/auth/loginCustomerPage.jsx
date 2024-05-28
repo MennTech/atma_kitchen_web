@@ -1,8 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import LoginCustomerForm from "../../components/forms/loginCustomerForm";
+import { isLoggedIn } from "../../utils/userCheck";
 
 const LoginCustomerPage = () => {
     const navigate = useNavigate();
+    if (isLoggedIn() && sessionStorage.getItem("userType") === "customer"){
+        navigate('/home');
+    }
+    if(isLoggedIn() && sessionStorage.getItem("userType") === "karyawan"){
+        navigate('/dashboard');
+    }
     return (
         <div className="hero min-h-screen bg-white-200">
             <div className="hero-content flex-col lg:flex-row-reverse">

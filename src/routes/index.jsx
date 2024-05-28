@@ -7,7 +7,7 @@ import HomeLayout from '../layouts/homeLayout';
 import KaryawanLayout from '../layouts/karyawanLayout';
 import NotFoundPage from '../pages/notFoundPage';
 import LoginCustomerPage from '../pages/auth/loginCustomerPage';
-import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
+// import LoginKaryawanPage from '../pages/auth/loginKaryawanPage';
 import BahanBakuPage from '../pages/admin/bahanBaku/bahanBakuPage';
 import ProdukPage from '../pages/admin/produk/produkPage';
 import CreateAtmaProdukPage from '../pages/admin/produk/createAtmaProdukPage';
@@ -40,6 +40,9 @@ import CustomerLayout from '../layouts/customerLayout';
 import HistoryPage from '../pages/customer/historyPage';
 import ForgotPassword from '../pages/customer/forgotPassword';
 import ResetPassword  from '../pages/customer/resetPassword';
+import HomeCustomer from '../pages/customer/homeCustomer';
+import Keranjang from '../pages/customer/keranjang';
+import Checkout from '../pages/customer/checkout';
 import PesananPage from '../pages/admin/pesanan/pesananPage';
 import HomePage from '../pages/homePage';
 import AboutUs from '../pages/aboutUs';
@@ -56,12 +59,18 @@ const router = createBrowserRouter([
     {
         children:[{
             path: '/login',
-            element: <LoginCustomerPage />,
+            element: 
+                <PublicRoute>
+                    <LoginCustomerPage />
+                </PublicRoute>
             id: "login"
         },
         {
             path: '/register',
-            element: <RegisterCustomerPage />,
+            element: 
+                <PublicRoute>
+                    <RegisterCustomerPage />
+                </PublicRoute>
             id: "register"
         },
         {
@@ -103,18 +112,39 @@ const router = createBrowserRouter([
     },
     
     // public auth route for karyawan
+    // {
+    //     path: '/karyawan',
+    //     children: [
+    //         {
+    //             path: '/karyawan/login',
+    //             element: <LoginKaryawanPage />
+    //         },
+    //     ]
+    // },
     {
-        path: '/karyawan',
+        // path: '/home',
+        element: 
+            <ProtectedCustomerRoutes>
+                <CustomerLayout />
+            </ProtectedCustomerRoutes>,
         children: [
             {
-                path: '/karyawan/login',
-                element: <LoginKaryawanPage />
+                path: '/home',
+                element: <HomeCustomer />
             },
+            {
+                path: '/keranjang',
+                element: <Keranjang />
+            },
+            {
+                path: '/keranjang/checkout',
+                element: <Checkout />
+            }
         ]
     },
     // protected route for customer
     {
-        path: '/customer',
+        // path: '/customer',
         element:
             <ProtectedCustomerRoutes>
                 <CustomerLayout/>

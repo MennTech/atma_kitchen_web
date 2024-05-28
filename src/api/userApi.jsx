@@ -56,14 +56,27 @@ const GetHistory = async () => {
     }
 }
 
-const GetMustbePaid = async () => {
+const GetAlamat = async () => {
     try{
-        const response = await useAxios.get("/customer/mustbepaid", {
-            headers: {
+        const response = await useAxios.get("/customer/alamat", {
+          headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
         });
-        return response;
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}
+
+const GetMustbePaid = async () => {
+    try{
+        const response = await useAxios.get("/customer/mustbepaid", {
+           headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+      return response;
     }catch(error){
         return error;
     }
@@ -76,10 +89,11 @@ const Pembayaran = async (data) => {
                 'Content-Type': 'multipart/form-data',
             },
         });
-        return response.data;
+      return response.data;
     }catch(error){
         return error;
     }
 }
 
-export { getCurrentUser, GetProfile, UpdateProfile, GetHistory, GetMustbePaid, Pembayaran};
+
+export { getCurrentUser, GetProfile, UpdateProfile, GetHistory, GetAlamat, GetMustbePaid, Pembayaran};
