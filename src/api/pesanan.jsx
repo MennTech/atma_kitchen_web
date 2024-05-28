@@ -169,3 +169,42 @@ export const InputJumlahBayar = async (id, jumlah_pembayaran) => {
     throw error.response.data;
   }
 }
+export const ShowPesananValid = async () =>{
+  try {
+    const response = await useAxios.get("/pesanan-bayar-valid", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+export const ApprovePesanan = async (id) => {
+  try {
+    const response = await useAxios.post(`/accept-pesanan/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+export const RejectPesanan = async (id) => {
+  try {
+    const response = await useAxios.post(`/reject-pesanan/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
