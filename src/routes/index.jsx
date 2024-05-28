@@ -49,6 +49,7 @@ import AboutUs from '../pages/aboutUs';
 import Produk from '../pages/produk';
 import HomeContent from '../layouts/homeContent';
 import PesananCustomer from '../pages/customer/pesananCustomer';
+import PesananValid from '../pages/MO/Pesanan/Pesanan'
 
 const router = createBrowserRouter([
     // wildcard route
@@ -404,6 +405,15 @@ const router = createBrowserRouter([
                     </RoleBasedRoute>
                 )
             },
+            {
+                path: '/dashboard/pesanan-valid',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <PesananValid />
+                    </RoleBasedRoute>
+                )
+            }
+
         ]
     }
 ]);

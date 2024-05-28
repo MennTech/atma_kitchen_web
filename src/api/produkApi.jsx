@@ -2,8 +2,8 @@ import useAxios from "."
 
 export const GetAllProduk = async () => {
     try{
-        const response = await useAxios.get("/produk");
-        return response.data;
+        const response = await useAxios.get("/produk/produk");
+        return response.data.data;
     }catch(error){
         return error;
     }

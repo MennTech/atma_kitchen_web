@@ -70,6 +70,10 @@ const KaryawanLayout = () => {
                {
                 name: "Jabatan",
                 path: "/dashboard/jabatan"
+               },
+               {
+                name: "Pesanan",
+                path: "/dashboard/pesanan-valid"
                }
             ])
         }else if (role === "Owner"){
