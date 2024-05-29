@@ -253,9 +253,23 @@ const CustomerLayout = () => {
 
     return (
         <div className="w-screen">
+            {
+                loading && (
+                    <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-[#F9F9F1] flex flex-col gap-y-4 justify-center items-center">
+                        <span className="loading bg-black ease-linear rounded-full h-32 w-32"></span>
+                        <span>
+                            <h1 className="text-2xl">Loading...</h1>
+                        </span>
+                    </div>
+                )
+            }
             <div className="w-screen">
                 <TopNavbarLogin routes={routes} isLoggedIn={loggedIn} size={cart.length} />
-                <Outlet context={{ handleClickPO, handleClickLangsung, pesananKeranjang, cart}} />
+                {
+                    !loading && (
+                        <Outlet context={{ handleClickPO, handleClickLangsung, pesananKeranjang, cart}} />
+                    )
+                }
             </div>
             <Footer />
             {
