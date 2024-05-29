@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { GetHistory, GetProfile } from "../../api/userApi";
+import { getProdukPhoto } from "../../api/index.jsx";
 import CetakNota from "./nota";
 
 const HistoryPage = () => {
@@ -100,7 +101,7 @@ const HistoryPage = () => {
                             {item.produk !== null ? (
                               <div className="flex space-x-2">
                                 <img
-                                  src={item.produk.gambar_produk}
+                                  src={getProdukPhoto(item.produk.gambar_produk)}
                                   alt={item.produk.nama_produk}
                                   className="w-32"
                                 />
@@ -120,7 +121,7 @@ const HistoryPage = () => {
                             ) : (
                               <div className="flex space-x-2">
                                 <img
-                                  src={item.hampers.gambar_hampers}
+                                  src={getProdukPhoto(item.hampers.gambar_hampers)}
                                   alt={item.hampers.nama_hampers}
                                   className="w-32"
                                 />

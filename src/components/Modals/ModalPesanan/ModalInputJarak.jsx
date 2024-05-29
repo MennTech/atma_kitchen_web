@@ -23,23 +23,31 @@ const ModalInputJarak = ({ onClose, value }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    InputJarak(value, jarak)
-      .then((response) => {
-        toast.success("Succes", {
-          className: "my-classname",
-          description: response.message,
-          duration: 5000,
-        });
-        handleOnClose();
-        onClose();
-      })
-      .catch((err) => {
-        toast.error("Failed", {
-          className: "my-classname",
-          description: err.message,
-          duration: 5000,
-        });
+    if (jarak <=0) {
+      toast.error("Failed", {
+        className: "my-classname",
+        description: 'Jarak harus lebih dari 0',
+        duration: 5000,
       });
+    } else {
+      InputJarak(value, jarak)
+        .then((response) => {
+          toast.success("Succes", {
+            className: "my-classname",
+            description: response.message,
+            duration: 5000,
+          });
+          handleOnClose();
+          onClose();
+        })
+        .catch((err) => {
+          toast.error("Failed", {
+            className: "my-classname",
+            description: err.message,
+            duration: 5000,
+          });
+        });
+    }
   };
 
   return (
@@ -69,6 +77,7 @@ const ModalInputJarak = ({ onClose, value }) => {
                 type="number"
                 name="jarak"
                 id="jarak"
+                step={0.1}
                 onChange={handleChange}
                 className="input input-bordered mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md bg-white"
               />
@@ -84,7 +93,6 @@ const ModalInputJarak = ({ onClose, value }) => {
               <button
                 type="submit"
                 className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-gray-400 hover:bg-opacity-30 hover:text-green-500"
-                disabled={jarak <= 0}
               >
                 Submit
               </button>

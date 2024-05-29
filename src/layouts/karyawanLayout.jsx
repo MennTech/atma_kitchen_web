@@ -2,6 +2,12 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
 import { Toaster } from 'sonner';
+import { BsFillPersonLinesFill } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
+import { MdBadge } from "react-icons/md";
+import { GiExpense } from "react-icons/gi";
+import { TbPackageImport } from "react-icons/tb";
+import { LuPackagePlus } from "react-icons/lu";
 import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
 
 const KaryawanLayout = () => {
@@ -53,27 +59,33 @@ const KaryawanLayout = () => {
                 */
                {
                 name: "Pembelian Bahan Baku",
-                path: "/dashboard/pembelian-bahan-baku"
+                path: "/dashboard/pembelian-bahan-baku",
+                icon: <TbPackageImport size={24}/>
                },
                {
                 name: "Karyawan",
-                path: "/dashboard/karyawan"
+                path: "/dashboard/karyawan",
+                icon: <FaUsers size={24}/>
                },
                {
                 name: "Penitip",
-                path: "/dashboard/penitip"
+                path: "/dashboard/penitip",
+                icon: <BsFillPersonLinesFill size={24}/>
                },
                {
                 name: "Pengeluaran Lain",
-                path: "/dashboard/pengeluaranLain"
+                path: "/dashboard/pengeluaranLain",
+                icon: <GiExpense size={24}/>
                },
                {
                 name: "Jabatan",
-                path: "/dashboard/jabatan"
+                path: "/dashboard/jabatan",
+                icon: <MdBadge size={24}/>
                },
                {
                 name: "Pesanan",
-                path: "/dashboard/pesanan-valid"
+                path: "/dashboard/pesanan-valid",
+                icon: <LuPackagePlus size={24}/>
                }
             ])
         }else if (role === "Owner"){
