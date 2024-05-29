@@ -137,7 +137,7 @@ const PesananCustomer = () => {
                                     {new Intl.NumberFormat("id-ID", {
                                     style: "currency",
                                     currency: "IDR",
-                                    }).format(item.jumlah_pembayaran)}
+                                    }).format(item.total)}
                                 </p>
                             </div>
                             <ModalPembayaran onClose={fetchHistory} value={item.id_pesanan}/>

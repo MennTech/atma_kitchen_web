@@ -10,7 +10,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
-const Produk = () => {
+
+const produk = () => {
   const navigate = useNavigate();
   const [produks, setProduks] = useState([]);
   const fetchProduk = async () => {
@@ -33,7 +34,7 @@ const Produk = () => {
     fetchProduk();
   }, []);
   return (
-    <div id="produk">
+    <div>
       <div className="grid grid-cols-2 h-screen">
         <div className="lg:p-24 sm:p-16 p-4 lg:mt-40 sm:mt-28 mt-40 lg:ml-16">
             <h1 className="poppins-bold lg:text-8xl sm:text-6xl text-5xl">
@@ -93,4 +94,4 @@ const Produk = () => {
     </div>
   );
 };
-export default Produk;
+export default produk;

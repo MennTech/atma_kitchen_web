@@ -1,5 +1,5 @@
 import { useState,React } from "react";
-import BgCake from "../assets/bg.png";
+import Aboutus from "../assets/aboutus.png";
 
 
 const AboutUs = () => {
@@ -41,7 +41,7 @@ const AboutUs = () => {
                 <div
                     className="lg:w-[450px] w-screen h-72 lg:h-[800px] lg:rounded-t-full lg:rounded-b-full overflow-hidden sm:mx-16 lg:mx-0 mx-10 rounded-r-xl rounded-l-xl sm:rounded-r-xl sm:rounded-l-xl"
                     style={{
-                        backgroundImage: `url(${BgCake})`,
+                        backgroundImage: `url(${Aboutus})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
