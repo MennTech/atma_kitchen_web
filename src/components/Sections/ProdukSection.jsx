@@ -134,7 +134,7 @@ const ProdukSection = ({ date, handleClickPO, handleClickLangsung }) => {
                                 produk.filter((item) => item.kategori === "Roti")
                                     .map((item, index) => (
                                         <div key={index} className="card card-compact w-full border">
-                                            <figure><img src={item.gambar_produk} alt={item.nama_produk} /></figure>
+                                            <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} /></figure>
                                             <div className="card-body">
                                                 <h2 className="card-title">{item.nama_produk}</h2>
                                                 <p>{item.deskripsi_produk}</p>
@@ -182,7 +182,7 @@ const ProdukSection = ({ date, handleClickPO, handleClickLangsung }) => {
                                 produk.filter((item) => item.kategori === "Minuman")
                                     .map((item, index) => (
                                         <div key={index} className="card card-compact w-full border">
-                                            <figure><img src={item.gambar_produk} alt={item.nama_produk} /></figure>
+                                            <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} /></figure>
                                             <div className="card-body">
                                                 <h2 className="card-title">{item.nama_produk}</h2>
                                                 <p>{item.deskripsi_produk}</p>
