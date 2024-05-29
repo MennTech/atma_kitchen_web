@@ -261,7 +261,7 @@ const Keranjang = () => {
                                                         </span>
                                                     </button>
                                                 </td>
-                                                <td className="text-center">
+                                                <td className="flex justify-center">
                                                     <img
                                                         src={item.id_hampers ? getHampersPhoto(item.gambar_hampers) : getProdukPhoto(item.gambar_produk)}
                                                         alt="gambar"
