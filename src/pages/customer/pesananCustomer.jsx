@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { GetMustbePaid } from "../../api/userApi";
 import ModalPembayaran from "../../components/Modals/ModalPesanan/BuktiPembayaran";
+import { getProdukPhoto } from "../../api/index";
 
 
 const PesananCustomer = () => {
@@ -86,7 +87,7 @@ const PesananCustomer = () => {
                                 {item.produk !== null ? (
                                   <div className="flex space-x-2">
                                     <img
-                                      src={item.produk.gambar_produk}
+                                      src={getProdukPhoto(item.produk.gambar_produk)}
                                       alt={item.produk.nama_produk}
                                       className="w-32"
                                     />
@@ -136,7 +137,7 @@ const PesananCustomer = () => {
                                     {new Intl.NumberFormat("id-ID", {
                                     style: "currency",
                                     currency: "IDR",
-                                    }).format(item.jumlah_pembayaran)}
+                                    }).format(item.total)}
                                 </p>
                             </div>
                             <ModalPembayaran onClose={fetchHistory} value={item.id_pesanan}/>

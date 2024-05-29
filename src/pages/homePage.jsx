@@ -14,8 +14,8 @@ const HomePage = () => {
         />
       </div>
       <div className="z-10 lg:p-28 sm:p-16 p-4 lg:mt-20 sm:mt-28 mt-40">
-        <h2 className="lg:text-8xl sm:text-6xl text-5xl font-bold mb-4 ">Sweet chocolate</h2>
-        <h3 className="lg:text-8xl sm:text-6xl text-5xl font-bold mb-10">low fat</h3>
+        <h2 className="lg:text-8xl sm:text-6xl text-5xl font-bold mb-4 ">Your Favourite Cake</h2>
+        <h3 className="lg:text-6xl sm:text-4xl text-3xl font-bold mb-10">Delicious & Fresh</h3>
         <p className="w-[300px] lg:text-lg mb-16">Chocolate cake layer with vanilla topped with thick chocolate and decorated with berries</p>
         <div>
           <button className="bg-[#DCD8D0] text-[#253331] hover:bg-[#253331] hover:text-[#DCD8D0] px-8 py-2 rounded-full mr-4" onClick={() => navigate("/login")}>Sign In</button>
