@@ -87,7 +87,7 @@ const ProdukSection = ({ date, handleClickPO, handleClickLangsung }) => {
                                 produk.filter((item) => item.kategori === "Cake")
                                     .map((item, index) => (
                                         <div key={index} className="card card-compact w-full border shadow-md">
-                                            <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} /></figure>
+                                            <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} className="w-full h-48" /></figure>
                                             <div className="card-body">
                                                 <h2 className="card-title">{item.nama_produk}</h2>
                                                 <p>{item.deskripsi_produk}</p>
@@ -134,11 +134,11 @@ const ProdukSection = ({ date, handleClickPO, handleClickLangsung }) => {
                                 produk.filter((item) => item.kategori === "Roti")
                                     .map((item, index) => (
                                         <div key={index} className="card card-compact w-full border">
-                                            <figure><img src={item.gambar_produk} alt={item.nama_produk} /></figure>
+                                            <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} className="w-full h-48" /></figure>
                                             <div className="card-body">
                                                 <h2 className="card-title">{item.nama_produk}</h2>
                                                 <p>{item.deskripsi_produk}</p>
-                                                <p>
+                                                <p hidden={item.stok_tersedia === 0}>
                                                     <span className="font">Stok Tersedia: </span>
                                                     <span className="font">{item.stok_tersedia}</span>
                                                 </p>
@@ -182,11 +182,11 @@ const ProdukSection = ({ date, handleClickPO, handleClickLangsung }) => {
                                 produk.filter((item) => item.kategori === "Minuman")
                                     .map((item, index) => (
                                         <div key={index} className="card card-compact w-full border">
-                                            <figure><img src={item.gambar_produk} alt={item.nama_produk} /></figure>
+                                            <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} className="w-full h-48" /></figure>
                                             <div className="card-body">
                                                 <h2 className="card-title">{item.nama_produk}</h2>
                                                 <p>{item.deskripsi_produk}</p>
-                                                <p>
+                                                <p hidden={item.stok_tersedia === 0}>
                                                     <span className="font">Stok Tersedia: </span>
                                                     <span className="font">{item.stok_tersedia}</span>
                                                 </p>
