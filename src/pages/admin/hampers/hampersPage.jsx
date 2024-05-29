@@ -129,7 +129,7 @@ const HampersPage = () => {
     return (
         <div className='w-screen min-h-screen p-4 overflow-y-auto'>
             <div className="flex items-center">
-                <h1 className="text-4xl text-[#d08854] font-semibold">Data Hampers</h1>
+                <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Hampers</h1>
                 <div className="divider divider-horizontal m-1"></div>
                 <p className="text-slate-400">
                     Manajemen Hampers Atma Kitchen
@@ -139,7 +139,7 @@ const HampersPage = () => {
                 <div className="card-body h-full p-4">
                     <div className='flex justify-between'>
                         <div className="flex items-center">
-                            <input type="text" placeholder="Cari Hampers" className='input bg-slate-100' onChange={handleSearch} />
+                            <input type="text" placeholder="Cari Hampers" className='input bg-[#F3EFEA]' onChange={handleSearch} />
                         </div>
                         <div className="space-x-1">
                             <button onClick={() => navigate('/dashboard/hampers/create')} className='btn btn-outline bg-[#d08854] text-white'>Tambah Hampers</button>

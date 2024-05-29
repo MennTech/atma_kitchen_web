@@ -62,7 +62,7 @@ const BahanBakuPage = () => {
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Data Bahan Baku</h1>
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Bahan Baku</h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">
           Manajemen Bahan Baku Atma Kitchen
@@ -72,7 +72,7 @@ const BahanBakuPage = () => {
         <div className="card-body h-full p-4">
           <div className='flex justify-between'>
             <div className="flex items-center">
-              <input type="text" placeholder="cth:Butter" className='input bg-slate-100 px-4' onChange={handleSearch}/>
+              <input type="text" placeholder="cth:Butter" className='input bg-[#F3EFEA] px-4' onChange={handleSearch}/>
             </div>
             <div className="space-x-1">
               <CreateModal onClose={fetchData}/>

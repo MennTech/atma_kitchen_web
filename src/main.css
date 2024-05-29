@@ -20,8 +20,8 @@
 
 #root{
   font: 16px/1.5 'Helvetica Neue', sans-serif;
-  /* min-height: 100vh;
-  min-width: 100vh; */
+  min-height: 100vh;
+  /* min-width: 100vh; */
   /* change text color to black; */
   color: #000000;
   overflow-x: hidden;
