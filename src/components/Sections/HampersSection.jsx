@@ -117,7 +117,7 @@ const HampersSection = ({ date, handleClickPO, handleClickLangsung }) => {
                             {
                                 hampers.map((item, index) => (
                                     <div key={index} className="card card-compact w-full border shadow-md">
-                                        <figure><img src={getHampersPhoto(item.gambar_hampers)} alt={item.nama_hampers} /></figure>
+                                        <figure><img src={getHampersPhoto(item.gambar_hampers)} alt={item.nama_hampers} className="w-full h-48"/></figure>
                                         <div className="card-body">
                                             <h2 className="card-title">{item.nama_hampers}</h2>
                                             <p>{item.deskripsi_hampers}</p>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { CheckoutPesanan, GetKeranjangPesanan } from "../../api/pesanan";
 import { GetAlamat, GetProfile } from "../../api/userApi";
+import ErrorAlert from "../../components/alerts/errorAlert";
 
 const Checkout = () => {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Checkout = () => {
     const [total, setTotal] = useState(0);
     const [pointDidapat, setPointDidapat] = useState(0);
     const [date, setDate] = useState("");
+    const [maxDate, setMaxDate] = useState("");
     const [data, setData] = useState({
         "id_pesanan": null,
         "tanggal_ambil": "",
@@ -28,6 +30,8 @@ const Checkout = () => {
         "tanggal": "",
         "waktu": "",
     });
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const getCurrentUser = async () => {
         try {
@@ -109,8 +113,12 @@ const Checkout = () => {
         }
         if (pesanan.metode_pesan === "Pesan Langsung") {
             const date = new Date();
+            const maxDate = new Date();
+            maxDate.setDate(maxDate.getDate() + 1);
             const formattedDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+            const formattedMaxDate = new Date(maxDate.getTime() - (maxDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
             setDate(formattedDate);
+            setMaxDate(formattedMaxDate);
         }
     }, [pesanan]);
 
@@ -160,7 +168,8 @@ const Checkout = () => {
 
     useEffect(() => {
         console.log(date);
-    }, [date])
+        console.log(maxDate);
+    }, [date, maxDate])
 
     useEffect(() => {
         console.log(data);
@@ -206,21 +215,34 @@ const Checkout = () => {
             return;
         }
 
+        if(data.poin_dipakai > currentUser.poin) {
+            toast.error("Poin yang dipakai melebihi poin yang dimiliki");
+            return;
+        }
+
         try {
             const response = await CheckoutPesanan(data);
             if (response.success) {
                 window.location.reload();
                 // toast.success("Pesanan berhasil dibuat");
-            } 
-            if(response.success === false) {
-                toast.error(response.message, {
-                    description: response.error
-                });
+            } else {
+                setError(true);
+                setErrorMessage(response.response.data.error);
+                toast.error(response.response);
             }
         } catch (error) {
             toast.error(error.message);
         }
     }
+
+    useEffect(() => {
+        const time = setTimeout(() => {
+            setError(false);
+            setErrorMessage("");
+        }, 2000);
+
+        return () => clearTimeout(time);
+    }, [error])
 
     useEffect(() => {
         if (tanggalAmbil.tanggal === "" || tanggalAmbil.waktu === "") {
@@ -304,7 +326,7 @@ const Checkout = () => {
                             </p>
                         </div>
                         <div className="bg-white rounded-xl p-8">
-                            <form id="formCheckout" className="form-control" onSubmit={submitCheckout}>
+                            <form id="formCheckout" className="form-control" onSubmit={(e) => submitCheckout(e)}>
                                 <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4">
                                     <div className="w-full">
                                         <h2 className="text-lg font-bold">Alamat</h2>
@@ -324,7 +346,7 @@ const Checkout = () => {
                                                 {/* input date */}
                                                 <h2 className="text-lg font-bold">Tanggal Ambil</h2>
                                                 <input required onChange={(e) => handleChangeTanggalAmbil(e)} type="date" min={date}
-                                                    max={pesanan.metode_pesan === "PO" ? "" : date}
+                                                    max={pesanan.metode_pesan === "PO" ? "" : maxDate}
                                                     className="input input-bordered form-control bg-white w-full" />
                                             </div>
                                             <div className="flex flex-col">
@@ -352,6 +374,9 @@ const Checkout = () => {
                                 </div>
                             </form>
                         </div>
+                        {
+                            error && <ErrorAlert message={errorMessage} />
+                        }
                         {/* button */}
                         <div className="flex justify-end gap-x-4">
                             <button onClick={() => navigate('/home')} className="btn btn-ghost">Belanja Lagi</button>

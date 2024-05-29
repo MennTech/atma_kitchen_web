@@ -76,13 +76,15 @@ const CustomerLayout = () => {
     }
 
     const handleClickPO = async (item) => {
-        console.log(item);
+        setLoading(true);
         if (pesananKeranjang === null) {
            await initPesanan();
+           setLoading(false);
         }
         if (pesananKeranjang.metode_pesan === null) {
             setPesananKeranjang((prev) => ({ ...prev, metode_pesan: "PO" }));
             await editMetode({ id_pesanan: pesananKeranjang.id_pesanan, metode_pesan: "PO" });
+            setLoading(false);
         }
         if (pesananKeranjang.metode_pesan !== null && pesananKeranjang.metode_pesan !== "PO") {
             setStatus((prev) => ({
@@ -91,6 +93,7 @@ const CustomerLayout = () => {
                 message: "Anda tidak bisa memesan produk PO dan Pesan Langsung sekaligus"
             }));
             toast.error("Anda tidak bisa memesan produk PO dan Pesan Langsung sekaligus");
+            setLoading(false);
             return;
         }
         let isPresent = false;
@@ -110,6 +113,7 @@ const CustomerLayout = () => {
                 message: "Produk sudah ada di keranjang"
             }));
             toast.error("Produk sudah ada di keranjang");
+            setLoading(false);
             return;
         }
         // check if item has id_produk
@@ -130,6 +134,7 @@ const CustomerLayout = () => {
                 status: "success",
                 message: "Produk berhasil ditambahkan ke keranjang"
             }));
+            setLoading(false);
         } 
         if (Object.keys(item).includes('id_hampers') && item.id_hampers !== null){
             const dataHampersBaru = {
@@ -148,17 +153,20 @@ const CustomerLayout = () => {
                 status: "success",
                 message: "Produk berhasil ditambahkan ke keranjang"
             }));
+            setLoading(false);
         }
     }
 
     const handleClickLangsung = async (item) => {
-        console.log(item);
+        setLoading(true);
         if (pesananKeranjang === null) {
             await initPesanan();
+            setLoading(false);
         }
         if (pesananKeranjang.metode_pesan === null) {
             setPesananKeranjang((prev) => ({ ...prev, metode_pesan: "Pesan Langsung" }));
             await editMetode({ id_pesanan: pesananKeranjang.id_pesanan, metode_pesan: "Pesan Langsung" });
+            setLoading(false);
         }
         if (pesananKeranjang.metode_pesan !== null && pesananKeranjang.metode_pesan !== "Pesan Langsung") {
             setStatus({
@@ -166,6 +174,7 @@ const CustomerLayout = () => {
                 message: "Anda tidak bisa memesan produk PO dan Pesan Langsung sekaligus"
             });
             toast.error("Anda tidak bisa memesan produk PO dan Pesan Langsung sekaligus");
+            setLoading(false);
             return;
         }
         let isPresent = false;
@@ -184,6 +193,7 @@ const CustomerLayout = () => {
                 message: "Produk sudah ada di keranjang"
             })
             toast.error("Produk sudah ada di keranjang");
+            setLoading(false);
             return;
         }
         // check if item has id_produk
@@ -203,6 +213,7 @@ const CustomerLayout = () => {
                 status: "success",
                 message: "Produk berhasil ditambahkan ke keranjang"
             });
+            setLoading(false);
         }
         if (Object.keys(item).includes('id_hampers') && item.id_hampers !== null) {
             const dataHampersBaru = {
@@ -220,6 +231,7 @@ const CustomerLayout = () => {
                 status: "success",
                 message: "Produk berhasil ditambahkan ke keranjang"
             });
+            setLoading(false);
         }
     }
 
@@ -253,9 +265,23 @@ const CustomerLayout = () => {
 
     return (
         <div className="w-screen">
+            {
+                loading && (
+                    <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-[#F9F9F1] flex flex-col gap-y-4 justify-center items-center">
+                        <span className="loading bg-black ease-linear rounded-full h-32 w-32"></span>
+                        <span>
+                            <h1 className="text-2xl">Loading...</h1>
+                        </span>
+                    </div>
+                )
+            }
             <div className="w-screen">
                 <TopNavbarLogin routes={routes} isLoggedIn={loggedIn} size={cart.length} />
-                <Outlet context={{ handleClickPO, handleClickLangsung, pesananKeranjang, cart}} />
+                {
+                    !loading && (
+                        <Outlet context={{ handleClickPO, handleClickLangsung, pesananKeranjang, cart}} />
+                    )
+                }
             </div>
             <Footer />
             {

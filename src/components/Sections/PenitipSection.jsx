@@ -47,7 +47,7 @@ const PenitipSection = ({ handleClickLangsung }) => {
                             {
                                 produkPenitip.map((item, index) => (
                                     <div key={index} className="card card-compact w-full border shadow-md">
-                                        <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} /></figure>
+                                        <figure><img src={getProdukPhoto(item.gambar_produk)} alt={item.nama_produk} className="w-full h-48"/></figure>
                                         <div className="card-body">
                                             <h2 className="card-title">{item.nama_produk}</h2>
                                             <p>{item.deskripsi_produk}</p>
