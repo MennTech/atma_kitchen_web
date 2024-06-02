@@ -196,10 +196,7 @@ const PesananPage = () => {
         <div className="card-body h-full p-4">
           <div className="mt-2">
             {isLoading ? (
-              <div className="flex flex-col items-center">
-                <span className="loading loading-spinner loading-lg"></span>
-                <span className="mt-2">Memuat Data...</span>
-              </div>
+              <div></div>
             ) : bahanBaku.length == 0 ? (
               <div className="flex flex-col items-center"></div>
             ) : (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaBitcoin } from "react-icons/fa6";
-import { getProdukPhoto } from "../../../api/index.jsx";
+import { getBuktiBayarPhoto } from "../../../api/index.jsx";
 
 const ModalBuktiBayar = ({ value }) => {
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +26,7 @@ const ModalBuktiBayar = ({ value }) => {
         <div className="bg-white w-1/3 p-5 rounded-lg">
           <h1 className="text-2xl font-semibold text-center">Bukti Bayar</h1>
           <div className="my-4">
-            <img src={getProdukPhoto(value)} alt={value} />
+            <img src={getBuktiBayarPhoto(value)} alt={value} />
           </div>
           <div className="text-right">
             <button

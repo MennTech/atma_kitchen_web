@@ -228,7 +228,7 @@ const Checkout = () => {
             } else {
                 setError(true);
                 setErrorMessage(response.response.data.error);
-                toast.error(response.response);
+                toast.error(response.response.data.error);
             }
         } catch (error) {
             toast.error(error.message);
@@ -267,7 +267,7 @@ const Checkout = () => {
                 )
             }
             {
-                !loading && data.id_pesanan === null && (
+                !loading && (data.id_pesanan === null || data.id_pesanan !== null) && cartItem.length == 0 &&(
                     <div className="flex flex-col justify-center items-center gap-y-4">
                         <h1 className="text-2xl font-bold">Keranjang Kosong</h1>
                         <p className="text-lg">Yuk tambah produk ke keranjang!</p>
@@ -275,7 +275,7 @@ const Checkout = () => {
                 )
             }
             {
-                !loading && data.id_pesanan !== null && (
+                !loading && data.id_pesanan !== null && cartItem.length > 0 && (
                     <div className="flex flex-col gap-y-4">
                         <h1 className="text-2xl font-bold">Checkout Pesanan</h1>
                         <div className="bg-white rounded-xl p-8">
@@ -374,9 +374,9 @@ const Checkout = () => {
                                 </div>
                             </form>
                         </div>
-                        {
+                        {/* {
                             error && <ErrorAlert message={errorMessage} />
-                        }
+                        } */}
                         {/* button */}
                         <div className="flex justify-end gap-x-4">
                             <button onClick={() => navigate('/home')} className="btn btn-ghost">Belanja Lagi</button>
