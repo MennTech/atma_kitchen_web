@@ -9,6 +9,9 @@ export const getProdukPhoto = (photo) => {
 export const getHampersPhoto = (photo) => {
     return `${BASE_URL}/storage/hampers/${photo}`
 }
+export const getBuktiBayarPhoto = (photo) => {
+    return `${BASE_URL}/storage/bukti_pembayaran/${photo}`
+}   
 
 const useAxios = axios.create({
     baseURL: `${BASE_URL}/api/`

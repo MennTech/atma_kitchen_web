@@ -151,7 +151,7 @@ const HistoryPage = () => {
                           {new Intl.NumberFormat("id-ID", {
                             style: "currency",
                             currency: "IDR",
-                          }).format(item.jumlah_pembayaran)}
+                          }).format(item.total)}
                         </p>
                       </div>
                       {
