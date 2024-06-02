@@ -67,8 +67,8 @@ const BuktiPembayaran = ({ onClose, value }) => {
     
   return (
     <>
-    <button className="btn btn-primary m-3" onClick={handleShow}>Bayar</button>
     <Toaster richColors position="top-center"/>
+    <button className="btn btn-primary m-3" onClick={handleShow}>Bayar</button>
     <dialog className="modal  bg-black bg-opacity-30" open={showModal}>
       <div className="bg-white w-1/3 p-5 rounded-lg">
         <h1 className="text-2xl font-semibold text-center">

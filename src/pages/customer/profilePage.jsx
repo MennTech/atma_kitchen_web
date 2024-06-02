@@ -74,7 +74,7 @@ const ProfilePage = () => {
                         <label htmlFor="poin" style={{ color:"#555555"}}>Jumlah Poin</label>
                       </div>
                       <div>
-                        <p id="poin">{profile.saldo}</p>
+                        <p id="poin">{profile.poin}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-5 gap-5">

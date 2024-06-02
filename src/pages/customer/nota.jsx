@@ -23,7 +23,7 @@ const CetakNota = ({ item, customer }) => {
             <div className="overflow-hidden h-0 w-0">
                 <div
                     ref={componentRef}
-                    className="flex flex-col px-64 py-16">
+                    className="flex flex-col px-36 py-16">
                     <p className="text-center font-bold text-xl">
                         Atma Kitchen
                     </p>
