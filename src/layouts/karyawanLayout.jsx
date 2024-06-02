@@ -8,6 +8,7 @@ import { MdBadge } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
 import { TbPackageImport } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
+import { FaClockRotateLeft } from "react-icons/fa6";
 import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
 
 const KaryawanLayout = () => {
@@ -23,8 +24,13 @@ const KaryawanLayout = () => {
             setRoutes([
                 {
                     name:"Pesanan Masuk",
-                    path:"/dashboard/pesanan",
+                    path:"/dashboard/pesanan-masuk",
                     icon: <PesananIcon/>
+                },
+                {
+                    name:"Pesanan Diproses",
+                    path:"/dashboard/pesanan-diproses",
+                    icon: <FaClockRotateLeft/>
                 },
                 {
                     name: "Bahan Baku",

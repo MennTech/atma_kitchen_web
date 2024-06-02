@@ -208,3 +208,22 @@ export const RejectPesanan = async (id) => {
     throw error.response.data;
   }
 }
+export const ShowPesananDiproses = async () => {
+  try {
+    const response = await useAxios.get("/pesanan-diproses");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+
+export const UpdateStatusPesanan = async (id, status) => {
+  try {
+    const response = await useAxios.put(`/update-status-pesanan/${id}`, {
+      status: status,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
