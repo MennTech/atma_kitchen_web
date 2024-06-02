@@ -49,6 +49,7 @@ import AboutUs from '../pages/aboutUs';
 import Produk from '../pages/produk';
 import HomeContent from '../layouts/homeContent';
 import PesananCustomer from '../pages/customer/pesananCustomer';
+import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
 
 const router = createBrowserRouter([
@@ -182,10 +183,18 @@ const router = createBrowserRouter([
                 element: <div>Dashboard Profile</div>
             },
             {
-                path: '/dashboard/pesanan',
+                path: '/dashboard/pesanan-masuk',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <PesananPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan-diproses',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananDiproses />
                     </RoleBasedRoute>
                 )
             },

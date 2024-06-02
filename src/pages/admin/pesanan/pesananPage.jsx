@@ -92,7 +92,7 @@ const PesananPage = () => {
   return (
     <div className="w-screen p-4 min-h-screen overflow-y-auto">
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Pesanan</h1>
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Pesanan Masuk</h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">Manajemen Pesanan Atma Kitchen</p>
       </div>
