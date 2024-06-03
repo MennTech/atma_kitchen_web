@@ -8,3 +8,12 @@ export const GetPenjualanProdukMonth = async (month, year) => {
         return error;
     }
 }
+
+export const GetLaporanPenjualanKeseluruhan = async (year) => {
+    try {
+        const response = await useAxios.get(`/laporan/penjualan-bulanan/${year}`);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}

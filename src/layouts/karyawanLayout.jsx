@@ -6,7 +6,7 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { MdBadge } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
-import { TbPackageImport } from "react-icons/tb";
+import { TbPackageImport, TbReportAnalytics } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
 import { FaClockRotateLeft, FaArrowsRotate } from "react-icons/fa6";
 import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
@@ -99,6 +99,11 @@ const KaryawanLayout = () => {
                 icon: <LuPackagePlus size={24}/>
                },
                {
+                name: "Laporan Penjualan Bulanan Keseluruhan",
+                path: "/dashboard/laporan/penjualan-bulanan-keseluruhan",
+                icon: <TbReportAnalytics size={24}/>
+               },
+               {
                 name: "Laporan Penjualan Produk Bulanan",
                 path: "/dashboard/laporan/penjualan-produk-bulanan",
                 icon: <ProdukIcon size={24}/>
@@ -113,11 +118,18 @@ const KaryawanLayout = () => {
                 setRoutes([
                     {
                         name: "Jabatan",
-                        path: "/dashboard/owner/jabatan"
+                        path: "/dashboard/owner/jabatan",
+                        icon: <MdBadge size={24}/>
                     },
                     {
                         name: "Karyawan",
-                        path: "/dashboard/owner/karyawan"
+                        path: "/dashboard/owner/karyawan",
+                        icon: <FaUsers size={24}/>
+                    },
+                    {
+                        name: "Laporan Penjualan Bulanan Keseluruhan",
+                        path: "/dashboard/laporan/penjualan-bulanan-keseluruhan",
+                        icon: <TbReportAnalytics size={24}/>
                     },
                     {
                         name: "Laporan Penjualan Produk Bulanan",
