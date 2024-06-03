@@ -92,6 +92,16 @@ const KaryawanLayout = () => {
                 name: "Pesanan",
                 path: "/dashboard/pesanan-valid",
                 icon: <LuPackagePlus size={24}/>
+               },
+               {
+                name: "Laporan Penjualan Produk Bulanan",
+                path: "/dashboard/laporan/penjualan-produk-bulanan",
+                icon: <ProdukIcon size={24}/>
+               },
+               {
+                name: "Laporan Stok Bahan Baku",
+                path: "/dashboard/laporan/stok-bahan-baku",
+                icon: <BahanBakuIcon size={24}/>
                }
             ])
         }else if (role === "Owner"){
@@ -104,6 +114,16 @@ const KaryawanLayout = () => {
                         name: "Karyawan",
                         path: "/dashboard/owner/karyawan"
                     },
+                    {
+                        name: "Laporan Penjualan Produk Bulanan",
+                        path: "/dashboard/laporan/penjualan-produk-bulanan",
+                        icon: <ProdukIcon size={24} />
+                    },
+                    {
+                        name: "Laporan Stok Bahan Baku",
+                        path: "/dashboard/laporan/stok-bahan-baku",
+                        icon: <BahanBakuIcon size={24} />
+                    }
                 ])
         }else{
             setRoutes([]);

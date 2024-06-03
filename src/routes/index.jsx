@@ -51,6 +51,8 @@ import HomeContent from '../layouts/homeContent';
 import PesananCustomer from '../pages/customer/pesananCustomer';
 import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
+import LaporanStokBahanPage from '../pages/MO/LaporanStokBahan/LaporanStokBahanPage';
+import LaporanPenjualanProdukBulananPage from '../pages/MO/LaporanPenjualanProdukBulanan/LaporanPenjualanProdukBulananPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -307,6 +309,22 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <div>Dashboard Laporan</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/stok-bahan-baku',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanStokBahanPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penjualan-produk-bulanan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenjualanProdukBulananPage />
                     </RoleBasedRoute>
                 )
             },
