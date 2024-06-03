@@ -50,6 +50,7 @@ import Produk from '../pages/produk';
 import HomeContent from '../layouts/homeContent';
 import PesananCustomer from '../pages/customer/pesananCustomer';
 import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
+import PesananTelatBayar from '../pages/admin/pesanan/pesananTelatBayar';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
 
 const router = createBrowserRouter([
@@ -195,6 +196,14 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <PesananDiproses />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan-telat-bayar',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananTelatBayar />
                     </RoleBasedRoute>
                 )
             },
