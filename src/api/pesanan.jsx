@@ -227,3 +227,12 @@ export const UpdateStatusPesanan = async (id, status) => {
     throw error.response.data;
   }
 }
+
+export const ShowPesananTelatBayar = async () => {
+  try {
+    const response = await useAxios.get("/pesanan-telat-bayar");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
