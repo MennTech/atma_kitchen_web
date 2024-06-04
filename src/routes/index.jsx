@@ -53,6 +53,8 @@ import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
 import LaporanStokBahanPage from '../pages/MO/LaporanStokBahan/LaporanStokBahanPage';
 import LaporanPenjualanProdukBulananPage from '../pages/MO/LaporanPenjualanProdukBulanan/LaporanPenjualanProdukBulananPage';
+import ProsesPesananPage from '../pages/MO/prosesPesanan/ProsesPesananPage';
+import CekPenggunaanBahanPage from '../pages/MO/prosesPesanan/CekPenggunaanBahanPage';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -439,8 +441,23 @@ const router = createBrowserRouter([
                         <PesananValid />
                     </RoleBasedRoute>
                 )
+            },
+            {
+                path: '/dashboard/pesanan/proses',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <ProsesPesananPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan/proses/cek-bahan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <CekPenggunaanBahanPage />
+                    </RoleBasedRoute>
+                )
             }
-
         ]
     }
 ]);

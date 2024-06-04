@@ -34,7 +34,7 @@ const CetakLaporanPenjualanBulanan = ({ data, produks, bulan, tahun }) => {
                     <p className="text-start font-vold text-md">
                         Tahun : {tahun}
                     </p>
-                    <table className="m-4 border border-black border-collapse">
+                    <table className="my-4 border border-black">
                         <thead>
                             <tr>
                                 <th className="border border-black px-4 py-2">Produk</th>

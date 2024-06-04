@@ -6,7 +6,7 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { MdBadge } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
-import { TbPackageImport } from "react-icons/tb";
+import { TbPackageExport, TbPackageImport } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
 import { FaClockRotateLeft } from "react-icons/fa6";
 import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
@@ -92,6 +92,11 @@ const KaryawanLayout = () => {
                 name: "Pesanan",
                 path: "/dashboard/pesanan-valid",
                 icon: <LuPackagePlus size={24}/>
+               },
+               {
+                name: "Proses Pesanan Hari Ini",
+                path: "/dashboard/pesanan/proses",
+                icon: <TbPackageExport size={24}/>
                },
                {
                 name: "Laporan Penjualan Produk Bulanan",
