@@ -236,3 +236,32 @@ export const ShowPesananTelatBayar = async () => {
     throw error.response.data;
   }
 }
+export const ShowPesananPerluDiproses = async () => {
+  try {
+    const response = await useAxios.get("/pesanan/perlu-diproses");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ShowPenggunaanBahanPesanan = async (array) => {
+  let modifiedArray = array.map((item) => `id_pesanan[]=${item}`);
+  try {
+    const response = await useAxios.get(`/pesanan/perlu-diproses/penggunaan-bahan?${modifiedArray.join('&')}`);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ProsesPesanan = async (data) => {
+  try {
+    const response = await useAxios.patch(`/pesanan/proses`, {
+      id_pesanan: data,
+    });
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
