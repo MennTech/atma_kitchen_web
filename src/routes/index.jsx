@@ -53,6 +53,7 @@ import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
 import PesananTelatBayar from '../pages/admin/pesanan/pesananTelatBayar';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
 import LaporanPenjualanProdukBulananKeseluruhan from '../pages/MO/LaporanPenjualanBulananKeseluruhan/LaporanPenjualanBulananKeseluruhan';
+import LaporanPenggunaanBahanBaku from '../pages/MO/LaporanPenggunaanBahanBaku/LaporanPenggunaanBahanBaku';
 import LaporanStokBahanPage from '../pages/MO/LaporanStokBahan/LaporanStokBahanPage';
 import LaporanPenjualanProdukBulananPage from '../pages/MO/LaporanPenjualanProdukBulanan/LaporanPenjualanProdukBulananPage';
 
@@ -327,6 +328,14 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
                         <LaporanPenjualanProdukBulananKeseluruhan />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penggunaan-bahan-baku',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenggunaanBahanBaku />
                     </RoleBasedRoute>
                 )
             },

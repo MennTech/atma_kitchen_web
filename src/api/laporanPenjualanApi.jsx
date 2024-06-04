@@ -17,3 +17,12 @@ export const GetLaporanPenjualanKeseluruhan = async (year) => {
         return error;
     }
 }
+
+export const GetLaporanPenggunaanBahanBaku = async (startDate, endDate) => {
+    try {
+        const response = await useAxios.get(`/laporan/penggunaan-bahan-baku/${startDate}/${endDate}`);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
