@@ -228,6 +228,14 @@ export const UpdateStatusPesanan = async (id, status) => {
   }
 }
 
+export const ShowPesananTelatBayar = async () => {
+  try {
+    const response = await useAxios.get("/pesanan-telat-bayar");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
 export const ShowPesananPerluDiproses = async () => {
   try {
     const response = await useAxios.get("/pesanan/perlu-diproses");

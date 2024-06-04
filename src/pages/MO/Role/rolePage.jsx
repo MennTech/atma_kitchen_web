@@ -68,7 +68,7 @@ const RolePage = () => {
     return (
         <div className="w-screen min-h-screen p-4 overflow-y-auto">
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Data Jabatan</h1>
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Jabatan</h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">Manajemen Jabatan Atma Kitchen</p>
       </div>

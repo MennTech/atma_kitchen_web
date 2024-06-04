@@ -50,7 +50,10 @@ import Produk from '../pages/produk';
 import HomeContent from '../layouts/homeContent';
 import PesananCustomer from '../pages/customer/pesananCustomer';
 import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
+import PesananTelatBayar from '../pages/admin/pesanan/pesananTelatBayar';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
+import LaporanPenjualanProdukBulananKeseluruhan from '../pages/MO/LaporanPenjualanBulananKeseluruhan/LaporanPenjualanBulananKeseluruhan';
+import LaporanPenggunaanBahanBaku from '../pages/MO/LaporanPenggunaanBahanBaku/LaporanPenggunaanBahanBaku';
 import LaporanStokBahanPage from '../pages/MO/LaporanStokBahan/LaporanStokBahanPage';
 import LaporanPenjualanProdukBulananPage from '../pages/MO/LaporanPenjualanProdukBulanan/LaporanPenjualanProdukBulananPage';
 import ProsesPesananPage from '../pages/MO/prosesPesanan/ProsesPesananPage';
@@ -203,6 +206,14 @@ const router = createBrowserRouter([
                 )
             },
             {
+                path: '/dashboard/pesanan-telat-bayar',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananTelatBayar />
+                    </RoleBasedRoute>
+                )
+            },
+            {
                 path: '/dashboard/produk',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
@@ -311,6 +322,22 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <div>Dashboard Laporan</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penjualan-bulanan-keseluruhan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenjualanProdukBulananKeseluruhan />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penggunaan-bahan-baku',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenggunaanBahanBaku />
                     </RoleBasedRoute>
                 )
             },

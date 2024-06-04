@@ -61,7 +61,7 @@ const AddPengeluaranLain = () => {
   return (
     <div className="w-screen p-4 min-h-screen overflow-y-auto">
       <div className="flex items-center">
-        <h1 className="text-4xl text-[#d08854] font-semibold">
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">
           Tambah Pengeluaran Lain
         </h1>
         <div className="divider divider-horizontal m-1"></div>

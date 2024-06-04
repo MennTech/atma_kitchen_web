@@ -62,7 +62,7 @@ const PenitipPage = () => {
   return (
     <div className='w-screen p-4 min-h-screen overflow-y-auto'>
       <div className="flex items-center w-4/5 mx-auto">
-        <h1 className="text-4xl text-[#d08854] font-semibold">Data Penitip</h1>
+        <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Penitip</h1>
         <div className="divider divider-horizontal m-1"></div>
         <p className="text-slate-400">
           Manajemen Data Penitip Atma Kitchen
