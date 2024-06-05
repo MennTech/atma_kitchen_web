@@ -236,3 +236,12 @@ export const ShowPesananTelatBayar = async () => {
     throw error.response.data;
   }
 }
+
+export const UpdateStatusPesananTelatBayar = async (id) => {
+  try {
+    const response = await useAxios.post(`/batal-pesanan/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
