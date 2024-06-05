@@ -8,7 +8,7 @@ import { MdBadge } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
 import { TbPackageImport } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
-import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
+import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon,TransferSaldoIcon} from "../components/Icon/icon"
 
 const KaryawanLayout = () => {
     const [role, setRole] = useState("");
@@ -50,6 +50,11 @@ const KaryawanLayout = () => {
                     name: "Customer",
                     path: "/dashboard/customer",
                     icon: <CustomerIcon/>
+                },
+                {
+                    name: "Penarikan Saldo",
+                    path: "/dashboard/penarikan-saldo",
+                    icon: <TransferSaldoIcon/>
                 }
             ])
         }else if (role === "Manager Operational"){
@@ -86,7 +91,22 @@ const KaryawanLayout = () => {
                 name: "Pesanan",
                 path: "/dashboard/pesanan-valid",
                 icon: <LuPackagePlus size={24}/>
-               }
+               },
+               {
+                   name: "Laporan Transaksi",
+                   path: "/dashboard/laporan-transaksi",
+                   icon: <GiExpense/>
+               },
+                {
+                     name: "Laporan Presensi",
+                     path: "/dashboard/laporan-presensi",
+                     icon: <GiExpense/>
+                },
+                {
+                    name: "Laporan Penitip",
+                    path: "/dashboard/laporan-penitip",
+                    icon: <GiExpense/>
+                }
             ])
         }else if (role === "Owner"){
                 setRoutes([
@@ -98,6 +118,21 @@ const KaryawanLayout = () => {
                         name: "Karyawan",
                         path: "/dashboard/owner/karyawan"
                     },
+                    {
+                        name: "Laporan Transaksi",
+                        path: "/dashboard/laporan-transaksi",
+                        icon: <GiExpense/>
+                    },
+                    {
+                        name: "Laporan Presensi",
+                        path: "/dashboard/laporan-presensi",
+                        icon: <GiExpense/>
+                    },
+                    {
+                        name: "Laporan Penitip",
+                        path: "/dashboard/laporan-penitip",
+                        icon: <GiExpense/>
+                    }
                 ])
         }else{
             setRoutes([]);
