@@ -58,6 +58,10 @@ import LaporanStokBahanPage from '../pages/MO/LaporanStokBahan/LaporanStokBahanP
 import LaporanPenjualanProdukBulananPage from '../pages/MO/LaporanPenjualanProdukBulanan/LaporanPenjualanProdukBulananPage';
 import ProsesPesananPage from '../pages/MO/prosesPesanan/ProsesPesananPage';
 import CekPenggunaanBahanPage from '../pages/MO/prosesPesanan/CekPenggunaanBahanPage';
+import PenarikanSaldo from '../pages/admin/TransferSaldo/KonfirmasiTarikSAldo';
+import LaporanTransaksi from '../pages/MO/Laporan/ReportPemasukanPengeluaran';
+import LaporanPresensi from '../pages/MO/Laporan/ReportPresensi';
+import LaporanPenitip from '../pages/MO/Laporan/ReportPenitip';
 
 const router = createBrowserRouter([
     // wildcard route
@@ -466,6 +470,38 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={["Manager Operational"]}>
                         <PesananValid />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/penarikan-saldo',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PenarikanSaldo />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan-transaksi',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanTransaksi />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan-presensi',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPresensi />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan-penitip',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenitip />
                     </RoleBasedRoute>
                 )
             },

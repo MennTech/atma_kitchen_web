@@ -9,7 +9,7 @@ import { GiExpense } from "react-icons/gi";
 import { TbPackageImport, TbPackageExport, TbReportAnalytics, TbReport  } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
 import { FaClockRotateLeft, FaArrowsRotate } from "react-icons/fa6";
-import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
+import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon,TransferSaldoIcon} from "../components/Icon/icon"
 
 const KaryawanLayout = () => {
     const [role, setRole] = useState("");
@@ -61,6 +61,11 @@ const KaryawanLayout = () => {
                     name: "Customer",
                     path: "/dashboard/customer",
                     icon: <CustomerIcon/>
+                },
+                {
+                    name: "Penarikan Saldo",
+                    path: "/dashboard/penarikan-saldo",
+                    icon: <TransferSaldoIcon/>
                 }
             ])
         }else if (role === "Manager Operational"){
@@ -122,7 +127,22 @@ const KaryawanLayout = () => {
                 name: "Laporan Stok Bahan Baku",
                 path: "/dashboard/laporan/stok-bahan-baku",
                 icon: <BahanBakuIcon size={24}/>
-               }
+               },
+               {
+                   name: "Laporan Transaksi",
+                   path: "/dashboard/laporan-transaksi",
+                   icon: <GiExpense/>
+               },
+                {
+                     name: "Laporan Presensi",
+                     path: "/dashboard/laporan-presensi",
+                     icon: <GiExpense/>
+                },
+                {
+                    name: "Laporan Penitip",
+                    path: "/dashboard/laporan-penitip",
+                    icon: <GiExpense/>
+                }
             ])
         }else if (role === "Owner"){
                 setRoutes([
@@ -155,6 +175,21 @@ const KaryawanLayout = () => {
                         name: "Laporan Stok Bahan Baku",
                         path: "/dashboard/laporan/stok-bahan-baku",
                         icon: <BahanBakuIcon size={24} />
+                    },
+                    {
+                        name: "Laporan Transaksi",
+                        path: "/dashboard/laporan-transaksi",
+                        icon: <GiExpense/>
+                    },
+                    {
+                        name: "Laporan Presensi",
+                        path: "/dashboard/laporan-presensi",
+                        icon: <GiExpense/>
+                    },
+                    {
+                        name: "Laporan Penitip",
+                        path: "/dashboard/laporan-penitip",
+                        icon: <GiExpense/>
                     }
                 ])
         }else{
