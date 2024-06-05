@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { GetMustbePaid } from "../../api/userApi";
 import ModalPembayaran from "../../components/Modals/ModalPesanan/BuktiPembayaran";
 import { getProdukPhoto } from "../../api/index";
+import { UpdateStatusPesanan } from "../../api/pesanan";
 
 
 const PesananCustomer = () => {
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const fetchHistory = () => {
+        setIsLoading(true);
         GetMustbePaid()
         .then((response) => {
             setHistory(response.data.data);
@@ -19,7 +21,6 @@ const PesananCustomer = () => {
     };
 
     useEffect(() => {
-        setIsLoading(true);
         fetchHistory();
     }, []);
 
@@ -50,6 +51,17 @@ const PesananCustomer = () => {
         setHistory(filteredHistory);
         }
     }
+
+    const handleStatus = (id, status) => {
+        UpdateStatusPesanan(id, status)
+            .then((response) => {
+                fetchHistory();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <>
           {isLoading ? (
@@ -140,7 +152,14 @@ const PesananCustomer = () => {
                                     }).format(item.total)}
                                 </p>
                             </div>
-                            <ModalPembayaran onClose={fetchHistory} value={item.id_pesanan}/>
+                            {item.status == "Menunggu Pembayaran" ? (
+                              <ModalPembayaran onClose={fetchHistory} value={item.id_pesanan}/>
+                            ) : (
+                              <button className="btn btn-success m-3" onClick={()=>handleStatus(item.id_pesanan, 'Selesai')}>
+                                Selesai
+                              </button>
+                            )}
+                            
                         </div>
                       </div>
                     ))}

@@ -49,7 +49,15 @@ import AboutUs from '../pages/aboutUs';
 import Produk from '../pages/produk';
 import HomeContent from '../layouts/homeContent';
 import PesananCustomer from '../pages/customer/pesananCustomer';
+import PesananDiproses from '../pages/admin/pesanan/pesananDiproses.page';
+import PesananTelatBayar from '../pages/admin/pesanan/pesananTelatBayar';
 import PesananValid from '../pages/MO/Pesanan/Pesanan'
+import LaporanPenjualanProdukBulananKeseluruhan from '../pages/MO/LaporanPenjualanBulananKeseluruhan/LaporanPenjualanBulananKeseluruhan';
+import LaporanPenggunaanBahanBaku from '../pages/MO/LaporanPenggunaanBahanBaku/LaporanPenggunaanBahanBaku';
+import LaporanStokBahanPage from '../pages/MO/LaporanStokBahan/LaporanStokBahanPage';
+import LaporanPenjualanProdukBulananPage from '../pages/MO/LaporanPenjualanProdukBulanan/LaporanPenjualanProdukBulananPage';
+import ProsesPesananPage from '../pages/MO/prosesPesanan/ProsesPesananPage';
+import CekPenggunaanBahanPage from '../pages/MO/prosesPesanan/CekPenggunaanBahanPage';
 import PenarikanSaldo from '../pages/admin/TransferSaldo/KonfirmasiTarikSAldo';
 import LaporanTransaksi from '../pages/MO/Laporan/ReportPemasukanPengeluaran';
 import LaporanPresensi from '../pages/MO/Laporan/ReportPresensi';
@@ -186,10 +194,26 @@ const router = createBrowserRouter([
                 element: <div>Dashboard Profile</div>
             },
             {
-                path: '/dashboard/pesanan',
+                path: '/dashboard/pesanan-masuk',
                 element: (
                     <RoleBasedRoute allowedRoles={["Admin"]}>
                         <PesananPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan-diproses',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananDiproses />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan-telat-bayar',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Admin"]}>
+                        <PesananTelatBayar />
                     </RoleBasedRoute>
                 )
             },
@@ -302,6 +326,38 @@ const router = createBrowserRouter([
                 element: (
                     <RoleBasedRoute allowedRoles={"Manager Operational"}>
                         <div>Dashboard Laporan</div>
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penjualan-bulanan-keseluruhan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenjualanProdukBulananKeseluruhan />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penggunaan-bahan-baku',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenggunaanBahanBaku />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/stok-bahan-baku',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanStokBahanPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/laporan/penjualan-produk-bulanan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational", "Owner"]}>
+                        <LaporanPenjualanProdukBulananPage />
                     </RoleBasedRoute>
                 )
             },
@@ -448,8 +504,23 @@ const router = createBrowserRouter([
                         <LaporanPenitip />
                     </RoleBasedRoute>
                 )
+            },
+            {
+                path: '/dashboard/pesanan/proses',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <ProsesPesananPage />
+                    </RoleBasedRoute>
+                )
+            },
+            {
+                path: '/dashboard/pesanan/proses/cek-bahan',
+                element: (
+                    <RoleBasedRoute allowedRoles={["Manager Operational"]}>
+                        <CekPenggunaanBahanPage />
+                    </RoleBasedRoute>
+                )
             }
-
         ]
     }
 ]);

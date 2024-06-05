@@ -6,8 +6,9 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { MdBadge } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
-import { TbPackageImport } from "react-icons/tb";
+import { TbPackageImport, TbPackageExport, TbReportAnalytics, TbReport  } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
+import { FaClockRotateLeft, FaArrowsRotate } from "react-icons/fa6";
 import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon,TransferSaldoIcon} from "../components/Icon/icon"
 
 const KaryawanLayout = () => {
@@ -23,8 +24,18 @@ const KaryawanLayout = () => {
             setRoutes([
                 {
                     name:"Pesanan Masuk",
-                    path:"/dashboard/pesanan",
+                    path:"/dashboard/pesanan-masuk",
                     icon: <PesananIcon/>
+                },
+                {
+                    name:"Pesanan Diproses",
+                    path:"/dashboard/pesanan-diproses",
+                    icon: <FaArrowsRotate/>
+                },
+                {
+                    name:"Pesanan Telat Bayar",
+                    path:"/dashboard/pesanan-telat-bayar",
+                    icon: <FaClockRotateLeft/>
                 },
                 {
                     name: "Bahan Baku",
@@ -93,6 +104,31 @@ const KaryawanLayout = () => {
                 icon: <LuPackagePlus size={24}/>
                },
                {
+                name: "Proses Pesanan Hari Ini",
+                path: "/dashboard/pesanan/proses",
+                icon: <TbPackageExport size={24}/>
+               },
+               {
+                name: "Laporan Penjualan Bulanan Keseluruhan",
+                path: "/dashboard/laporan/penjualan-bulanan-keseluruhan",
+                icon: <TbReportAnalytics size={24}/>
+               },
+               {
+                name: "Laporan Penggunaan Bahan Baku",
+                path: "/dashboard/laporan/penggunaan-bahan-baku",
+                icon: <TbReport size={24}/>
+               },
+               {
+                name: "Laporan Penjualan Produk Bulanan",
+                path: "/dashboard/laporan/penjualan-produk-bulanan",
+                icon: <ProdukIcon size={24}/>
+               },
+               {
+                name: "Laporan Stok Bahan Baku",
+                path: "/dashboard/laporan/stok-bahan-baku",
+                icon: <BahanBakuIcon size={24}/>
+               },
+               {
                    name: "Laporan Transaksi",
                    path: "/dashboard/laporan-transaksi",
                    icon: <GiExpense/>
@@ -112,11 +148,33 @@ const KaryawanLayout = () => {
                 setRoutes([
                     {
                         name: "Jabatan",
-                        path: "/dashboard/owner/jabatan"
+                        path: "/dashboard/owner/jabatan",
+                        icon: <MdBadge size={24}/>
                     },
                     {
                         name: "Karyawan",
-                        path: "/dashboard/owner/karyawan"
+                        path: "/dashboard/owner/karyawan",
+                        icon: <FaUsers size={24}/>
+                    },
+                    {
+                        name: "Laporan Penjualan Bulanan Keseluruhan",
+                        path: "/dashboard/laporan/penjualan-bulanan-keseluruhan",
+                        icon: <TbReportAnalytics size={24}/>
+                    },
+                    {
+                        name: "Laporan Penggunaan Bahan Baku",
+                        path: "/dashboard/laporan/penggunaan-bahan-baku",
+                        icon: <TbReport size={24}/>
+                    },
+                    {
+                        name: "Laporan Penjualan Produk Bulanan",
+                        path: "/dashboard/laporan/penjualan-produk-bulanan",
+                        icon: <ProdukIcon size={24} />
+                    },
+                    {
+                        name: "Laporan Stok Bahan Baku",
+                        path: "/dashboard/laporan/stok-bahan-baku",
+                        icon: <BahanBakuIcon size={24} />
                     },
                     {
                         name: "Laporan Transaksi",

@@ -208,3 +208,70 @@ export const RejectPesanan = async (id) => {
     throw error.response.data;
   }
 }
+export const ShowPesananDiproses = async () => {
+  try {
+    const response = await useAxios.get("/pesanan-diproses");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+
+export const UpdateStatusPesanan = async (id, status) => {
+  try {
+    const response = await useAxios.put(`/update-status-pesanan/${id}`, {
+      status: status,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+
+export const ShowPesananTelatBayar = async () => {
+  try {
+    const response = await useAxios.get("/pesanan-telat-bayar");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+
+export const UpdateStatusPesananTelatBayar = async (id) => {
+  try {
+    const response = await useAxios.post(`/batal-pesanan/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}
+
+export const ShowPesananPerluDiproses = async () => {
+  try {
+    const response = await useAxios.get("/pesanan/perlu-diproses");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ShowPenggunaanBahanPesanan = async (array) => {
+  let modifiedArray = array.map((item) => `id_pesanan[]=${item}`);
+  try {
+    const response = await useAxios.get(`/pesanan/perlu-diproses/penggunaan-bahan?${modifiedArray.join('&')}`);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ProsesPesanan = async (data) => {
+  try {
+    const response = await useAxios.patch(`/pesanan/proses`, {
+      id_pesanan: data,
+    });
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
