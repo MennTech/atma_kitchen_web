@@ -26,6 +26,7 @@ const LaporanTransaksi = () => {
         tahun: parseInt(tahun),
       };
       const response = await ReportPemasukanPengeluaran(requestData);
+      console.log(response.data);
       const combinedData = combineData(response.data);
       setData(combinedData.data);
       setTotalPemasukan(combinedData.totalPemasukan);
