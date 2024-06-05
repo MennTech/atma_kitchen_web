@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { ShowPesananTelatBayar, UpdateStatusPesanan } from "../../../api/pesanan";
+import { ShowPesananTelatBayar, UpdateStatusPesananTelatBayar } from "../../../api/pesanan";
 import { toast } from "sonner";
 
 const PesananTelatBayar = () => {
@@ -28,7 +28,7 @@ const PesananTelatBayar = () => {
     const batalPesanan = () => {
         for (let index = 0; index <= pesanan.length; index++) {
             console.log(pesanan[index].id_pesanan);
-            UpdateStatusPesanan(pesanan[index].id_pesanan, "Dibatalkan")
+            UpdateStatusPesananTelatBayar(pesanan[index].id_pesanan)
             .then(() => {
                 toast.success('Success', {
                     className: 'my-classname',
