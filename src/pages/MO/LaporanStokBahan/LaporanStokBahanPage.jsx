@@ -78,14 +78,14 @@ const LaporanStokBahanPage = () => {
                         </div>
                     }
                     {
-                        !isLoading && bahanBaku.length === 0 && (
+                        !isLoading && (bahanBaku === undefined || bahanBaku.length === 0) && (
                             <div className="flex flex-col items-center">
                                 <span className="text-xl font-semibold">Data Kosong</span>
                             </div>
                         )
                     }
                     {
-                        !isLoading && bahanBaku.length > 0 && (
+                        !isLoading && bahanBaku !== undefined && bahanBaku.length > 0 && (
                             <div className="flex flex-col gap-y-4">
                                 <div className="flex justify-between">
                                     <p>

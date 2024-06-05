@@ -100,14 +100,14 @@ const ProsesPesananPage = () => {
                         )
                     }
                     {
-                        !isLoading && pesanan.length === 0 && (
+                        !isLoading && (pesanan === undefined || pesanan === null || pesanan.length === 0) && (
                             <div className="flex flex-col items-center">
                                 <span className="text-xl font-semibold">Data Kosong</span>
                             </div>
                         )
                     }
                     {
-                        !isLoading && pesanan.length > 0 && (
+                        !isLoading && pesanan !== undefined && pesanan !== null && pesanan.length > 0 && (
                             <>
                                 <div className="flex flex-col gap-y-4">
                                     <DataTable

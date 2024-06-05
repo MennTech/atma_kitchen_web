@@ -6,7 +6,7 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { MdBadge } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
-import { TbPackageImport, TbPackageImport, TbReportAnalytics, TbReport  } from "react-icons/tb";
+import { TbPackageImport, TbPackageExport, TbReportAnalytics, TbReport  } from "react-icons/tb";
 import { LuPackagePlus } from "react-icons/lu";
 import { FaClockRotateLeft, FaArrowsRotate } from "react-icons/fa6";
 import {BahanBakuIcon,CustomerIcon,HampersIcon,ProdukIcon,ResepIcon, PesananIcon} from "../components/Icon/icon"
