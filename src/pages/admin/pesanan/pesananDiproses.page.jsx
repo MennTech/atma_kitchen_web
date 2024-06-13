@@ -48,6 +48,10 @@ const PesananDiproses = () => {
           selector: (row) => row.customer.nama_customer,
         },
         {
+          name: <span className="font-bold text-base">Delivery</span>,
+          selector: (row) => row.delivery,
+        },
+        {
           name: <span className="font-bold text-base">Status Pesanan</span>,
           selector: (row) => {
             return (
@@ -64,8 +68,11 @@ const PesananDiproses = () => {
                         (
                             <>
                                 <option value={row.status} disabled>{row.status}</option>
-                                <option value="Siap Di-pickup">Siap Di-pickup</option>
-                                <option value="Sedang Dikirim">Sedang Dikirim</option>
+                                {row.delivery == "Pickup" ? 
+                                  <option value="Siap Di-pickup">Siap Di-pickup</option>
+                                :
+                                  <option value="Sedang Dikirim">Sedang Dikirim</option>
+                                }
                             </>
                         )}
                         
