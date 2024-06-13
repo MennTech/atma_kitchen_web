@@ -67,6 +67,7 @@ const ModalInputJumlahBayar = ({ onClose, value }) => {
                 type="number"
                 name="jumlahBayar"
                 id="jumlahBayar"
+                value={jumlahBayar}
                 onChange={handleChange}
                 className="input input-bordered mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md bg-white"
               />
