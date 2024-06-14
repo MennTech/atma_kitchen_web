@@ -101,7 +101,7 @@ const LoginCustomerForm = () => {
                     </div>
                 </div>
                 <div className="form-control mt-6">
-                    <button disabled={isDisabled} type="submit" className="btn btn-ghost bg-yellow-500 hover:bg-yellow-400 text-black">
+                    <button disabled={isDisabled} type="submit" className="btn btn-ghost bg-[#8F5C54] hover:bg-[#ba7a70] disabled:bg-[#918380] disabled:text-gray-300 text-white">
                         {loading ? <span className="loading loading-spinner loading-md"></span> : "Login"}
                     </button>
                 </div>
