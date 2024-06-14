@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DropDownProfile from "./Dropdown/DropDownProfile";
 import { useState } from "react";
 import { HamburgerMenu, Xmark } from "../components/Icon/icon";
+import logo from "../assets/logo.png";
 // eslint-disable-next-line react/prop-types
 const TopNavbarLogin = ({ routes, isLoggedIn, size }) => {
   const navigate = useNavigate();
@@ -11,7 +12,13 @@ const TopNavbarLogin = ({ routes, isLoggedIn, size }) => {
     <div className="relative z-50">
       <div className="navbar sticky bg-[#DCD8D0] px-4 flex justify-between py-6 mx-auto sm:px-16 sm:py-8 lg:px-64 lg:py-4">
         <div className="order-1 cursor-pointer">
-          <a onClick={() => navigate("/home")}>Atma Kitchen</a>
+          <a 
+            onClick={() => navigate("/home")}
+            className={`flex items-center poppins-bold font-medium sm:font-semibold sm:text-lg lg:text-xl text-xl text-[#8F5C54]" hover:cursor-pointer`}
+          >
+            <img src={logo} alt="Atma Kitchen Logo" className={`sm:w-20 sm:h-20 lg:w-20 lg:h-20 w-14 h-14 mr-2`} />
+            Atma Kitchen
+          </a>
         </div>
         <div className="order-2 items-center">
           {isLoggedIn && (
