@@ -110,7 +110,7 @@ const LaporanPenitip = () => {
               doc.text("AtmaKitchen", 15, 10);
               doc.text("Jl.Centralpark No. 10 Yogyakarta", 15, 15);
               doc.text("Laporan Transkrip Penitip", 15, 25);
-              doc.text(`ID Penitip: ${item.id_penitp}`, 15, 30);
+              doc.text(`ID Penitip: ${item.id_penitip}`, 15, 30);
               doc.text(`Nama Penitip: ${item.nama_penitip}`, 15, 35);
               doc.text(`Bulan: ${bulan}`, 15, 40);
               doc.text(`Tahun: ${tahun}`, 15, 45);
