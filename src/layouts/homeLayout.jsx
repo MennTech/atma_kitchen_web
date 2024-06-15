@@ -29,15 +29,15 @@ const HomeLayout = () => {
                     icon: <HomeIcon />,
                 },
                 {
+                    name: "Produk",
+                    id: "produk",
+                    icon: <ProdukIcon />
+                },
+                {
                     name: "About",
                     id: "about",
                     icon: <AboutIcon />
                     
-                },
-                {
-                    name: "Produk",
-                    id: "produk",
-                    icon: <ProdukIcon />
                 },
                 {
                     name: "Sign In",

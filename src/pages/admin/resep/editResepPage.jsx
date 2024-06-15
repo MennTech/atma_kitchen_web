@@ -161,7 +161,7 @@ const EditResepPage = () => {
                       type="text"
                       id="namaResep"
                       name="nama_resep"
-                      className="input input-bordered bg-white"
+                      className="input input-bordered bg-white disabled:bg-white disabled:border-gray-200 disabled:text-gray-400"
                       value={namaResep}
                       onChange={handleNamaResep}
                       disabled={!edit ? true : false}
@@ -184,7 +184,7 @@ const EditResepPage = () => {
                       <select
                         name="id_bahan_baku"
                         id="namaBahan"
-                        className="select select-bordered bg-white"
+                        className="select select-bordered bg-white disabled:bg-white disabled:border-gray-200 disabled:text-gray-400"
                         value={detailResep[i].id_bahan_baku}
                         onChange={(event) => handleChange(i, event)}
                         disabled={!edit}
@@ -204,7 +204,7 @@ const EditResepPage = () => {
                         type="number"
                         name="jumlah_bahan"
                         id="jumlah"
-                        className="input input-bordered bg-white"
+                        className="input input-bordered bg-white disabled:bg-white disabled:border-gray-200 disabled:text-gray-400"
                         value={detailResep[i].jumlah_bahan}
                         onChange={(event) => handleChange(i, event)}
                         disabled={!edit}

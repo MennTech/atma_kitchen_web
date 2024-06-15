@@ -57,7 +57,7 @@ const LaporanPenitip = () => {
   return (
     <div className="container mx-auto p-4 overflow-auto">
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4">Laporan Presensi Karyawan</h2>
+        <h2 className="text-xl font-bold mb-4">Laporan Penitip</h2>
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="flex items-center">
             <label htmlFor="bulan" className="mr-2">

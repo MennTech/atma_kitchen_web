@@ -85,7 +85,7 @@ const HistoryPage = () => {
                 />
               </div>
               <div>
-                {history.filter(item => item.status !== "Keranjang").map((item, index) => (
+                {history.filter(item => (item.status !== "Keranjang" && item.status == "Selesai" || item.status == "Pesanan Ditolak" || item.status == "Batal" || item.status == "Pembayaran Valid")).map((item, index) => (
                   <div key={index} className="card mt-2 bg-white">
                     <div className="card-body pb-0">
                       <div className="flex">

@@ -168,7 +168,7 @@ const PesananPage = () => {
                 <span className="loading loading-spinner loading-lg"></span>
                 <span className="mt-2">Memuat Data...</span>
               </div>
-            ) : records.length == 0 ? (
+            ) : records == undefined ? (
               <div className="flex flex-col items-center">
                 <span className="mt-2 text-lg font-mono">
                   Tidak Pesanan Masuk Hari Ini 😭
@@ -187,7 +187,7 @@ const PesananPage = () => {
           </div>
         </div>
       </div>
-      {bahanBaku.length != 0 && (
+      {bahanBaku == undefined && (
         <div className="mt-5 rounded-badge bg-red-900 flex justify-center p-3">
           <h1 className="poppins-bold text-white text-xl">Ada Bahan Baku yang kurang</h1>
         </div>

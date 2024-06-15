@@ -89,7 +89,7 @@ const SaldoPage = () => {
         <div className="flex items-center">
           <h1 className="text-4xl text-[#8F5C54] font-semibold">Data Pengajuan Penarikan Saldo</h1>
           <div className="divider divider-horizontal m-1"></div>
-          <p className="text-slate-400">ManajemenAtma Kitchen</p>
+          <p className="text-slate-400">Manajemen Atma Kitchen</p>
         </div>
         <div className="card w-full h-fit bg-white mt-4">
           <div className="card-body h-full p-4">
