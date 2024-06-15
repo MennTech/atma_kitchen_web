@@ -57,7 +57,13 @@ const LoginCustomerForm = () => {
                     sessionStorage.setItem("karyawan", JSON.stringify(responseKaryawan.karyawan));
                     sessionStorage.setItem("role", responseKaryawan.karyawan.role.jabatan);
                     setLoading(false);
-                    navigate("/dashboard");
+                    if(responseKaryawan.karyawan.role.jabatan === "Admin"){
+                        navigate("/dashboard/pesanan-masuk");
+                    }else if(responseKaryawan.karyawan.role.jabatan === "Manager Operational"){
+                        navigate("/dashboard/pembelian-bahan-baku");
+                    }else{
+                        navigate("/dashboard/owner/jabatan");
+                    }
                 } else {
                     setLoading(false);
                     setErrorLogin(true);

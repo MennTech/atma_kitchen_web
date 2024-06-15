@@ -2,7 +2,6 @@ import { useNavigate, useLocation,Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HamburgerMenu, Xmark } from "../components/Icon/icon";
 import logo from "../assets/logo.png";
-import logo1 from "../assets/logo1.jpg";
 const TopNavbar = ({ routes, isLoggedIn }) => {
   const [color, setColor] = useState(false);
   const changeColor= () => {

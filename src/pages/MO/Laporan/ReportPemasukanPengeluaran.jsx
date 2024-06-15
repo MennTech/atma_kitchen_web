@@ -26,6 +26,7 @@ const LaporanTransaksi = () => {
         tahun: parseInt(tahun),
       };
       const response = await ReportPemasukanPengeluaran(requestData);
+      console.log(response.data);
       const combinedData = combineData(response.data);
       setData(combinedData.data);
       setTotalPemasukan(combinedData.totalPemasukan);
@@ -126,7 +127,7 @@ const LaporanTransaksi = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 overflow-auto">
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-xl font-bold mb-4">
           Laporan Pemasukan dan Pengeluaran

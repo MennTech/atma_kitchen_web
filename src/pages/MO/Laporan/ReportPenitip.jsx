@@ -57,7 +57,7 @@ const LaporanPenitip = () => {
   return (
     <div className="container mx-auto p-4 overflow-auto">
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4">Laporan Presensi Karyawan</h2>
+        <h2 className="text-xl font-bold mb-4">Laporan Penitip</h2>
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="flex items-center">
             <label htmlFor="bulan" className="mr-2">
@@ -110,7 +110,7 @@ const LaporanPenitip = () => {
               doc.text("AtmaKitchen", 15, 10);
               doc.text("Jl.Centralpark No. 10 Yogyakarta", 15, 15);
               doc.text("Laporan Transkrip Penitip", 15, 25);
-              doc.text(`ID Penitip: ${item.id_penitp}`, 15, 30);
+              doc.text(`ID Penitip: ${item.id_penitip}`, 15, 30);
               doc.text(`Nama Penitip: ${item.nama_penitip}`, 15, 35);
               doc.text(`Bulan: ${bulan}`, 15, 40);
               doc.text(`Tahun: ${tahun}`, 15, 45);

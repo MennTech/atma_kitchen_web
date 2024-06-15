@@ -34,6 +34,9 @@ const CetakLaporanPenjualanBulanan = ({ data, produks, bulan, tahun }) => {
                     <p className="text-start font-vold text-md">
                         Tahun : {tahun}
                     </p>
+                    <p className="text-start font-vold text-md">
+                        Tanggal Cetak: {new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
+                    </p>
                     <table className="my-4 border border-black">
                         <thead>
                             <tr>
